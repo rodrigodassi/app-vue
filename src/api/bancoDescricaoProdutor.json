@@ -14,11 +14,8 @@
         "descricoes": [
             { "descricao": "Solicitação", "permissoes": [0, 1, 0, 0] },
             { "descricao": "Emitente", "permissoes": [0,0,0,0] }
-        ]
-       
-    }
-
-     
+        ]       
+    }     
     ]
 }
 
