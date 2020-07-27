@@ -1,0 +1,26 @@
+{
+    "descricoesPermissao": [
+        
+      {
+        "items": "Produtor Rural",
+        "descricoes": [
+            { "descricao": "Dados Básicos", "permissoes": [0, 1, 0, 0] },
+            { "descricao": "Sócios", "permissoes": [0,0,0,0] },
+            { "descricao": "Proprietários", "permissoes": [0,0,0,0] }
+        ]
+    },
+    {
+        "items": "CPR",
+        "descricoes": [
+            { "descricao": "Solicitação", "permissoes": [0, 1, 0, 0] },
+            { "descricao": "Emitente", "permissoes": [0,0,0,0] }
+        ]
+       
+    }
+
+     
+    ]
+}
+
+
+

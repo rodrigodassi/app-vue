@@ -1,0 +1,72 @@
+{
+  "dadosGerais": [
+    {
+      "id": 9,
+      "tipo": "Credor",
+      "segmento": "Grãos",
+      "nome": "Agro Mais Plus",
+      "cnpj": "10.000.000/0000-00",
+      "uf": "DF",
+      "municipio": "Brasília",
+      "cep": "13.060-073",
+      "rua": "Rua Antônio Rodrigues Moreira Neto",
+      "numero": 201,
+      "complemento": "A53",
+      "bairro": "Jardim Paulicéia",
+      "telefone": "(10) 0000-0000",
+      "celular": "(10) 00000-0000",
+      "ativo": 0
+    },
+    {
+      "id": 10,
+      "nome": "Canal Rural",
+      "cnpj": "99.999.999/9999-99",
+      "tipo": "Serviços",
+      "segmento": "Outros",
+      "cep": "10.000-000",
+      "rua": "Teste",
+      "numero": 100,
+      "complemento": "",
+      "bairro": "Teste",
+      "uf": "DF",
+      "municipio": "Brasília",
+      "telefone": "(19) 9999-9999",
+      "celular": "(19) 99999-9999",
+      "ativo": 1
+    },
+    {
+      "id": 11,
+      "nome": "UPL",
+      "cnpj": "33.333.333/3333-33",
+      "tipo": "Credor",
+      "segmento": "Insumos",
+      "cep": "13.060-073",
+      "rua": "Rua Antônio Rodrigues Moreira Neto",
+      "numero": 201,
+      "complemento": "A53",
+      "bairro": "Jardim Paulicéia",
+      "uf": "SP",
+      "municipio": "Campinas",
+      "telefone": "(22) 2222-2222",
+      "celular": "(22) 22222-2222",
+      "ativo": 1
+    },
+    {
+      "id": 12,
+      "nome": "Felipe",
+      "cnpj": "10.000.000/0000-00",
+      "tipo": "Serviços",
+      "segmento": "Outros",
+      "cep": "13.060-073",
+      "rua": "Rua Antônio Rodrigues Moreira Neto",
+      "numero": 201,
+      "complemento": "",
+      "bairro": "SP",
+      "uf": "AM",
+      "municipio": "Campinas",
+      "telefone": "(11) 1111-1111",
+      "celular": "(11) 11111-1111",
+      "ativo": 1
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "dadosGerais": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "nomeOrganizacao": "hjkg",
+      "cpfCnpj": "ertt",
+      "tipo": "Prestador de Serviços",
+      "segmento": "0",
+      "cep": "6765756",
+      "rua": "rtyutyutyu",
+      "numero": "67",
+      "complemento": "yuyuyu",
+      "bairro": "rtyutry",
+      "uf": "0",
+      "municipio": "1",
+      "telefone": "uryu",
+      "celular": "rtyu",
+      "ativo": "Sim",
+      "id": 5
+    }
+  ]
+}

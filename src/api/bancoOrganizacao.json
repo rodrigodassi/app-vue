@@ -1,0 +1,24 @@
+{
+  "organizacoes": [
+    {
+      "id": 1,
+      "tipo": 1,
+      "segmento": 2,
+      "nome": "UPL",
+      "cpfcnpj": "22.365.859/0001-01",
+      "uf": "SP",
+      "municipio": "Campinas",
+      "ativo": 1
+    },
+    {
+      "id": 2,
+      "tipo": 2,
+      "segmento": 3,
+      "nome": "Agro 100",
+      "cpfcnpj": "18.362.850/0008-08",
+      "uf": "PR",
+      "municipio": "Curitiba",
+      "ativo": 1
+    }
+  ]
+}

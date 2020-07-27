@@ -1,0 +1,14 @@
+{
+  "departamentos": [
+    {
+      "id": 1,
+      "nome": "Comercial",
+      "ativo": 0
+    },
+    {
+      "id": 2,
+      "nome": "Jurídico",
+      "ativo": 1
+    }
+  ]
+}

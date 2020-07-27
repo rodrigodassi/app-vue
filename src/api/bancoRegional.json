@@ -1,0 +1,29 @@
+{
+  "regionais": [
+    {
+      "id": 1,
+      "nome": "Sudeste",
+      "ativo": 0
+    },
+    {
+      "id": 2,
+      "nome": "Centroeste",
+      "ativo": 0
+    },
+    {
+      "id": 3,
+      "nome": "Norte",
+      "ativo": 0
+    },
+    {
+      "id": 4,
+      "nome": "Sul",
+      "ativo": 0
+    },
+    {
+      "id": 5,
+      "nome": "Leste",
+      "ativo": 0
+    }
+  ]
+}
