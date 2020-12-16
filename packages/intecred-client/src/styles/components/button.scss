@@ -1,0 +1,54 @@
+.el-button {
+  transition: all .3s ease-in-out;
+
+  span {
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  &:hover {
+    border-color: $--color-secondary;
+    background-color: $--color-secondary;
+  }
+
+  &:focus {
+    background-color: $--color-secondary-dark-1;
+  }
+
+  &--terciary {
+    color: $--color-gray-6 !important;
+    border-color: $--color-gray-5 !important;
+    background-color: transparent !important;
+
+    &:hover {
+      color: $--color-secondary-dark-1 !important;
+      border-color: $--color-secondary-dark-1 !important;
+      background-color: transparent !important;
+    }
+  }
+}
+
+.icon-button {
+  width: 48px;
+  border: 1px solid $--color-gray-5;
+  height: 48px;
+  display: flex;
+  padding: 0;
+  min-width: 48px;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    path {
+      stroke: $--color-gray-6;
+    }
+  }
+
+  &.is-filled svg path {
+    fill: $--color-gray-6;
+  }
+}

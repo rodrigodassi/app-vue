@@ -1,0 +1,371 @@
+<script>
+import IconClose from '../assets/svgs/icon-close.svg';
+import IconChecked from '../assets/svgs/icon-checked.svg';
+
+export default {
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    success: {
+      type: Boolean,
+      required: false,
+    },
+
+    title: {
+      type: [Boolean, String],
+      default: false,
+      required: false,
+    },
+
+    subtitle: {
+      type: String,
+      required: false,
+    },
+
+    draftOptionsWrapper: {
+      type: Boolean,
+      default: false,
+    },
+
+    closeFunction: {
+      type: Function,
+      default: () => {
+      },
+      required: false,
+    },
+
+    draftInfo: {
+      type: Boolean,
+      default: false,
+    },
+
+    draftData: {
+      type: Object,
+      required: false,
+    },
+
+    draftAnalyse: {
+      type: Boolean,
+      default: false,
+    },
+
+    draftAnalyseInput: {
+      type: Object,
+      required: false,
+    },
+  },
+  components: {
+    IconClose,
+    IconChecked,
+  },
+};
+</script>
+
+<template>
+  <div
+    class="modal"
+    :class="{'is-show': show}"
+  >
+    <div v-if="draftInfo" class="modal__wrapper modal__wrapper--pad-25 modal__wrapper__draft-info">
+      <div class="modal__wrapper--status-draft">
+        <div class="modal__head modal__head--border-bottom">
+          <ul>
+            <li v-if="draftData">{{ draftData.condition }}</li>
+            <li v-if="draftData">{{ draftData.responsible }}</li>
+            <li v-if="draftData">{{ draftData.dateTime }}</li>
+          </ul>
+          <IconClose @click="closeFunction"/>
+        </div>
+        <div class="modal__body">
+          <p class="modal__body__p2--bold">Observações:</p>
+          <p class="modal__body__p2">{{ draftData.obs }}</p>
+        </div>
+      </div>
+    </div>
+    <div v-else-if="draftAnalyse"
+         class="modal__wrapper modal__wrapper__draft-analyse">
+      <div class="modal__wrapper__icon-close" @click="closeFunction">
+        <IconClose/>
+      </div>
+      <div class="modal__wrapper modal__wrapper--pad-10">
+        <slot name="head"></slot>
+        <slot name="body"></slot>
+        <slot name="footer"></slot>
+      </div>
+    </div>
+    <div v-else-if="!success">
+      <div :class="[
+        {'modal__wrapper': true,
+        'modal__wrapper--draft__options__wrapper': this.draftOptionsWrapper
+        }
+      ]">
+        <div
+          v-if="!this.draftOptionsWrapper"
+          class="modal__wrapper__icon-close" @click="closeFunction">
+          <IconClose/>
+        </div>
+        <div class="modal__head">
+          <h3
+            v-if="title"
+            v-text="title"
+          />
+          <IconClose v-if="this.draftOptionsWrapper" @click="closeFunction"/>
+        </div>
+
+        <div class="modal__body">
+          <slot/>
+        </div>
+      </div>
+    </div>
+    <div v-else class="modal__wrapper modal__wrapper--success">
+      <div
+        class="modal__wrapper__icon-close" @click="closeFunction">
+        <IconClose/>
+      </div>
+      <div class="modal__head modal__head--success">
+        <div
+          class="modal__wrapper__icon-check">
+          <IconChecked/>
+        </div>
+        <div class="modal__wrapper_title">
+          <h3
+            v-if="title"
+            v-text="title"
+          />
+          <slot name="subtitle"/>
+        </div>
+      </div>
+      <div class="modal__body">
+        <slot/>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+.modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 999;
+  opacity: 0;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  align-items: center;
+  pointer-events: none;
+  justify-content: center;
+  background-color: rgba($--color-gray-6, 0.64);
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+    }
+
+    h3 {
+      font-family: $font_primary;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 32px;
+      color: $--color-primary-dark-1;
+    }
+
+    &--success {
+      justify-content: start;
+
+      .modal__wrapper_title {
+        padding-left: 15px;
+      }
+    }
+
+    &--border-bottom {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $--color-gray-4;
+    }
+
+    ul {
+      li {
+        display: inline-block;
+        font-family: $font_secondary;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: $--color-danger;
+        margin: 0 10px;
+      }
+    }
+  }
+
+  &__body {
+    margin-top: 16px;
+
+    :nth-child(1) {
+      margin-bottom: 8px;
+    }
+
+    &__p2 {
+      font-family: $font_secondary;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      color: $--color-gray-7;
+
+      &--bold {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__wrapper {
+    top: -12%;
+    padding: 40px;
+    position: relative;
+    max-width: 472px;
+    transition: all 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+    border-radius: 8px;
+    background-color: $--color-gray-1;
+
+    &--pad-25 {
+      padding: 25px;
+    }
+
+    &--pad-10 {
+      padding: 10px;
+    }
+
+    &__icon-check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(2, 191, 136, 0.2);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+    }
+
+    &--success {
+      width: 495px;
+      height: 198px;
+      padding: 32px;
+    }
+
+    &--draft__options__wrapper {
+      height: 367px;
+      width: 495px;
+      background: $--color-gray-1;
+      box-shadow: 0 3px 4px rgba(13, 54, 133, 0.15);
+      border-radius: 4px;
+    }
+
+    &__draft-info {
+      width: 460px;
+      height: 240px;
+      background: $--color-gray-1;
+      border-radius: 4px;
+    }
+
+    &__draft-analyse {
+      width: 424px;
+      height: 322px;
+      background: $--color-gray-1;
+      box-shadow: 0px 16px 16px rgba(143, 155, 179, 0.1);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    &__icon-close {
+      position: absolute;
+      display: flex;
+      justify-content: flex-end;
+      top: 16px;
+      right: 12px;
+      cursor: pointer;
+      z-index: 1;
+    }
+  }
+
+  &.is-show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &.is-show &__wrapper {
+    top: 0;
+  }
+}
+
+.modal-feedback {
+  &__message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__icon {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+      justify-content: center;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg:nth-child(1) {
+          width: 100%;
+          height: 100%;
+
+          & > circle {
+            position: absolute;
+            fill: $--color-danger;
+          }
+        }
+
+        svg:nth-child(2) {
+          position: absolute;
+          fill: $--color-danger;
+          width: 24px;
+          height: 24px;
+        }
+
+        svg path {
+          position: absolute;
+          fill: $--color-danger;
+        }
+      }
+    }
+
+    h2 {
+      font-family: $font_primary;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      color: $--color-danger;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__actions {
+    margin-top: 16px;
+    display: flex;
+
+    & > button:first-of-type {
+      margin-right: 2px;
+    }
+  }
+}
+</style>

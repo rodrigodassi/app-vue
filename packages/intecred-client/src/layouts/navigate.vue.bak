@@ -1,0 +1,245 @@
+<script>
+import Logo from '../assets/svgs/logo.svg';
+import IconBell from '../assets/svgs/icon-bell.svg';
+import IconTeam from '../assets/svgs/icon-team.svg';
+import IconDash from '../assets/svgs/icon-dashboard.svg';
+import IconTitle from '../assets/svgs/icon-document.svg';
+import IconLogout from '../assets/svgs/icon-logout.svg';
+import IconEmptyUser from '../assets/svgs/icon-empty-user.svg';
+
+export default {
+  name: 'Main',
+
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
+  },
+
+  components: {
+    Logo,
+    IconBell,
+    IconTeam,
+    IconDash,
+    IconTitle,
+    IconLogout,
+    IconEmptyUser,
+  },
+
+  data: () => ({
+    popup: false,
+  }),
+
+  methods: {
+    handle() {
+      this.popup = !this.popup;
+    },
+
+    // ...mapActions('auth', [
+    //   'destroyToken',
+    // ]),
+
+    logout() {
+      this.$store.dispatch('destroyToken')
+        .then(() => {
+          this.$router.push({ name: 'Login' });
+        });
+    },
+  },
+};
+</script>
+
+<template>
+  <div class="main">
+    <nav class="main__nav">
+      <RouterLink
+        class="main__nav-logo"
+        to="/"
+      >
+        <Logo />
+      </RouterLink>
+
+      <ul class="main__nav-menu">
+        <li class="main__nav-menu-item">
+          <RouterLink
+            to="/dashboard"
+            active-class="is-selected"
+          >
+            <IconDash />Dashboard
+          </RouterLink>
+        </li>
+
+        <li class="main__nav-menu-item">
+          <RouterLink
+            to="/titulos"
+            active-class="is-selected"
+          >
+            <IconTitle />Títulos
+          </RouterLink>
+        </li>
+
+        <li class="main__nav-menu-item">
+          <RouterLink
+            to="/clientes"
+            active-class="is-selected"
+          >
+            <IconTeam />Clientes
+          </RouterLink>
+        </li>
+      </ul>
+
+      <div class="main__nav-actions">
+        <button>
+          <IconBell />
+        </button>
+
+         <div class="main__nav-user">
+          <IconEmptyUser @click="handle"/>
+
+          <div :class="['main__nav-popup', { 'is-show': popup }]">
+            <li>
+              <IconLogout />
+              Sair
+            </li>
+          </div>
+        </div>
+
+        <!-- <router-link v-if="loggedIn" to="/login">
+          <img v-on:click="logout()" src="../assets/images/user.png" alt />
+        </router-link> -->
+        </div>
+      </nav>
+    <div class="main__body">
+      <RouterView />
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+.main {
+  &__nav {
+    top: 0;
+    width: 100%;
+    display: flex;
+    padding: 14px 32px;
+    z-index: 999;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $--color-primary-dark-1;
+
+    &-logo svg {
+      height: 40px;
+      display: flex;
+    }
+
+    &-menu {
+      display: flex;
+      align-items: center;
+
+      &-item {
+        display: flex;
+        transition: all 0.4s ease-in-out;
+
+        a {
+          color: $--color-gray-1;
+          display: flex;
+          padding: 12px 20px;
+          font-size: 14px;
+          line-height: 22px;
+          align-items: center;
+          border-radius: 4px;
+          background-color: transparent;
+          transition: all 0.4s ease-in-out;
+
+          &:hover {
+            color: $--color-secondary;
+
+            svg path {
+              fill: $--color-secondary;
+            }
+          }
+
+          svg {
+            margin-right: 12px;
+          }
+
+          svg path {
+            fill: $--color-gray-1;
+            transition: all 0.4s ease-in-out;
+          }
+
+          &.is-selected {
+            color: $--color-gray-4;
+            background-color: $--color-primary-light-1;
+
+            svg {
+              fill: $--color-gray-4;
+            }
+          }
+        }
+
+        &:not(:first-child) {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+
+      button {
+        display: flex;
+        padding: 0;
+        margin-right: 24px;
+      }
+    }
+
+    &-user {
+      cursor: pointer;
+      display: flex;
+      position: relative;
+      justify-content: center;
+    }
+
+    &-popup {
+      top: 24px;
+      right: -8px;
+      padding: 10px 20px;
+      z-index: 999;
+      opacity: 0;
+      position: absolute;
+      box-shadow: 0 16px 16px rgba(#8F9BB3, .15);
+      transition: all .3s ease-in-out;
+      border-radius: 4px;
+      pointer-events: none;
+      background-color: #FFF;
+
+      li {
+        color: #2E3A59;
+        cursor: pointer;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+
+        svg {
+          margin-right: 12px;
+        }
+      }
+
+      &.is-show {
+        top: 50px;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+  }
+
+  &__body {
+    width: 100%;
+    margin: 112px auto 100px auto;
+    max-width: 1080px;
+  }
+}
+</style>

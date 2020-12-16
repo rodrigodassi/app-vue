@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 540px;
+  margin: 0 auto;
+
+  &__title-alert {
+    font-family: $font_primary;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: $--color-primary;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,5000 @@
+{
+  "users": [
+    {
+      "email": "yuri@estudioflow.com.br",
+      "password": "$2a$10$Nt0g7IbdDQUCw/uSGiEfVuSAz5uD29TpJxN9P0Erv9kKzCG3kqxDq",
+      "name": "yuri",
+      "id": 1
+    }
+  ],
+  "images": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    },
+    {
+      "id": 18
+    },
+    {
+      "id": 19
+    },
+    {
+      "id": 20
+    }
+  ],
+  "titulos": [
+    {
+      "id": 1,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Financeira",
+      "produto": "Batata",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "id": 76,
+          "expiracao": "",
+          "nome": "Maria das Graças",
+          "rg": "e67567657",
+          "email": "maria@gmail.com",
+          "estadoCivil": "married",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "joaozinho@d2w.com",
+            "nome": "João Augusto",
+            "tipoAssinatura": "physical"
+          }
+        },
+        {
+          "id": 57,
+          "expiracao": "",
+          "nome": "Pedro Borges",
+          "rg": "",
+          "email": "pedrinho@pe2.com",
+          "estadoCivil": "",
+          "tipoAssinatura": "electronic",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "",
+            "nome": "",
+            "tipoAssinatura": ""
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": 0,
+      "nomeFazenda": "",
+      "uf": "SP",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": 0,
+      "areaReservaTotal": 150,
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "Screenshot from 2020-09-29 21-38-11.png",
+          "size": 705460,
+          "percentage": 0,
+          "uid": 1602730066901,
+          "raw": {
+            "uid": 1602730066901
+          },
+          "url": "blob:http://localhost:8080/c8c927b9-c051-447c-adea-84c19ea94738",
+          "date": "15/10/2020"
+        },
+        {
+          "status": "ready",
+          "name": "Screenshot from 2020-10-02 20-54-51.png",
+          "size": 1503818,
+          "percentage": 0,
+          "uid": 1603636946941,
+          "raw": {
+            "uid": 1603636946941
+          },
+          "url": "blob:http://localhost:8080/26a8a807-1d48-4239-a394-d5cbaeeeff46",
+          "date": "25/10/2020"
+        },
+        {
+          "status": "ready",
+          "name": "Screenshot from 2020-10-02 20-54-51.png",
+          "size": 1503818,
+          "percentage": 0,
+          "uid": 1603636949531,
+          "raw": {
+            "uid": 1603636949531
+          },
+          "url": "blob:http://localhost:8080/bebba66b-2797-4552-b573-d851b96536c4",
+          "date": "25/10/2020"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Marco Antônio Perez da Silva Sampaio",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "25/10/2020",
+      "depositario": {
+        "nome": "Marco Antônio Perez da Silva Sampaio",
+        "email": "email não cadastrado",
+        "tipoAssinatura": "electronic"
+      },
+      "depositary_is_issuer": false,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [
+            {
+              "status": "ready",
+              "name": "Screenshot from 2020-09-18 15-22-42.png",
+              "size": 150864,
+              "percentage": 0,
+              "uid": 1602708914294,
+              "raw": {
+                "uid": 1602708914294
+              },
+              "url": "blob:http://localhost:8080/a8971531-d9cd-4737-a8d5-d398c05e7c6a",
+              "date": "14/10/2020"
+            }
+          ],
+          "titulo": 1
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [
+            {
+              "status": "ready",
+              "name": "Screenshot from 2020-09-28 15-40-31.png",
+              "size": 341260,
+              "percentage": 0,
+              "uid": 1602708871005,
+              "raw": {
+                "uid": 1602708871005
+              },
+              "url": "blob:http://localhost:8080/984ebc49-f1d0-4fe4-8005-88352c6a051d",
+              "date": "14/10/2020"
+            }
+          ],
+          "titulo": 1
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 1
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": []
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 1
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 1
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 1
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 1
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": []
+        }
+      ],
+      "currentStep": 3,
+      "avalistas": [
+        {
+          "id": 4,
+          "email": "avalista@gmail.com",
+          "tipoAssinatura": "physical"
+        }
+      ],
+      "minuta": {
+        "id": 1,
+        "name": "Minuta modelo 1",
+        "file": "http://localhost:8080/static/adobe.pdf",
+        "client": 1,
+        "status": [
+          {
+            "condition": "Enviada",
+            "responsible": "Yuri Prado Martins",
+            "obs": "Aguardando aprovação",
+            "dateTime": "21/10/2020 | 00:18"
+          },
+          {
+            "condition": "Enviada",
+            "responsible": "Yuri Prado Martins",
+            "obs": "Aguardando aprovação",
+            "dateTime": "21/10/2020"
+          },
+          {
+            "condition": "Aprovada",
+            "dateTime": "21/10/2020 | 00:18",
+            "obs": "Agora sim ok",
+            "responsible": "Yuri Prado Martins"
+          },
+          {
+            "condition": "Rejeitada",
+            "dateTime": "21/10/2020 | 12:10",
+            "obs": "Refazer o passo 1",
+            "responsible": "Yuri Prado Martins"
+          },
+          {
+            "condition": "Enviada",
+            "responsible": "Yuri Prado Martins",
+            "obs": "Aguardando aprovação",
+            "dateTime": "25/10/2020"
+          },
+          {
+            "condition": "Aprovada",
+            "dateTime": "25/10/2020 | 16:54",
+            "obs": "ok",
+            "responsible": "Yuri Prado Martins"
+          }
+        ]
+      },
+      "physicalSignatureFile": [
+        {
+          "status": "ready",
+          "name": "adobe.pdf",
+          "size": 88226,
+          "percentage": 0,
+          "uid": 1603678625982,
+          "raw": {
+            "uid": 1603678625982
+          },
+          "url": "blob:http://localhost:8080/ade53b2a-8790-4a06-9413-9e45b6bbb342"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Financeira",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "expiracao": "",
+          "nome": "Maria das Graças",
+          "rg": "",
+          "email": "maria@gmail.com",
+          "estadoCivil": "married",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "joaozinho@d2w.com",
+            "nome": "João Augusto",
+            "tipoAssinatura": "physical"
+          }
+        },
+        {
+          "expiracao": "",
+          "nome": "Pedro Borges",
+          "rg": "",
+          "email": "pedrinho@pe2.com",
+          "estadoCivil": "",
+          "tipoAssinatura": "electronic",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "",
+            "nome": "",
+            "tipoAssinatura": ""
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "SP",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "Screenshot from 2020-08-31 17-17-44.png",
+          "size": 346897,
+          "percentage": 0,
+          "uid": 1601954522078,
+          "raw": {
+            "uid": 1601954522078
+          },
+          "url": "blob:http://localhost:8080/e3f38309-07b7-410d-bbde-7f789ff6eea6",
+          "id": 1
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Jane Cooper da Silva Sampaio",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "nome": "Jane Cooper da Silva Sampaio",
+        "email": "email não cadastrado"
+      },
+      "depositary_is_issuer": false,
+      "partes": {
+        "emitentes": [
+          {
+            "expiracao": "",
+            "nome": "Maria das Graças",
+            "rg": "",
+            "email": "maria@gmail.com",
+            "estadoCivil": "married",
+            "tipoAssinatura": "physical",
+            "conjuge": {
+              "rg": "",
+              "cpf": "",
+              "email": "joaozinho@d2w.com",
+              "nome": "João Augusto",
+              "tipoAssinatura": "physical"
+            }
+          },
+          {
+            "expiracao": "",
+            "nome": "Pedro Borges",
+            "rg": "",
+            "email": "pedrinho@pe2.com",
+            "estadoCivil": "",
+            "tipoAssinatura": "electronic",
+            "conjuge": {
+              "rg": "",
+              "cpf": "",
+              "email": "",
+              "nome": "",
+              "tipoAssinatura": ""
+            }
+          }
+        ],
+        "depositario": {
+          "nome": "Jane Cooper da Silva Sampaio",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Duplicata",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Dianne Russell",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 4,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Robert Fox",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 5,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Ralph Edwards",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 6,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Eleanor Pena",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 7,
+      "status": 1,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Arlene McCoy",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 8,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Robert Fox",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 9,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Ronald Richards",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 10,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Marco Antônio Perez",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 11,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Jenny Wilson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 12,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Gregory House",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 13,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 14,
+      "status": 2,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 15,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 16,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "São Paulo",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 17,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 18,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Florianópolis",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 19,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 20,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "id": 21,
+      "status": 3,
+      "cpr": "112",
+      "tipo": "Física",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "GO",
+      "municipio": "Campinas",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "logo-initials.png",
+          "size": 11494,
+          "percentage": 0,
+          "uid": 1601855803039,
+          "raw": {
+            "uid": 1601855803039
+          },
+          "url": "blob:http://localhost:8080/183ebd99-f30c-4b1c-8cb0-ae115c9db444"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "Cameron Williamson",
+      "cpf": "070.255.215-14",
+      "cnpj": "070.255.215-15",
+      "valor": "R$ 454.250,00",
+      "tipoArea": "own",
+      "proprietarios": [],
+      "localEntrega": "111",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "2020-09-16T03:00:00.000Z",
+      "depositarioEmitente": "true",
+      "tipoPessoaDepositario": "pf",
+      "created": "04/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": ""
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [
+        {
+          "expiracao": "",
+          "nome": "",
+          "rg": "",
+          "email": "",
+          "estadoCivil": "",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "",
+            "nome": "",
+            "tipoAssinatura": ""
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "Screen Shot 2020-10-13 at 5.15.15 PM.png",
+          "size": 0,
+          "percentage": 0,
+          "uid": 1602621097989,
+          "raw": {
+            "uid": 1602621097989
+          },
+          "url": "blob:http://localhost:8080/9668d4d9-a4ae-4fc0-a235-61e6b0609fc4",
+          "date": "13/10/2020"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "others",
+      "proprietarios": [
+        {
+          "cpf": "",
+          "nome": "",
+          "rg": ""
+        }
+      ],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "13/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "id": 22
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "14/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 23
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "14/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 24
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 25
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 26
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 27
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 28
+    },
+    {
+      "client": 2,
+      "cpr": "Intecred",
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 29
+    },
+    {
+      "id": 30
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 31
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": "",
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "id": 32
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "Fake1",
+      "lavoura": "Fake1",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "17/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "currentStep": 3,
+      "id": 33,
+      "cpr": "teste"
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "Fake2",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "expiracao": "",
+          "nome": "",
+          "rg": "",
+          "email": "",
+          "estadoCivil": "",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "",
+            "nome": "",
+            "tipoAssinatura": ""
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "GitHubDesktop.zip",
+          "size": 107678269,
+          "percentage": 0,
+          "uid": 1603107231175,
+          "raw": {
+            "uid": 1603107231175
+          },
+          "url": "blob:http://localhost:8080/44c815d5-6f9f-4d5d-a0b8-98150d4014ee",
+          "date": "19/10/2020"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "others",
+      "proprietarios": [
+        {
+          "cpf": "",
+          "nome": "",
+          "rg": ""
+        }
+      ],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": [
+        "2020-10-21T03:00:00.000Z",
+        "2020-11-26T03:00:00.000Z"
+      ],
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado",
+        "tipoAssinatura": "physical"
+      },
+      "currentStep": 3,
+      "id": 34,
+      "cpr": "Yuri Martins",
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 34
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 34
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [
+            {
+              "status": "ready",
+              "name": "intecred.zip",
+              "size": 9111,
+              "percentage": 0,
+              "uid": 1603107373495,
+              "raw": {
+                "uid": 1603107373495
+              },
+              "url": "blob:http://localhost:8080/2341e982-0ccb-4b57-9c72-183ec06d0917",
+              "date": "19/10/2020"
+            }
+          ],
+          "titulo": 34
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": []
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 34
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 34
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 34
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [
+            {
+              "status": "ready",
+              "name": "intecred.zip",
+              "size": 9111,
+              "percentage": 0,
+              "uid": 1603107375625,
+              "raw": {
+                "uid": 1603107375625
+              },
+              "url": "blob:http://localhost:8080/ba438f39-72ea-45fa-a639-75323a5efb8a",
+              "date": "19/10/2020"
+            }
+          ],
+          "titulo": 34
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": []
+        }
+      ],
+      "partes": {
+        "emitentes": [
+          {
+            "expiracao": "",
+            "nome": "",
+            "rg": "",
+            "email": "",
+            "estadoCivil": "",
+            "tipoAssinatura": "physical",
+            "conjuge": {
+              "rg": "",
+              "cpf": "",
+              "email": "",
+              "nome": "",
+              "tipoAssinatura": ""
+            }
+          }
+        ],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado",
+          "tipoAssinatura": "physical"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "Fake1",
+      "lavoura": "Fake2",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "expiracao": "12121223123",
+          "nome": "Yuri PF",
+          "rg": "12121223123",
+          "email": "yuri@email.com",
+          "estadoCivil": "married",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "12121223123",
+            "cpf": "12121223123",
+            "email": "conjugue@gmail.com",
+            "nome": "Carolina",
+            "tipoAssinatura": "physical"
+          }
+        },
+        {
+          "expiracao": "",
+          "nome": "",
+          "rg": "",
+          "email": "",
+          "estadoCivil": "married",
+          "tipoAssinatura": "physical",
+          "conjuge": {
+            "rg": "23244423433",
+            "cpf": "23244423433",
+            "email": "joana@gmail.com",
+            "nome": "Joana",
+            "tipoAssinatura": "physical"
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "others",
+      "proprietarios": [
+        {
+          "cpf": "13232132312",
+          "nome": "Joaninha",
+          "rg": "13232132312"
+        }
+      ],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": [
+        "2020-10-28T03:00:00.000Z",
+        "2020-11-23T03:00:00.000Z"
+      ],
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado",
+        "tipoAssinatura": "physical"
+      },
+      "currentStep": 3,
+      "id": 35,
+      "cpr": "Yuri Martins flow",
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 35
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 35
+        }
+      ],
+      "partes": {
+        "emitentes": [
+          {
+            "expiracao": "12121223123",
+            "nome": "Yuri PF",
+            "rg": "12121223123",
+            "email": "yuri@email.com",
+            "estadoCivil": "married",
+            "tipoAssinatura": "physical",
+            "conjuge": {
+              "rg": "12121223123",
+              "cpf": "12121223123",
+              "email": "conjugue@gmail.com",
+              "nome": "Carolina",
+              "tipoAssinatura": "physical"
+            }
+          },
+          {
+            "expiracao": "",
+            "nome": "",
+            "rg": "",
+            "email": "",
+            "estadoCivil": "married",
+            "tipoAssinatura": "physical",
+            "conjuge": {
+              "rg": "23244423433",
+              "cpf": "23244423433",
+              "email": "joana@gmail.com",
+              "nome": "Joana",
+              "tipoAssinatura": "physical"
+            }
+          }
+        ],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado",
+          "tipoAssinatura": "physical"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 36,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 36
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 36
+        }
+      ],
+      "partes": {
+        "emitentes": [],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "Fake1",
+      "lavoura": "Fake2",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "expiracao": "212313231231",
+          "nome": "Rodrigo",
+          "rg": "212313231231",
+          "email": "rodrigo@gmail.com",
+          "estadoCivil": "married",
+          "tipoAssinatura": "certificate",
+          "conjuge": {
+            "rg": "212313231231",
+            "cpf": "212313231231",
+            "email": "joana@gmail.com",
+            "nome": "Joana",
+            "tipoAssinatura": "physical"
+          }
+        },
+        {
+          "expiracao": "212313231231",
+          "nome": "Yuri Prado",
+          "rg": "212313231231",
+          "email": "yuri@gmail.com",
+          "estadoCivil": "married",
+          "tipoAssinatura": "electronic",
+          "conjuge": {
+            "rg": "212313231231",
+            "cpf": "212313231231",
+            "email": "carolina@gmail.com",
+            "nome": "Carolina",
+            "tipoAssinatura": "physical"
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "Rio de Janeiro",
+      "municipio": "Saquarema",
+      "ufRegistro": "Rio de Janeiro",
+      "numeroMatricula": "",
+      "municipioRegistro": "Uberlândia",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [
+        {
+          "status": "ready",
+          "name": "intecred.zip",
+          "size": 9111,
+          "percentage": 0,
+          "uid": 1603113040208,
+          "raw": {
+            "uid": 1603113040208
+          },
+          "url": "blob:http://localhost:8080/b3206c1a-8481-454e-84b1-e480d8d3e74d",
+          "date": "19/10/2020"
+        }
+      ],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "others",
+      "proprietarios": [
+        {
+          "cpf": "212313231231",
+          "nome": "João da Silva",
+          "rg": "212313231231"
+        }
+      ],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 37,
+      "cpr": "Yuri Martins 2",
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [
+            {
+              "status": "ready",
+              "name": "intecred.zip",
+              "size": 9111,
+              "percentage": 0,
+              "uid": 1603113403226,
+              "raw": {
+                "uid": 1603113403226
+              },
+              "url": "blob:http://localhost:8080/01977c82-4fe9-4389-a2c4-ac0516c11783",
+              "date": "19/10/2020"
+            }
+          ],
+          "titulo": 37
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [
+            {
+              "status": "ready",
+              "name": "intecred.zip",
+              "size": 9111,
+              "percentage": 0,
+              "uid": 1603113401390,
+              "raw": {
+                "uid": 1603113401390
+              },
+              "url": "blob:http://localhost:8080/4737eda5-59b6-4650-a0b5-60e8883f9cae",
+              "date": "19/10/2020"
+            }
+          ],
+          "titulo": 37
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 37
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 37
+        }
+      ],
+      "partes": {
+        "emitentes": [
+          {
+            "expiracao": "212313231231",
+            "nome": "Rodrigo",
+            "rg": "212313231231",
+            "email": "rodrigo@gmail.com",
+            "estadoCivil": "married",
+            "tipoAssinatura": "certificate",
+            "conjuge": {
+              "rg": "212313231231",
+              "cpf": "212313231231",
+              "email": "joana@gmail.com",
+              "nome": "Joana",
+              "tipoAssinatura": "physical"
+            }
+          },
+          {
+            "expiracao": "212313231231",
+            "nome": "Yuri Prado",
+            "rg": "212313231231",
+            "email": "yuri@gmail.com",
+            "estadoCivil": "married",
+            "tipoAssinatura": "electronic",
+            "conjuge": {
+              "rg": "212313231231",
+              "cpf": "212313231231",
+              "email": "carolina@gmail.com",
+              "nome": "Carolina",
+              "tipoAssinatura": "physical"
+            }
+          }
+        ],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 38,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 38
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 38
+        }
+      ],
+      "partes": {
+        "emitentes": [],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 39,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 39
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 39
+        }
+      ],
+      "partes": {
+        "emitentes": [],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "19/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 40,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 40
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 40
+        }
+      ],
+      "partes": {
+        "emitentes": [],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "",
+      "tipoPessoaDepositario": "",
+      "created": "20/10/2020",
+      "depositario": {
+        "nome": "",
+        "email": "email não cadastrado"
+      },
+      "currentStep": 3,
+      "id": 41,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 41
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 41
+        }
+      ],
+      "partes": {
+        "emitentes": [],
+        "avalistas": [],
+        "depositario": {
+          "nome": "",
+          "email": "email não cadastrado"
+        }
+      }
+    },
+    {
+      "status": 1,
+      "tipo": "Fisica",
+      "produto": "",
+      "lavoura": "",
+      "quantidade": "",
+      "expiracao": "",
+      "proprietarioEmitente": true,
+      "emitentes": [
+        {
+          "expiracao": "",
+          "nome": "",
+          "rg": "",
+          "email": "",
+          "estadoCivil": "",
+          "tipoAssinatura": "electronic",
+          "conjuge": {
+            "rg": "",
+            "cpf": "",
+            "email": "",
+            "nome": "",
+            "tipoAssinatura": ""
+          }
+        }
+      ],
+      "produtividade": "",
+      "areaProducao": "",
+      "nomeFazenda": "",
+      "uf": "",
+      "municipio": "",
+      "ufRegistro": "",
+      "numeroMatricula": "",
+      "municipioRegistro": "",
+      "areaReservaLegal": "",
+      "areaReservaTotal": "",
+      "latitude": "",
+      "longitude": "",
+      "files": [],
+      "estadoCivil": "",
+      "ocupacao": "",
+      "email": "",
+      "rg": "",
+      "nome": "",
+      "cpf": "",
+      "tipoArea": "",
+      "proprietarios": [],
+      "localEntrega": "",
+      "cepEntrega": "",
+      "enderecoEntrega": "",
+      "ufEntrega": "",
+      "cidadeEntrega": "",
+      "periodoEntrega": "",
+      "depositarioEmitente": "false",
+      "tipoPessoaDepositario": "",
+      "created": "21/10/2020",
+      "depositario": {
+        "uf": "",
+        "cidade": "",
+        "cep": "",
+        "endereco": "",
+        "nacionalidade": "",
+        "estadoCivil": "",
+        "ocupacao": "",
+        "email": "",
+        "rg": "",
+        "nome": "",
+        "cpf": "",
+        "obs": "",
+        "cnpj": "",
+        "razao_social": "",
+        "tipoAssinatura": ""
+      },
+      "currentStep": 3,
+      "id": 42,
+      "depositary_is_issuer": false,
+      "documentos": [
+        {
+          "name": "Matrícula do imóvel",
+          "description": "Matrícula do imóvel de formação da lavoura.",
+          "alias": "registry_number",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "(Cadastro Ambiental Rural) CAR",
+          "description": "Referente ao imóvel rural.",
+          "alias": "rural_register",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Documentos pessoais",
+          "description": "RG, CPF, CNH.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Contrato de arrendamento",
+          "description": "Para áreas arrendadas.",
+          "alias": "personal_documents",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Carta de anuência",
+          "description": "Anexar carta de anuência, quando houver.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Certidão de penhor (livro 3)",
+          "description": "Certidão obtida.",
+          "alias": "pledge_certificate",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Certidão de registro de alienação fiduciária",
+          "description": "Anexar, quando houver.",
+          "alias": "alienation_registration",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Certidão de embargo do IBAMA",
+          "description": "Anexar, quando houver.",
+          "alias": "embargo_certificate",
+          "file": [],
+          "titulo": 42
+        },
+        {
+          "name": "Outros",
+          "description": "Anexar outros documentos.",
+          "alias": "lease",
+          "file": [],
+          "titulo": 42
+        }
+      ],
+      "partes": {
+        "emitentes": [
+          {
+            "expiracao": "",
+            "nome": "",
+            "rg": "",
+            "email": "",
+            "estadoCivil": "",
+            "tipoAssinatura": "electronic",
+            "conjuge": {
+              "rg": "",
+              "cpf": "",
+              "email": "",
+              "nome": "",
+              "tipoAssinatura": ""
+            }
+          }
+        ],
+        "avalistas": [],
+        "depositario": {
+          "uf": "",
+          "cidade": "",
+          "cep": "",
+          "endereco": "",
+          "nacionalidade": "",
+          "estadoCivil": "",
+          "ocupacao": "",
+          "email": "",
+          "rg": "",
+          "nome": "",
+          "cpf": "",
+          "obs": "",
+          "cnpj": "",
+          "razao_social": "",
+          "tipoAssinatura": ""
+        }
+      }
+    }
+  ],
+  "clients": [
+    {
+      "type": "CPF",
+      "user": {
+        "rg": "34343843431",
+        "car": "734623647834662374786",
+        "name": "Yuri Prado Martins",
+        "rural": "47687463824637483724867",
+        "status": "divorced",
+        "document": "12189361699",
+        "spouse": {
+          "rg": "32434352524323",
+          "cpf": "13232412422",
+          "name": "Carolina Alves da Silva"
+        },
+        "documents": {
+          "car": "",
+          "personal": [],
+          "registration": []
+        }
+      },
+      "contact": {
+        "emails": [
+          {
+            "email": "yuri@estudioflow.com.br"
+          }
+        ],
+        "phones": [
+          {
+            "phone": "34 98865-8519"
+          },
+          {
+            "phone": "34 98807-3999"
+          }
+        ],
+        "comments": ""
+      },
+      "location": {
+        "cep": "",
+        "uf": "MG",
+        "county": "Araguari",
+        "number": "2125",
+        "address": "Avenida Coronel Belchior de Godoy",
+        "regional": "Araguari",
+        "complement": "",
+        "neighborhood": "Goiás"
+      },
+      "created": "20/08/2020",
+      "id": 1
+    },
+    {
+      "type": "CNPJ",
+      "user": {
+        "name": "Estúdio Flow",
+        "fantasy": "",
+        "document": "4823758253/0001-45",
+        "documents": {
+          "assembly": [],
+          "contract": []
+        },
+        "representative": {
+          "rg": "",
+          "cpf": "",
+          "name": "",
+          "status": "",
+          "location": {
+            "uf": "",
+            "cep": "",
+            "county": "",
+            "address": "",
+            "regional": "",
+            "neighborhood": ""
+          },
+          "profession": "",
+          "nationality": ""
+        }
+      },
+      "contact": {
+        "emails": [
+          {
+            "email": ""
+          }
+        ],
+        "phones": [
+          {
+            "phone": ""
+          }
+        ],
+        "comments": ""
+      },
+      "location": {
+        "cep": "",
+        "uf": "MG",
+        "county": "Uberlândia",
+        "number": "",
+        "address": "",
+        "regional": "Uberlândia",
+        "complement": "",
+        "neighborhood": ""
+      },
+      "created": "20/08/2020",
+      "id": 2
+    },
+    {
+      "type": "CPF",
+      "user": {
+        "rg": "3443482374",
+        "car": "",
+        "name": "Rafael Siqueira",
+        "rural": "",
+        "status": "",
+        "document": "32344324342",
+        "spouse": {
+          "rg": "",
+          "cpf": "",
+          "name": ""
+        },
+        "documents": {
+          "car": "",
+          "personal": [],
+          "registration": []
+        }
+      },
+      "contact": {
+        "emails": [
+          {
+            "email": "yuri@estudioflow.com.br"
+          }
+        ],
+        "phones": [
+          {
+            "phone": "34 98834345"
+          },
+          {
+            "phone": "34 984553454"
+          }
+        ],
+        "comments": ""
+      },
+      "location": {
+        "uf": "MG",
+        "cep": "",
+        "county": "Uberlândia",
+        "number": "",
+        "address": "",
+        "regional": "Uberlândia",
+        "complement": "",
+        "neighborhood": ""
+      },
+      "created": "20/08/2020",
+      "id": 3
+    },
+    {
+      "type": "CPF",
+      "user": {
+        "rg": "32.423.423-4",
+        "car": "",
+        "name": "Carolina Alves da Silva",
+        "rural": "",
+        "status": "",
+        "document": "089.971.646-60",
+        "spouse": {
+          "rg": "243434234324",
+          "cpf": "12189361699",
+          "name": ""
+        },
+        "documents": {
+          "personal": [],
+          "residence": []
+        }
+      },
+      "contact": {
+        "emails": [
+          {
+            "email": ""
+          }
+        ],
+        "phones": [
+          {
+            "phone": ""
+          }
+        ],
+        "comments": ""
+      },
+      "location": {
+        "uf": "RJ",
+        "cep": "",
+        "county": "Araguari",
+        "number": "",
+        "address": "",
+        "regional": "Uberlândia",
+        "complement": "",
+        "neighborhood": ""
+      },
+      "created": "20/08/2020",
+      "id": 4
+    },
+    {
+      "type": "CPF",
+      "user": {
+        "rg": "34.242.342-3",
+        "car": "",
+        "name": "Yam Prado Martins",
+        "rural": "",
+        "status": "",
+        "document": "213.231.232-23",
+        "spouse": {
+          "rg": "",
+          "cpf": "",
+          "name": ""
+        },
+        "documents": {
+          "personal": [],
+          "residence": []
+        }
+      },
+      "contact": {
+        "emails": [
+          {
+            "email": ""
+          }
+        ],
+        "phones": [
+          {
+            "phone": ""
+          }
+        ],
+        "comments": ""
+      },
+      "location": {
+        "uf": "ES",
+        "cep": "",
+        "county": "Uberlândia",
+        "number": "",
+        "address": "",
+        "regional": "Goiânia",
+        "complement": "",
+        "neighborhood": ""
+      },
+      "created": "20/08/2020",
+      "id": 5
+    }
+  ],
+  "recovery": {
+    "emai": "yuri@estudioflow.com.br"
+  },
+  "garantias": [
+    {
+      "id": 4,
+      "tipo": "avalista",
+      "penhor": {
+        "tipo": "",
+        "tipoPenhor": "",
+        "produto": "",
+        "grauPenhor": "",
+        "quantidade": "",
+        "safra": "",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "pf",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "00000",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "avalista@gmail.com",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "Solteiro",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 1
+    },
+    {
+      "id": 5,
+      "tipo": "hipoteca",
+      "penhor": {
+        "tipo": "",
+        "tipoPenhor": "",
+        "produto": "",
+        "grauPenhor": "",
+        "quantidade": "",
+        "safra": "",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [
+          {
+            "status": "ready",
+            "name": "Screenshot from 2020-09-29 21-38-02.png",
+            "size": 844598,
+            "percentage": 0,
+            "uid": 1602730052961,
+            "raw": {
+              "uid": 1602730052961
+            },
+            "url": "blob:http://localhost:8080/c9520989-6c62-4e15-9b52-95414a6b84a1",
+            "date": "15/10/2020"
+          }
+        ],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 1
+    },
+    {
+      "id": 6,
+      "tipo": "",
+      "penhor": {
+        "tipo": "pledge",
+        "tipoPenhor": "",
+        "produto": "",
+        "grauPenhor": "",
+        "quantidade": "",
+        "safra": "",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [
+          {
+            "status": "ready",
+            "name": "intecred.zip",
+            "size": 9111,
+            "percentage": 0,
+            "uid": 1603107324219,
+            "raw": {
+              "uid": 1603107324219
+            },
+            "url": "blob:http://localhost:8080/50333105-a8e0-4618-a350-b5fcc5aed360",
+            "date": "19/10/2020"
+          },
+          {
+            "status": "ready",
+            "name": "intecred.zip",
+            "size": 9111,
+            "percentage": 0,
+            "uid": 1603107326364,
+            "raw": {
+              "uid": 1603107326364
+            },
+            "url": "blob:http://localhost:8080/ad842a20-a46b-447a-b7fe-5330ffa1a257",
+            "date": "19/10/2020"
+          }
+        ],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 34
+    },
+    {
+      "id": 7,
+      "tipo": "",
+      "penhor": {
+        "tipo": "pledge",
+        "tipoPenhor": "Penhor 1",
+        "produto": "Penhor 2",
+        "grauPenhor": "Grau 2",
+        "quantidade": "Qtd 2",
+        "safra": "Safra 2",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [
+          {
+            "status": "ready",
+            "name": "intecred.zip",
+            "size": 9111,
+            "percentage": 0,
+            "uid": 1603107324219,
+            "raw": {
+              "uid": 1603107324219
+            },
+            "url": "blob:http://localhost:8080/50333105-a8e0-4618-a350-b5fcc5aed360",
+            "date": "19/10/2020"
+          },
+          {
+            "status": "ready",
+            "name": "intecred.zip",
+            "size": 9111,
+            "percentage": 0,
+            "uid": 1603107326364,
+            "raw": {
+              "uid": 1603107326364
+            },
+            "url": "blob:http://localhost:8080/ad842a20-a46b-447a-b7fe-5330ffa1a257",
+            "date": "19/10/2020"
+          }
+        ],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 34
+    },
+    {
+      "id": 8,
+      "tipo": "avalista",
+      "penhor": {
+        "tipo": "",
+        "tipoPenhor": "",
+        "produto": "",
+        "grauPenhor": "",
+        "quantidade": "",
+        "safra": "",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "pf",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "233223213123",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          },
+          "nome": "Yuriiii"
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 35
+    },
+    {
+      "id": 9,
+      "tipo": "",
+      "penhor": {
+        "tipo": "",
+        "tipoPenhor": "Penhor 1",
+        "produto": "Penhor 2",
+        "grauPenhor": "Grau 2",
+        "quantidade": "Qtd 1",
+        "safra": "Safra 1",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [
+          {
+            "status": "ready",
+            "name": "intecred.zip",
+            "size": 9111,
+            "percentage": 0,
+            "uid": 1603113342255,
+            "raw": {
+              "uid": 1603113342255
+            },
+            "url": "blob:http://localhost:8080/94ffcd78-d5cf-491e-a614-2f981c7f9183",
+            "date": "19/10/2020"
+          }
+        ],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 37
+    },
+    {
+      "id": 10,
+      "tipo": "penhor",
+      "penhor": {
+        "tipo": "",
+        "tipoPenhor": "Penhor 2",
+        "produto": "Penhor 1",
+        "grauPenhor": "Grau 2",
+        "quantidade": "Qtd 2",
+        "safra": "Safra 2",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "",
+        "tipoHipoteca": "",
+        "descricaoImovel": "",
+        "grauHipoteca": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 42
+    },
+    {
+      "tipo": "hipoteca",
+      "penhor": {
+        "tipo": "pledge",
+        "tipoPenhor": "",
+        "produto": "",
+        "grauPenhor": "",
+        "quantidade": "",
+        "safra": "",
+        "mesmoLocalLavoura": "",
+        "nomeFazenda": "",
+        "areaPlantio": "",
+        "uf": "",
+        "cidade": "",
+        "numeroMatricula": "",
+        "ufComarcaRegistro": "",
+        "cidadeComarcaRegistro": "",
+        "areaPropriaOuTerceiros": "",
+        "file": [],
+        "obs": ""
+      },
+      "hipoteca": {
+        "tipo": "mortgage",
+        "tipoHipoteca": "Penhor 1",
+        "descricaoImovel": "1",
+        "grauHipoteca": "1",
+        "numeroMatricula": "1",
+        "ufComarcaRegistro": "Penhor 1",
+        "cidadeComarcaRegistro": "Penhor 1",
+        "file": [],
+        "obs": ""
+      },
+      "avalista": {
+        "tipo": "",
+        "tipoAssinatura": "",
+        "pessoaFisica": {
+          "cpf": "",
+          "razaoSocial": "",
+          "rg": "",
+          "email": "",
+          "ocupacao": "",
+          "nacionalidade": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "estadoCivil": "",
+          "file": [],
+          "obs": "",
+          "conjuge": {
+            "nome": "",
+            "cpf": "",
+            "email": "",
+            "rg": ""
+          }
+        },
+        "pessoaJuridica": {
+          "cnpj": "",
+          "razaoSocial": "",
+          "email": "",
+          "cep": "",
+          "endereco": "",
+          "uf": "",
+          "cidade": "",
+          "file": [],
+          "obs": ""
+        }
+      },
+      "titulo": 1,
+      "id": 11
+    }
+  ],
+  "pledge_options": {
+    "pledge_type": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ],
+    "pledge_product": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ],
+    "pledge_grade": [
+      "Grau 1",
+      "Grau 2",
+      "Grau 3"
+    ],
+    "pledge_quantity": [
+      "Qtd 1",
+      "Qtd 2",
+      "Qtd 3"
+    ],
+    "pledge_harvest": [
+      "Safra 1",
+      "Safra 2",
+      "Safra 3"
+    ],
+    "pledge_uf": [
+      "Minas Gerais",
+      "Rio de Janeiro",
+      "São Paulo"
+    ],
+    "pledge_city": [
+      "Uberlândia",
+      "Saquarema",
+      "Campinas"
+    ]
+  },
+  "mortgage_options": {
+    "mortgage_type": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ],
+    "mortgage_grade": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ],
+    "mortgage_uf": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ],
+    "mortgage_city": [
+      "Penhor 1",
+      "Penhor 2",
+      "Penhor 3"
+    ]
+  },
+  "guarantor_options": {
+    "guarantor_nationality": [
+      "Brasileiro",
+      "Português",
+      "Norte Americano"
+    ],
+    "guarantor_uf": [
+      "Minas Gerais",
+      "Rio de Janeiro",
+      "São Paulo"
+    ],
+    "guarantor_city": [
+      "Uberlândia",
+      "Rio de Janeiro",
+      "São Paulo"
+    ],
+    "guarantor_civil_status": [
+      "Solteiro",
+      "Casado",
+      "Divorciado"
+    ]
+  },
+  "draft-models": [
+    {
+      "id": 1,
+      "name": "Minuta modelo 1",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 2,
+      "name": "Minuta modelo 2",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 3,
+      "name": "Minuta modelo 3",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 4,
+      "name": "Minuta modelo 4",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 5,
+      "name": "Minuta modelo 5",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 6,
+      "name": "Minuta modelo 6",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 7,
+      "name": "Minuta modelo 7",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 8,
+      "name": "Minuta modelo 8",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 9,
+      "name": "Minuta modelo 9",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 10,
+      "name": "Minuta modelo 10",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 11,
+      "name": "Minuta modelo 11",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 12,
+      "name": "Minuta modelo 12",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 13,
+      "name": "Minuta modelo 13",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 14,
+      "name": "Minuta modelo 14",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    },
+    {
+      "id": 15,
+      "name": "Minuta modelo 15",
+      "file": "http://localhost:8080/static/adobe.pdf"
+    }
+  ],
+  "states": [
+    "Minas Gerais",
+    "Rio de Janeiro",
+    "São Paulo"
+  ],
+  "cities": [
+    "Uberlândia",
+    "Saquarema",
+    "Campinas"
+  ],
+  "products": [
+    {
+      "id": 1,
+      "type": "Foo",
+      "product": {
+        "name": "Soja"
+      }
+    },
+    {
+      "id": 2,
+      "type": "Bar",
+      "product": {
+        "name": "Batata"
+      }
+    }
+  ],
+  "harvests": [
+    {
+      "type": "Foo",
+      "harvest": {
+        "name": "Fake1"
+      },
+      "id": 1
+    },
+    {
+      "type": "Bar",
+      "harvest": {
+        "name": "Fake2"
+      },
+      "id": 2
+    }
+  ]
+}

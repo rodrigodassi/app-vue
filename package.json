@@ -1,51 +1,32 @@
 {
-  "name": "intecred.adminweb",
+  "name": "intecred",
   "version": "0.1.0",
   "private": true,
+  "author": "yumartins <yuri@estudioflow.com.br>",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "app": "yarn workspace @packages/intecred-client run app",
+    "serve": "yarn workspace @packages/intecred-api run serve",
+    "build": "bash .bin/sugar.sh build $*"
   },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
-    "core-js": "^3.6.4",
-    "element-ui": "^2.13.2",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1",
-    "vue": "^2.6.11",
-    "vue-resource": "^1.5.1",
-    "vue-router": "^3.3.1",
-    "vue-the-mask": "^0.11.1",
-    "vuex": "^3.4.0"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-eslint": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
+    "@babel/runtime": "^7.11.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-vue": "^7.0.0-beta.2",
+    "lerna": "^3.22.1"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "dependencies": {
+    "print": "^1.2.0",
+    "printd": "^1.4.2",
+    "vuex-persistedstate": "^3.1.0"
+  }
 }

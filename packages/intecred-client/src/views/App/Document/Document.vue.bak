@@ -1,0 +1,246 @@
+<template>
+  <div>
+    <IntHeader url-name-redirect="Titles"/>
+    <div class="container">
+      <div class="container__title-page">
+        <h2>Documentos</h2>
+      </div>
+      <Alert :show-alert="showAlert">
+        Aqui você deve anexar os documentos e certidões referentes a esse cliente e a esse título.
+        Esses documentos são muito importantes para certificar e validar as informações cadastradas.
+      </Alert>
+      <div class="container__list-documents">
+        <Upload
+          v-for="(item, index) in documents"
+          class="container__list-documents__item"
+          :key="index"
+          @update-temp-index="updateTempIndex"
+          :is-multiple="true"
+          v-model="documents[index].file"
+          :title="item.name"
+          :description="item.description">
+        </Upload>
+      </div>
+      <ActionsFooter
+        :back="returnToGuarantee"
+        :next="saveForm"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+
+import IntHeader from '../../../layouts/IntHeader.vue';
+import Alert from '../../../components/Alert.vue';
+import Upload from '../../../components/Upload.vue';
+import ActionsFooter from '../Title/Physical/Partials/ActionsFooter.vue';
+import api from '../../../services/api';
+
+export default {
+  name: 'Document',
+  mounted() {
+    this.getDocuments();
+  },
+  data: () => ({
+    tempIndex: null,
+    showAlert: true,
+    titulo: '',
+    documents: [
+      {
+        name: 'Matrícula do imóvel',
+        description: 'Matrícula do imóvel de formação da lavoura.',
+        alias: 'registry_number',
+        file: [],
+      },
+      {
+        name: '(Cadastro Ambiental Rural) CAR',
+        description: 'Referente ao imóvel rural.',
+        alias: 'rural_register',
+        file: [],
+      },
+      {
+        name: 'Documentos pessoais',
+        description: 'RG, CPF, CNH.',
+        alias: 'personal_documents',
+        file: [],
+      },
+      {
+        name: 'Contrato de arrendamento',
+        description: 'Para áreas arrendadas.',
+        alias: 'personal_documents',
+        file: [],
+      },
+      {
+        name: 'Carta de anuência',
+        description: 'Anexar carta de anuência, quando houver.',
+        alias: 'lease',
+        file: [],
+      },
+      {
+        name: 'Certidão de penhor (livro 3)',
+        description: 'Certidão obtida.',
+        alias: 'pledge_certificate',
+        file: [],
+      },
+      {
+        name: 'Certidão de registro de alienação fiduciária',
+        description: 'Anexar, quando houver.',
+        alias: 'alienation_registration',
+        file: [],
+      },
+      {
+        name: 'Certidão de embargo do IBAMA',
+        description: 'Anexar, quando houver.',
+        alias: 'embargo_certificate',
+        file: [],
+      },
+      {
+        name: 'Outros',
+        description: 'Anexar outros documentos.',
+        alias: 'lease',
+        file: [],
+      },
+    ],
+  }),
+  methods: {
+    updateTempIndex(index) {
+      this.tempIndex = index;
+    },
+    async dispatchDocumentByAlias(form) {
+      // const updateTitle = () => api.patch(`/titulos/${this.title}`, this.titulo);
+      // const updateImages = () => api.post('/images/', form, {
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
+      await axios.post(`${this.$url}/documento/upload?tituloId=${this.title.toString()}`, form, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // await Promise.all([updateTitle(), updateImages()])
+      //   .then(() => this.$router.push({
+      //     name: 'Part',
+      //     params: { titulo: this.title },
+      //   }));
+    },
+    async getDocuments() {
+      const title = parseInt(this.$route.params.titulo, 10);
+      await axios.get(`${this.$url}/titulo`, title,
+        {
+          headers:
+            {
+              Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+              empresaId: localStorage.getItem('empresa_Id').toString(),
+            },
+        }).then(async ({ data }) => {
+        this.titulo = data;
+        if (!data.documentos) {
+          this.documents.forEach((el) => el.titulo = title);
+          return;
+        }
+        data.documentos.forEach(
+          (el) => {
+            const loadedDoc = this.documents.find((document) => document.alias === el.alias);
+            loadedDoc.id = el.id;
+            loadedDoc.file = el.file;
+            loadedDoc.titulo = title;
+          },
+        );
+      })
+        .catch((error) => console.log(error));
+    },
+    async returnToGuarantee() {
+      await this.updateCurrentStep('decrement');
+      await this.$router.push({
+        name: 'Guarantee',
+        params: { titulo: this.title },
+      });
+    },
+    goToParts() {
+      this.$router.push({
+        name: 'Part',
+        params: { titulo: this.title },
+      });
+    },
+    composeForm() {
+      this.titulo.documentos = this.documents;
+      const form = new FormData();
+      this.documents.forEach((document) => {
+        document.file.forEach((file, index) => {
+          const json = JSON.stringify(file);
+          const blob = new Blob([json], {
+            type: 'application/json',
+          });
+          form.append(`file[${document.alias}][${index}]`, blob);
+        });
+      });
+      return form;
+    },
+    async updateCurrentStep(action) {
+      const handledStep = this.getFutureStep(this.titulo, action);
+      await api.patch(`titulos/${this.titulo.id}`, { currentStep: handledStep })
+        .then(() => {
+        });
+    },
+    getFutureStep({ tipo }, action) {
+      if (tipo === 'Fisica' || tipo === 'Duplicata') {
+        return action === 'decrement' ? 4 : 6;
+      }
+      return action === 'decrement' ? 3 : 5;
+    },
+    saveForm() {
+      this.dispatchDocumentByAlias(this.composeForm());
+      this.goToParts(this.titulo);
+    },
+  },
+  components: {
+    ActionsFooter,
+    IntHeader,
+    Alert,
+    Upload,
+  },
+  computed: {
+    title() {
+      return parseInt(this.$route.params.titulo, 10);
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 540px;
+  margin: 0 auto;
+
+  &__title-page {
+    margin-bottom: 20px;
+
+    h2 {
+      font-family: $font_primary;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.005em;
+      color: $--color-primary;
+    }
+  }
+
+  &__list-documents {
+    .upload {
+      margin: 10px 0;
+    }
+  }
+}
+
+.alert-box {
+  padding: 50px 0;
+}
+</style>

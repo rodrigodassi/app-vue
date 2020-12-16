@@ -1,0 +1,30 @@
+.el-checkbox-group {
+  .el-checkbox {
+    &__input {
+      &.is-checked {
+        .el-checkbox__inner {
+          box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+
+          &::after {
+            width: 6px !important;
+            height: 10px !important;
+            left: 7px !important;
+            top: 3px !important;
+            border-width: 2px;
+          }
+        }
+      }
+    }
+    &.is-disabled {
+      .el-checkbox__label {
+        color: $--color-gray-4 !important;
+      }
+
+      &.is-checked {
+        .el-checkbox__inner {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

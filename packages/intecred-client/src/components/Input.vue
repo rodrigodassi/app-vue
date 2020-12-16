@@ -1,0 +1,211 @@
+<script>
+// import IconDelete from '../assets/svgs/icon-delete.svg';
+
+export default {
+  inheritAttrs: false,
+
+  props: {
+    label: {
+      type: [Boolean, String],
+      default: false,
+      required: false,
+    },
+
+    type: {
+      type: String,
+      default: '',
+      required: false,
+    },
+
+    error: {
+      type: String,
+      default: '',
+      required: false,
+    },
+
+    value: {
+      type: [String, Array, Date, Number],
+      required: false,
+    },
+
+    isSelect: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+
+    isDate: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+
+    isBetweenDate: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+
+    precision: {
+      type: Number,
+      required: false,
+      default: null,
+    },
+  },
+
+  components: {
+    // IconDelete,
+  },
+
+  data: () => ({
+    innerValue: '',
+  }),
+
+  watch: {
+    innerValue(newVal) {
+      this.$emit('input', newVal);
+    },
+
+    value(newVal) {
+      this.innerValue = newVal;
+    },
+  },
+
+  created() {
+    if (this.value) {
+      this.innerValue = this.value;
+    }
+  },
+};
+</script>
+
+<template>
+  <div :class="['input', !! error && 'is-error']">
+    <label
+      v-if="label"
+      v-text="label"
+    />
+
+    <div class="input__target">
+      <el-input
+        v-if="! isSelect && ! isDate &&  type !== 'numeric'"
+        v-bind="$attrs"
+        v-model="innerValue"
+      >
+        <template
+          #suffix
+          v-if="!! error"
+        >
+          <i class="el-icon-close el-input__icon" />
+        </template>
+      </el-input>
+
+      <el-input-number
+        v-else-if="type === 'numeric'"
+        v-model="innerValue"
+        :precision="precision"
+        :controls="false">
+
+        <template
+          #suffix
+          v-if="!! error"
+        >
+          <i class="el-icon-close el-input__icon"/>
+        </template>
+
+      </el-input-number>
+
+      <el-select
+        v-else-if="isSelect"
+        v-bind="$attrs"
+        v-model="innerValue"
+      >
+        <slot />
+      </el-select>
+
+      <el-date-picker
+        v-else-if="isDate"
+        v-bind="$attrs"
+        v-model="innerValue"
+        :type="isBetweenDate ? 'daterange' : 'date'"
+        range-separator="Até"
+        format="dd/MM/yyyy"
+        start-placeholder="Data inicial"
+        end-placeholder="Data final"
+      />
+      <slot name="action" />
+    </div>
+
+    <p
+      v-if="!! error"
+      class="input__error p3"
+      v-text="error"
+    />
+  </div>
+</template>
+
+<style lang="scss">
+input {
+  width: 200px;
+}
+
+.input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: $--color-gray-7;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 2px;
+  }
+
+  &__icon {
+    margin-left: 16px;
+    background-color: $--color-gray-1;
+  }
+
+  &__target {
+    display: flex;
+    align-items: center;
+
+    .el-input, .el-input-number {
+      width: 100%;
+      .el-input__clear {
+        font-size: 16px;
+        margin-right: 14px;
+      }
+
+      &__inner {
+        color: $--color-gray-7;
+        padding: 0 16px;
+      }
+
+      &--suffix &__inner {
+        padding-right: 48px;
+        width: 100%;
+      }
+    }
+
+    .el-date-editor.el-input {
+      width: 100%;
+    }
+  }
+
+  &__error {
+    color: $--color-danger;
+    margin-top: 4px;
+  }
+
+  &.is-error .el-input {
+    &__inner {
+      border-color: $--color-danger;
+    }
+
+    &__suffix-inner {
+      color: $--color-danger;
+    }
+  }
+}
+</style>

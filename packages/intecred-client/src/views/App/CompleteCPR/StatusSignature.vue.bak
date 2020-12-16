@@ -1,0 +1,59 @@
+<template>
+  <div class="box">
+    <component :is="avatarType"/>
+    <div class="box__info">
+      <div class="box__info__p1-bold">
+        {{ this.signature.nome }}
+      </div>
+      <div class="box__info__footer">
+        <span>{{ this.signature.tipoAssinatura }}</span>
+        <span>{{ signatureInfo }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import IconUserAlert from '../../../assets/svgs/icon-user-signature-alert.svg';
+import IconUserSuccess from '../../../assets/svgs/icon-user-signature-success.svg';
+
+export default {
+  name: 'StatusSignature',
+  mounted() {
+    console.log(this.signature);
+  },
+  computed: {
+    avatarType() {
+      return this.signature.type === 'physical'
+      && this.signature.status === 'pendente'
+        ? 'IconUserAlert' : 'IconUserSuccess';
+    },
+    signatureInfo() {
+      switch (this.signature.type) {
+        case 'physical':
+          if (!this.signature || !this.signature.status === 'pendente') {
+            return '';
+          }
+          return 'Upload de CPR assinado';
+        case 'electronic':
+        case 'certificate':
+          return `Assinou em ${this.signature.date}`;
+        default:
+          return '';
+      }
+    },
+  },
+  components: {
+    IconUserAlert,
+    IconUserSuccess,
+  },
+  props: {
+    signature: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss"/>

@@ -1,0 +1,589 @@
+<template>
+  <div class="container__form-data">
+    <div class="container__form-data__radio-group">
+      <el-radio-group v-model="tipo">
+        <el-radio label="Penhor">Penhor</el-radio>
+        <el-radio label="Alienacao">Alienação</el-radio>
+        <el-radio label="PenhorAlienacao">Penhor com alienação</el-radio>
+      </el-radio-group>
+    </div>
+    <div class="container__form-data__size-top container__form-data__size-bottom">
+      <IntInput
+        v-model="tipo_penhor"
+        label="Tipo do penhor"
+        placeholder="Defina o tipo do penhor"
+        isSelect
+      >
+        <el-option
+          v-for="(item, index) in pledgeType"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        >
+          <span class="el-select__option-child">{{ item.label }}</span>
+          <span class="el-select__option-child">{{ item.label }}</span>
+        </el-option>
+      </IntInput>
+    </div>
+    <div class="container__form-data__item--two-items container__form-data__size-bottom">
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="produto"
+          label="Produto"
+          placeholder="Defina o tipo do penhor"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in pledgeProduct"
+            :key="index"
+            :label="item.label"
+            :value="item.value"
+          >
+            <span class="el-select__option-child">{{ item.label }}</span>
+            <span class="el-select__option-child">{{ item.label }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="grauPenhor"
+          label="Grau do penhor"
+          placeholder="Selecione o grau"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in pledgeGrade"
+            :key="index"
+            :label="item.label"
+            :value="item.value"
+          >
+            <span class="el-select__option-child">{{ item.label }}</span>
+            <span class="el-select__option-child">{{ item.label }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+    </div>
+    <div class="container__form-data__item--two-items container__form-data__size-bottom">
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="quantidade"
+          label="Quantidade (kg)"
+          placeholder="Defina a quantidade"
+        />
+      </span>
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="safra"
+          label="Safra"
+          placeholder="Selecione a safra"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in pledgeHarvest"
+            :key="index"
+            :label="item.label"
+            :value="item.value"
+          >
+            <span class="el-select__option-child">{{ item.label }}</span>
+            <span class="el-select__option-child">{{ item.label }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <div class="form-data__checkbox">
+        <div class="el-checkbox-group">
+          <el-checkbox
+            v-model="mesmoLocalLavoura">Mesmo local de formação da lavoura
+          </el-checkbox>
+        </div>
+      </div>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="nomeFazenda"
+        label="Nome da fazenda"
+        placeholder="Defina o nome da fazenda"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+      v-model="areaPlantio"
+        label="Área de plantio (hectares)"
+        placeholder="Defina a área de plantio (em hectares)"
+      />
+    </div>
+    <div class="container__form-data__item--two-items container__form-data__size-bottom">
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="uf"
+          label="UF"
+          placeholder="Selecione o estado"
+          isSelect
+          @input="ObterMunicipios(uf)"
+        >
+          <el-option
+            v-for="(item, index) in pledgeUf"
+            :key="index"
+            :label="item.uf"
+            :value="item.estadoId"
+          >
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          label="Município"
+          v-model="cidade"
+          placeholder="Selecione a cidade"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in pledgeCity"
+            :key="index"
+            :label="item.nome"
+            :value="item.municipioId"
+          >
+            <span class="el-select__option-child">{{ item.nome }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="numeroMatricula"
+        label="Número da matrícula"
+        placeholder="Defina a área de plantio (em hectares)"
+      />
+    </div>
+    <div class="container__form-data__item--two-items container__form-data__size-bottom">
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="ufComarcaRegistro"
+          label="UF da Comarca de registro"
+          placeholder="Selecione o estado"
+          isSelect
+          @input="ObterMunicipiosComarca(ufComarcaRegistro)"
+        >
+          <el-option
+            v-for="(item, index) in pledgeUfDistrict"
+            :key="index"
+            :label="item.uf"
+            :value="item.estadoId"
+          >
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="cidadeComarcaRegistro"
+          label="Município da Comarca de registro"
+          placeholder="Selecione a cidade"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in pledgeCityDistrict"
+            :key="index"
+            :label="item.nome"
+            :value="item.municipioId"
+          >
+            <span class="el-select__option-child">{{ item.nome }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+    </div>
+    <div class="container__form-data__radio-group container__form-data__size-bottom">
+      <span class="container__form-data__p2">Área própria ou de terceiros?</span>
+      <el-radio-group v-model="areaPropriaOuTerceiros">
+        <el-radio label="own">Própria</el-radio>
+        <el-radio label="alienation">Terceiros</el-radio>
+      </el-radio-group>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <Upload
+        :file-list="file"
+        @input="UPDATE_FILES_PLEDGE"
+        :is-multiple="true"
+        v-model="file"
+        title="Importar arquivos"
+        description="Referentes à propriedade, como imagens ou arquivos de mapa em *kml.">
+      </Upload>
+    </div>
+    <IntInput
+      v-model="obs"
+      class="container__form-data__item"
+      label="Obervações"
+      placeholder="Obervações sobre a garantia"
+    />
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import { mapState, mapMutations } from 'vuex';
+import IntInput from '../../../../components/Input.vue';
+import Upload from '../../../../components/Upload.vue';
+// import api from '../../../../services/api';
+
+export default {
+  name: 'Pledge',
+  mounted() {
+    this.getPledgeOptions();
+  },
+  data: () => ({
+    // pledgeType: [],
+    // pledgeProduct: [],
+    // pledgeGrade: [],
+    pledgeQuantity: [],
+    // pledgeHarvest: [],
+    pledgeUf: [],
+    pledgeUfDistrict: [],
+    pledgeCity: [],
+    pledgeCityDistrict: [],
+  }),
+  computed: {
+    ...mapState('guarantee', ['guarantee']),
+    tipo: {
+      get() {
+        return this.guarantee.penhor.tipo || 'pledge';
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'tipo',
+          value,
+        });
+      },
+    },
+    tipo_penhor: {
+      get() {
+        return this.guarantee.penhor.tipo_penhor;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'tipo_penhor',
+          value,
+        });
+      },
+    },
+    areaPropriaOuTerceiros: {
+      get() {
+        return this.guarantee.penhor.areaPropriaOuTerceiros || 'own';
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'areaPropriaOuTerceiros',
+          value,
+        });
+      },
+    },
+    produto: {
+      get() {
+        return this.guarantee.penhor.produto;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'produto',
+          value,
+        });
+      },
+    },
+    grauPenhor: {
+      get() {
+        return this.guarantee.penhor.grauPenhor;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'grauPenhor',
+          value,
+        });
+      },
+    },
+    quantidade: {
+      get() {
+        return this.guarantee.penhor.quantidade;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'quantidade',
+          value,
+        });
+      },
+    },
+    safra: {
+      get() {
+        return this.guarantee.penhor.safra;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'safra',
+          value,
+        });
+      },
+    },
+    mesmoLocalLavoura: {
+      get() {
+        return this.guarantee.penhor.mesmoLocalLavoura !== false;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'mesmoLocalLavoura',
+          value,
+        });
+      },
+    },
+    nomeFazenda: {
+      get() {
+        return this.guarantee.penhor.nomeFazenda;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'nomeFazenda',
+          value,
+        });
+      },
+    },
+    areaPlantio: {
+      get() {
+        return this.guarantee.penhor.areaPlantio;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'areaPlantio',
+          value,
+        });
+      },
+    },
+    uf: {
+      get() {
+        return this.guarantee.penhor.uf;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'uf',
+          value,
+        });
+      },
+    },
+    cidade: {
+      get() {
+        return this.guarantee.penhor.cidade;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'cidade',
+          value,
+        });
+      },
+    },
+    numeroMatricula: {
+      get() {
+        return this.guarantee.penhor.numeroMatricula;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'numeroMatricula',
+          value,
+        });
+      },
+    },
+    ufComarcaRegistro: {
+      get() {
+        return this.guarantee.penhor.ufComarcaRegistro;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'ufComarcaRegistro',
+          value,
+        });
+      },
+    },
+    cidadeComarcaRegistro: {
+      get() {
+        return this.guarantee.penhor.cidadeComarcaRegistro;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'cidadeComarcaRegistro',
+          value,
+        });
+      },
+    },
+    file: {
+      get() {
+        return this.guarantee.penhor.file || [];
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'file',
+          value,
+        });
+      },
+    },
+    obs: {
+      get() {
+        return this.guarantee.penhor.obs;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
+          key: 'obs',
+          value,
+        });
+      },
+    },
+    pledgeType() {
+      return [
+        {
+          value: 'Agricola',
+          label: 'Agricola',
+        },
+        {
+          value: 'Pecuario',
+          label: 'Pecuario',
+        },
+        {
+          value: 'Florestal',
+          label: 'Florestal',
+        },
+        {
+          value: 'Mercantil',
+          label: 'Mercantil',
+        },
+        {
+          value: 'Outros',
+          label: 'Outros',
+        },
+      ];
+    },
+    pledgeProduct() {
+      return [
+        {
+          value: 'Algodao',
+          label: 'Algodão',
+        },
+        {
+          value: 'CarneBovina',
+          label: 'Carne Bovina',
+        },
+        {
+          value: 'Milho',
+          label: 'Milho',
+        },
+        {
+          value: 'Soja',
+          label: 'Soja',
+        },
+      ];
+    },
+    pledgeGrade() {
+      return [
+        {
+          value: '1Grau',
+          label: '1º Grau',
+        },
+        {
+          value: '2Grau',
+          label: '2º Grau',
+        },
+        {
+          value: '3GRau',
+          label: '3º Grau',
+        },
+        {
+          value: '4GRau',
+          label: '4º Grau',
+        },
+      ];
+    },
+    pledgeHarvest() {
+      return [
+        {
+          value: '2020/21',
+          label: '2020/21',
+        },
+        {
+          value: '2021/22',
+          label: '2021/22',
+        },
+      ];
+    },
+  },
+  methods: {
+    ...mapMutations('guarantee', ['UPDATE_PARTIALS_GUARANTEE_PLEDGE', 'UPDATE_FILES_PLEDGE']),
+
+    async getPledgeOptions() {
+      // await api.get('/pledge_options')
+      //   .then((res) => {
+      //   });
+      // const {
+      //   pledge_type: pledgeType,
+      //   pledge_product: pledgeProduct,
+      //   pledge_grade: pledgeGrade,
+      //   pledge_quantity: pledgeQuantity,
+      //   pledge_harvest: pledgeHarvest,
+      //   pledge_uf: pledgeUf,
+      //   pledge_city: pledgeCity,
+      // } = res.data;
+      // this.pledgeType = pledgeType;
+      // this.pledgeProduct = pledgeProduct;
+      // this.pledgeGrade = pledgeGrade;
+      // this.pledgeQuantity = pledgeQuantity;
+      // this.pledgeHarvest = pledgeHarvest;
+      // this.pledgeUf = pledgeUf;
+      // this.pledgeCity = pledgeCity;
+      await axios.get(`${this.$url}/garantia/ObterEstados`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.pledgeUf = res.data;
+          this.pledgeUfDistrict = res.data;
+        });
+    },
+
+    async ObterMunicipios(ufEstadoId) {
+      await axios.get(`${this.$url}/garantia/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.pledgeCity = res.data;
+        });
+    },
+    async ObterMunicipiosComarca(ufEstadoComarcaId) {
+      await axios.get(`${this.$url}/garantia/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoComarcaId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.pledgeCityDistrict = res.data;
+        });
+    },
+  },
+  components: {
+    IntInput,
+    Upload,
+  },
+};
+</script>
+
+<style scoped lang="scss" src="../styles/style.scss">
+
+</style>

@@ -1,0 +1,266 @@
+<template>
+  <div>
+    <IntHeader url-name-redirect="Titles"/>
+    <div class="container">
+      <div class="container__title-page">
+        <h2>CPR completa</h2>
+      </div>
+      <div class="container__body">
+        <div class="container__body__upload">
+          <Upload
+            v-if="signatures.find((el) => el.tipoAssinatura === 'physical')"
+            :custom-remove-file="prepareRemoveSignatures"
+            @input="updateFile"
+            accept="pdf"
+            v-model="physicalSignatureFile"
+            title="CPR com assinatura física"
+            description="Faça o upload do arquivo da CPR já assinada pelas partes.">
+          </Upload>
+        </div>
+        <div class="container__body__pdf" v-if="physicalSignatureFile.length">
+          <ViewPdf
+            v-model="physicalSignatureFile"
+            :src="getPatchPdf"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="footer" v-if="signatures.find((el) => el.tipoAssinatura === 'physical')">
+      <div class="footer__btn-actions">
+        <div class="footer__btn-actions__group">
+          <IconPrint/>
+          <IconDownload/>
+          <IconSendEmail/>
+          <div class="footer__btn-actions__group__size"></div>
+        </div>
+        <el-button
+          @click="confirmSignatures"
+          :disabled="physicalSignatureFile.length === 0"
+          type="primary"
+        >Verificar assinaturas
+        </el-button>
+      </div>
+    </div>
+    <IntModal :closeFunction="closeModal" :show="showModal">
+      <div class="modal-feedback">
+        <div class="modal-feedback__message">
+          <span class="modal-feedback__message__icon">
+            <span>
+              <IconEllipse/>
+              <IconDelete/>
+            </span>
+          </span>
+          <span>
+            <h2>Deseja excluir:</h2>
+            <p>{{ this.physicalSignatureFile[0] ? this.physicalSignatureFile[0].name : '' }}</p>
+          </span>
+        </div>
+
+        <div class="modal-feedback__actions">
+          <el-button
+            type="terciary"
+            @click.prevent="closeModal"
+          >
+            Cancelar
+          </el-button>
+          <el-button
+            type="danger"
+            @click.prevent="confirmRemoveSignatures"
+          >
+            Excluir
+          </el-button>
+        </div>
+      </div>
+    </IntModal>
+    <IntSidebar title="Status da assinatura" :show="showSidebar" :onshow="sidebarShow">
+      <template v-slot:body>
+        <StatusSignature
+          :signature="item"
+          v-for="(item, index) in signatures" :key="index"
+        />
+      </template>
+    </IntSidebar>
+  </div>
+</template>
+
+<script>
+import { api } from '../../../services';
+import IntHeader from '../../../layouts/IntHeader.vue';
+import Upload from '../../../components/Upload.vue';
+import ViewPdf from '../../../components/ViewPdf.vue';
+import IconPrint from '../../../assets/svgs/icon-print.svg';
+import IconDownload from '../../../assets/svgs/icon-download.svg';
+import IconSendEmail from '../../../assets/svgs/icon-send-email.svg';
+import IconEllipse from '../../../assets/svgs/icon-ellipse.svg';
+import IconDelete from '../../../assets/svgs/icon-delete.svg';
+import IntModal from '../../../components/Modal.vue';
+import IntSidebar from '../../../components/Sidebar.vue';
+import StatusSignature from './StatusSignature.vue';
+
+export default {
+  name: 'CompleteCPR',
+  mounted() {
+    this.getDraft();
+  },
+  components: {
+    StatusSignature,
+    ViewPdf,
+    IntHeader,
+    Upload,
+    IconPrint,
+    IconDownload,
+    IconSendEmail,
+    IconEllipse,
+    IconDelete,
+    IntModal,
+    IntSidebar,
+  },
+  data: () => ({
+    draft: '',
+    signatures: [],
+    physicalSignatureFile: [],
+    showModal: false,
+    showSidebar: false,
+  }),
+  methods: {
+    async getDraft() {
+      await api.get(`titulos/${parseInt(this.$route.params.titulo, 10)}`)
+        .then(({ data }) => {
+          console.log('arq', data);
+          this.signatures.push(data.depositario);
+          this.signatures.push(...data.emitentes);
+          this.signatures.push(...data.avalistas);
+
+          const { physicalSignatureFile } = data;
+          this.physicalSignatureFile = physicalSignatureFile || [];
+        });
+    },
+    sidebarShow() {
+      this.showSidebar = !this.showSidebar;
+    },
+    async confirmSignatures() {
+      const data = { physicalSignatureFile: this.physicalSignatureFile };
+      await api.patch(`titulos/${parseInt(this.$route.params.titulo, 10)}`, data)
+        .then(() => {
+          const form = new FormData();
+          const json = JSON.stringify(this.physicalSignatureFile[0]);
+          const blob = new Blob([json], {
+            type: 'application/json',
+          });
+          form.append(`file[titulo][${parseInt(this.$route.params.titulo, 10)}][assinaturasFisicas]`, blob);
+          api.post('images', form)
+            .then(() => {
+            });
+        })
+        .then(() => this.sidebarShow());
+    },
+    getSignaturePhysical(data) {
+      if (!data || !data.length) {
+        return [];
+      }
+      return data.filter((el) => el.tipoAssinatura === 'physical');
+    },
+    updateFile(file) {
+      this.physicalSignatureFile = file;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    prepareRemoveSignatures() {
+      this.showModal = true;
+    },
+    async confirmRemoveSignatures() {
+      const data = { physicalSignatureFile: [] };
+      await api.patch(`titulos/${parseInt(this.$route.params.titulo, 10)}`, data)
+        .then((res) => {
+          this.physicalSignatureFile = res.data.physicalSignatureFile;
+          this.showModal = false;
+        });
+    },
+  },
+  computed: {
+    getPatchPdf() {
+      return this.physicalSignatureFile.length
+        ? `/static/${this.physicalSignatureFile[0].name}`
+        : '/static/adobe.pdf';
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 540px;
+  margin: 0 auto;
+
+  &__title-page {
+    margin-bottom: 20px;
+
+    h2 {
+      font-family: $font_primary;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -0.005em;
+      color: $--color-primary;
+      padding-bottom: 10px;
+    }
+
+    p {
+      font-family: $font_secondary;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: -0.004em;
+      color: $--color-gray-6;
+    }
+  }
+
+  &__body {
+    &__upload {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  height: 89px;
+  border-top: 1px solid $--color-gray-5;
+  background: $--color-background;
+
+  &__btn-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 540px;
+    margin: 0 auto;
+
+    &__group {
+      display: flex;
+      width: 190px;
+      justify-content: space-between;
+      align-items: center;
+
+      &__size {
+        margin: 0 5px;
+      }
+    }
+
+    :nth-child(n) {
+      cursor: pointer;
+    }
+  }
+}
+</style>

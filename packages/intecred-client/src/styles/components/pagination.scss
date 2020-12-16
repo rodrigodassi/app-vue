@@ -1,0 +1,25 @@
+.el-pagination {
+  .el-pager {
+    .number {
+      margin: 0 10px;
+    }
+
+    .btn-quicknext,
+    .btn-quickprev {
+      color: $--color-gray-6;
+    }
+  }
+
+  .el-icon {
+    color: $--color-gray-6;
+  }
+
+  &__jump {
+    font-size: 12px !important;
+    color: $--color-gray-6 !important;
+  }
+
+  button:disabled {
+    display: none;
+  }
+}

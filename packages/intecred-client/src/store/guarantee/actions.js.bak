@@ -1,0 +1,99 @@
+import api from '../../services/api';
+
+const getGuarantee = async ({ commit }, id) => {
+  await api.get(`/garantias/${id}`)
+    .then((response) => {
+      const { data } = response;
+      commit('UPDATE_CURRENT_EDITABLE_GUARANTEE', data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const destroyGuarantee = async ({ commit }, id) => {
+  await api.delete(`/garantias/${id}`)
+    .then(() => {
+      commit('REMOVE_GUARANTEE', id);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const getGuarantees = async ({ commit }, titulo) => {
+  await api.get('/garantias', { params: { titulo } })
+    .then((response) => {
+      commit('SET_GUARANTEE', response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const storeGuarantee = async ({ commit, getters }, data) => {
+  const { guaranteeBase } = getters;
+  const { penhor, avalista, hipoteca } = guaranteeBase;
+  switch (data.tipo) {
+    case 'penhor':
+      data.avalista = avalista;
+      data.hipoteca = hipoteca;
+      break;
+    case 'hipoteca':
+      data.penhor = penhor;
+      data.avalista = avalista;
+      break;
+    case 'avalista':
+      console.log('data');
+      console.log(data);
+      data.penhor = penhor;
+      data.hipoteca = hipoteca;
+      break;
+    default:
+      break;
+  }
+  await api.post('/garantias/', data)
+    .then(() => {
+      commit('UPDATE_CURRENT_EDITABLE_GUARANTEE', guaranteeBase);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const updateGuarantee = async ({ getters }, data) => {
+  const { guaranteeBase } = getters;
+  const { penhor, avalista, hipoteca } = guaranteeBase;
+  const { id } = data;
+  switch (data.tipo) {
+    case 'penhor':
+      data.avalista = avalista;
+      data.hipoteca = hipoteca;
+      break;
+    case 'hipoteca':
+      data.penhor = penhor;
+      data.avalista = avalista;
+      break;
+    case 'avalista':
+      data.penhor = penhor;
+      data.hipoteca = hipoteca;
+      break;
+    default:
+      break;
+  }
+  await api.put(`/garantias/${id}`, data)
+    .then(() => {
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export {
+  // eslint-disable-next-line import/prefer-default-export
+  getGuarantee,
+  getGuarantees,
+  storeGuarantee,
+  updateGuarantee,
+  destroyGuarantee,
+  // updateGuaranteeList,
+};

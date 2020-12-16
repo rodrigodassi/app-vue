@@ -1,2 +1,18 @@
-# app-vue
-Desenvolvimento do frontend em Vue.js.
+# Intecred
+
+Monorepo project.
+
+## Project setup
+```
+yarn
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```

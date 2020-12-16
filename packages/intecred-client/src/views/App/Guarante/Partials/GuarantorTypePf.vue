@@ -1,0 +1,448 @@
+<template>
+  <div>
+    <div class="container__form-data__size-top container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_cpf"
+        label="CPF"
+        placeholder="000.000.000-00"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_nome"
+        label="Nome"
+        placeholder="Nome Completo"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_rg"
+        label="RG do imóvel"
+        placeholder="000.000.000-00"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_email"
+        label="Email"
+        placeholder="email@email.com.br"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_ocupacao"
+        label="Profissão"
+        placeholder="Profissão"
+      />
+    </div>
+    <div class="container__form-data__size-top container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_nacionalidade"
+        label="Nacionalidade"
+        placeholder="Nacionalidade"
+      />
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_endereco"
+        label="Endereço"
+        placeholder="Endereço completo"
+      />
+    </div>
+    <div class="container__form-data__item--two-items container__form-data__size-bottom">
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="pessoa_fisica_uf"
+          label="UF"
+          placeholder="Selecione o estado"
+          isSelect
+          @input="ObterMunicipios(pessoa_fisica_uf)"
+        >
+          <el-option
+            v-for="(item, index) in guarantorUf"
+            :key="index"
+            :label="item.uf"
+            :value="item.estadoId"
+          >
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+      <span class="container__form-data__item--two-items__item">
+        <IntInput
+          v-model="pessoa_fisica_cidade"
+          label="Município"
+          placeholder="Selecione a cidade"
+          isSelect
+        >
+          <el-option
+            v-for="(item, index) in guarantorCity"
+            :key="index"
+            :label="item.nome"
+            :value="item.municipioId"
+          >
+            <span class="el-select__option-child">{{ item.nome }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
+          </el-option>
+        </IntInput>
+      </span>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <IntInput
+        v-model="pessoa_fisica_estado_civil"
+        label="Estado civil"
+        placeholder="Selecione o estado civil"
+        isSelect
+      >
+        <el-option
+          v-for="(item, index) in guarantorCivilStatus"
+          :key="index"
+          :label="item.label"
+          :value="item.value"
+        >
+          <span class="el-select__option-child">{{ item.label }}</span>
+          <span class="el-select__option-child">{{ item.label }}</span>
+        </el-option>
+      </IntInput>
+    </div>
+    <div v-show="pessoa_fisica_estado_civil === 'Casado'"
+         class="container__form-data__size-top container__form-data__size-bottom">
+      <div class="container__form-data__size-bottom">
+        <IntInput
+          v-model="nome_conjuge"
+          label="Nome do cônjuge"
+          placeholder="Nome completo do cônjuge"
+        />
+      </div>
+      <div class="container__form-data__item--two-items container__form-data__size-bottom">
+        <span class="container__form-data__item--two-items__item">
+          <IntInput
+            v-model="cpf_conjuge"
+            label="CPF do cônjuge"
+            placeholder="000.000.000-00"
+          />
+        </span>
+        <span class="container__form-data__item--two-items__item">
+          <IntInput
+            v-model="rg_conjuge"
+            label="RG do cônjuge"
+            placeholder="00.000.000-0"
+          />
+        </span>
+      </div>
+      <div class="container__form-data__size-bottom">
+        <IntInput
+          v-model="email_conjuge"
+          label="E-mail do cônjuge"
+          placeholder="Nome completo do cônjuge"
+        />
+      </div>
+    </div>
+    <div class="container__form-data__size-bottom">
+      <Upload
+        @input="UPDATE_FILES_GUARANTOR_PF"
+        :is-multiple="true"
+        v-model="file_pf"
+        title="Importar arquivos"
+        description="Referentes à propriedade, como imagens ou arquivos de mapa em *kml.">
+      </Upload>
+    </div>
+    <IntInput
+      v-model="pessoa_fisica_obs"
+      class="container__form-data__item"
+      label="Obervações"
+      placeholder="Observações sobre o avalista"
+    />
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import { mapMutations, mapState } from 'vuex';
+import IntInput from '../../../../components/Input.vue';
+import Upload from '../../../../components/Upload.vue';
+
+export default {
+  name: 'GuarantorTypePf',
+  mounted() {
+    this.getGuarantorTypePfOptions();
+  },
+  data: () => ({
+    guarantorUf: [],
+    guarantorCity: [],
+    // guarantorCivilStatus: [],
+  }),
+  methods: {
+    ...mapMutations('guarantee', [
+      'UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR',
+      'UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR',
+      'UPDATE_FILES_GUARANTOR_PF',
+    ]),
+    async getGuarantorTypePfOptions() {
+      await axios.get(`${this.$url}/garantia/ObterEstados`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.guarantorUf = res.data;
+        });
+    },
+    async ObterMunicipios(ufEstadoId) {
+      await axios.get(`${this.$url}/garantia/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.guarantorCity = res.data;
+        });
+    },
+  },
+  computed: {
+    ...mapState('guarantee', ['guarantee']),
+    file_pf: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.file || [];
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'file',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_obs: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.obs;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'obs',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_estado_civil: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.estadoCivil;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'estadoCivil',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_cidade: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.cidade;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'cidade',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_uf: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.uf;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'uf',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_endereco: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.endereco;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'endereco',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_cep: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.cep;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'cep',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_nacionalidade: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.nacionalidade;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'nacionalidade',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_ocupacao: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.ocupacao;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'ocupacao',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_email: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.email;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'email',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_rg: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.rg;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'rg',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_nome: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.nome;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'nome',
+          value,
+        });
+      },
+    },
+    pessoa_fisica_cpf: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.cpf;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_GUARANTOR({
+          key: 'cpf',
+          value,
+        });
+      },
+    },
+    cpf_conjuge: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.conjuge.cpf;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR({
+          key: 'cpf',
+          value,
+        });
+      },
+    },
+    rg_conjuge: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.conjuge.rg;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR({
+          key: 'rg',
+          value,
+        });
+      },
+    },
+    nome_conjuge: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.conjuge.nome;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR({
+          key: 'nome',
+          value,
+        });
+      },
+    },
+    email_conjuge: {
+      get() {
+        return this.guarantee.avalista.pessoaFisica.conjuge.email;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR({
+          key: 'email',
+          value,
+        });
+      },
+    },
+    guarantorCivilStatus() {
+      return [
+        {
+          value: 'Solteiro',
+          label: 'Solteiro',
+        },
+        {
+          value: 'Casado',
+          label: 'Casado',
+        },
+        {
+          value: 'Viuvo',
+          label: 'Viúvo',
+        },
+        {
+          value: 'Separado',
+          label: 'Separado',
+        },
+        {
+          value: 'Convivente',
+          label: 'Convivente',
+        },
+      ];
+    },
+  },
+  components: {
+    IntInput,
+    Upload,
+  },
+  props: {
+    guarantorNationality: {
+      type: Array,
+      required: true,
+    },
+    // guarantorUf: {
+    //   type: Array,
+    //   required: true,
+    // },
+    // guarantorCity: {
+    //   type: Array,
+    //   required: true,
+    // },
+    // guarantorCivilStatus: {
+    //   type: Array,
+    //   required: true,
+    // },
+  },
+};
+</script>
+
+<style scoped lang="scss" src="../styles/style.scss"/>

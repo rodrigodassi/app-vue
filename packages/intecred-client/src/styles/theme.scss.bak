@@ -1,0 +1,142 @@
+/*
+ * Theme color
+ */
+$--color-primary: #8500b9;
+$--color-primary-dark-1: #540075;
+$--color-primary-light-1: rgba(#855996, 0.4);
+
+$--color-secondary: #cd75ef;
+$--color-secondary-dark-1: #290038;
+$--color-secondary-light-1: rgba($--color-primary-dark-1, 0.05);
+
+$--color-gray-1: #ffffff;
+$--color-gray-2: #f7f9fc;
+$--color-gray-3: #edf1f7;
+$--color-gray-4: #e4e9f2;
+$--color-gray-5: #c5cee0;
+$--color-gray-6: #8f9bb3;
+$--color-gray-7: #2e3a59;
+
+$--color-background: #f3f5fa;
+
+$--color-success: #02bf88 !default;
+$--color-warning: #ea7000 !default;
+$--color-danger: #fd4c4c !default;
+$--color-info: #6fd4ff !default;
+
+$--color-success-light: rgba(#1cdd97, 0.08) !default;
+$--color-success-light-2: rgba(#1cdd97, 0.2) !default;
+
+/*
+ * Theme shadow
+ */
+
+$--box-shadow-base: 0 3px 4px rgba(#0d3685, 0.15);
+$--box-shadow-dark: 0px 16px 16px rgba(143, 155, 179, 0.1);
+$--box-shadow-darker: 0px 20px 24px rgba(143, 155, 179, 0.08);
+
+/*
+ * Theme button
+ */
+$--button-border-radius: 4px;
+$--button-padding-vertical: 14px;
+$--button-padding-horizontal: 24px;
+
+/*
+ * Theme input
+ */
+$--input-height: 48px;
+$--input-font-size: 14px;
+
+$--input-border-radius: 4px;
+
+$--input-icon-color: $--color-gray-6;
+$--input-border-color: 1px solid $--color-gray-5;
+$--input-placeholder-color: $--color-gray-6;
+
+$--input-border-color-hover: $--color-gray-6;
+
+$--input-focus-border: $--color-secondary;
+
+/*
+ * Theme radio
+ */
+$--radio-font-size: 16px;
+$--radio-font-color: $--color-gray-6;
+$--radio-input-width: 20px;
+$--radio-input-height: 20px;
+$--radio-input-border: 1px solid $--color-gray-6;
+
+$--radio-button-font-size: 14px;
+$--radio-button-checked-font-color: $--color-primary;
+$--radio-button-checked-border-color: $--color-primary;
+$--radio-button-checked-background-color: $--color-gray-1;
+
+/*
+ * Theme select
+ */
+$--select-option-hover-background: $--color-gray-2;
+$--select-option-selected-hover: $--color-gray-2;
+
+/*
+ * Theme checkbox
+ */
+ $--checkbox-font-size: 16px;
+ $--checkbox-input-width: 24px;
+ $--checkbox-input-height: 24px;
+ $--checkbox-border-radius: 6px;
+ $--checkbox-font-color: $--color-gray-7;
+ $--checkbox-checked-icon-color: $--color-primary;
+ $--checkbox-disabled-input-fill: $--color-gray-4;
+ $--checkbox-disabled-border-color: $--color-gray-4;
+ $--checkbox-checked-background-color: $--color-gray-1;
+ $--checkbox-input-border-color-hover: $--color-gray-5;
+ $--checkbox-checked-input-border-color: $--color-gray-1;
+ $--checkbox-disabled-checked-input-fill: $--color-gray-4;
+ $--checkbox-disabled-checked-icon-color: $--color-gray-5;
+ $--checkbox-disabled-checked-input-border-color: $--color-gray-4;
+ 
+ /*
+  * Theme pagination
+  */
+ $--pagination-font-size: 14px;
+ $--pagination-font-color: $--color-gray-6;
+ $--pagination-button-width: 24px;
+ $--pagination-button-height: 24px;
+ $--pagination-background-color: transparent;
+ $--pagination-button-disabled-color: $--color-gray-6;
+ $--datepicker-inrange-background-color: rgba($--color-primary, 0.1);
+ $--datepicker-inrange-hover-background-color: rgba($--color-primary, 0.1);
+ $--pagination-button-disabled-background-color: transparent; 
+
+/*
+ * Theme table
+ */
+$--table-border: none;
+$--table-font-color: $--color-gray-7;
+$--table-border-color: transparent;
+$--table-fixed-box-shadow: $--box-shadow-base;
+$--table-header-font-color: $--color-gray-6;
+$--table-header-background-color: transparent;
+$--table-row-hover-background-color: $--color-gray-3;
+
+/*
+ * Theme datepicker
+ */
+ $--datepicker-font-color: $--color-gray-7;
+ $--datepicker-border-color: $--color-gray-5;
+ $--datepicker-off-font-color: $--color-gray-5;
+ $--datepicker-header-font-color: $--color-gray-6; 
+
+/*
+ * Theme typograph
+ */
+$font_primary: "Poppins", sans-serif;
+$font_secondary: "Muli", sans-serif;
+
+$--heading-big: 42px;
+
+/* icon font path, required */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+
+@import "~element-ui/packages/theme-chalk/src/index";

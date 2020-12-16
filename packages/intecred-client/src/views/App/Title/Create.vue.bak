@@ -1,0 +1,208 @@
+<template>
+  <div class="create-title">
+    <IntHeader url-name-redirect="Titles"/>
+    <div class="container">
+      <!-- Step 1 dados da CPR -->
+      <span v-show="step == 1">
+        <h2 class="container__title-alert">Dados da CPR</h2>
+        <Alert step-title="step1">
+          Aqui nessa tela você deve inserir os dados básicos para iniciar a criação da CPR
+        </Alert>
+      </span>
+      <span v-show="step == 2">
+        <h2 class="container__title-alert">Local de formação da lavoura</h2>
+        <Alert step-title="step2">
+          Aqui você precisa preencher os dados do produto da CPR e da propriedade de cultivo.
+        </Alert>
+      </span>
+      <span v-show="step == 3">
+        <h2 class="container__title-alert">Condições de entrega</h2>
+        <Alert step-title="step3">
+          Agora, você deve preencher as condições e locais da entrega do produto da CPR
+        </Alert>
+      </span>
+      <div class="container__form-data">
+        <form>
+          <component :is="currentComponentStep"/>
+          <ActionsFooter
+            :step="step"
+            :back="() => this.back()"
+            :next="() => this.forceSaveForm()"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import { mapState, mapActions } from 'vuex';
+import Alert from '../../../components/Alert.vue';
+import FormFirstStep from './Partials/FormFirstStep.vue';
+import FormThirdStep from './Partials/FormThirdStep.vue';
+import FormSecondStep from './Partials/FormSecondStep.vue';
+import ActionsFooter from './Partials/ActionsFooter.vue';
+import IntHeader from '../../../layouts/IntHeader.vue';
+
+export default {
+  name: 'CreateTitle',
+  async mounted() {
+    await this.getTitle(parseInt(this.$route.params.titulo, 10)).then(() => {
+      if (this.title.currentStep && this.title.currentStep
+        !== parseInt(this.$route.params.step, 10)) {
+        this.$router.push({
+          name: 'CreateTitle',
+          params: {
+            titulo: this.title.id,
+            step: this.title.currentStep,
+          },
+        });
+      }
+    });
+  },
+  data: () => ({
+    user: 1,
+    routeName: '',
+    lastAction: '',
+    feedback: false,
+  }),
+  computed: {
+    ...mapState('title', ['title']),
+    step: {
+      get() {
+        return parseInt(this.$route.params.step, 10) || 1;
+      },
+      set(value) {
+        return value;
+      },
+    },
+    currentComponentStep() {
+      switch (this.step) {
+        case 1:
+        default:
+          return 'FormFirstStep';
+        case 2:
+          return 'FormSecondStep';
+        case 3:
+          return 'FormThirdStep';
+      }
+    },
+  },
+  methods: {
+    ...mapActions('title', ['submit', 'getTitle']),
+    back() {
+      this.submit({
+        title: {
+          id: this.title.id,
+        },
+        step: 0,
+        nextStep: this.step -= 1,
+      });
+      if (this.step > 1) {
+        this.$router.push({
+          name: 'CreateTitle',
+          params: { step: this.step -= 1 },
+        });
+      } else {
+        this.$router.push({
+          name: 'Titles',
+        });
+      }
+    },
+    forceSaveForm() {
+      console.log('title', this.title);
+      this.submit({
+        title: this.title,
+        step: this.step,
+        nextStep: this.step += 1,
+      });
+      let step = parseInt(this.step, 10);
+      if (this.step === 3) {
+        this.feedback = false;
+        this.$router.push({
+          name: 'Guarantee',
+          params: { titulo: this.title.id },
+        });
+      } else {
+        this.$router.push({
+          name: 'CreateTitle',
+          params: { step: step += 1 },
+        });
+      }
+    },
+  },
+  components: {
+    IntHeader,
+    FormFirstStep,
+    FormSecondStep,
+    FormThirdStep,
+    ActionsFooter,
+    Alert,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 540px;
+  margin: 0 auto;
+
+  &__title-alert {
+    font-family: $font_primary;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: $--color-primary;
+    margin-bottom: 20px;
+  }
+}
+
+.modal-feedback {
+  &__message {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg:nth-child(1) > circle {
+          position: absolute;
+          fill: $--color-danger;
+        }
+
+        svg:nth-child(2) {
+          position: absolute;
+          fill: $--color-danger;
+        }
+      }
+    }
+
+    h2 {
+      font-family: $font_primary;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      color: $--color-danger;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__actions {
+    margin-top: 10px;
+  }
+}
+</style>

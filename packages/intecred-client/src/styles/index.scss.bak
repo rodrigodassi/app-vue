@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+@import './theme.scss';
+
+@import './utils/typograph.scss';
+@import './utils/base.scss';
+
+@import './components/table.scss';
+@import './components/radio.scss';
+@import './components/title.scss';
+@import './components/input.scss';
+@import './components/button.scss';
+@import './components/checkbox.scss';
+@import './components/datepicker.scss';
+@import './components/pagination.scss';

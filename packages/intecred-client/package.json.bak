@@ -1,0 +1,41 @@
+{
+  "name": "@packages/intecred-client",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Client in vue",
+  "scripts": {
+    "app": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "apexcharts": "^3.20.0",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "element-ui": "^2.3.6",
+    "object-to-formdata": "^4.1.0",
+    "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.0",
+    "vue-pdf": "^4.1.0",
+    "vue-router": "^3.4.5",
+    "vue-the-mask": "^0.11.1",
+    "vuex": "^3.5.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.3",
+    "svg-to-vue-component": "^0.3.8",
+    "vue-cli-plugin-element-ui": "~1.1.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

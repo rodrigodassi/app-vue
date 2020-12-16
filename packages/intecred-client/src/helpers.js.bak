@@ -1,0 +1,24 @@
+export const date = () => {
+  const zeroFill = (n) => (`0${n}`).slice(-2);
+
+  const now = new Date();
+
+  return `${zeroFill(now.getUTCDate())}/${zeroFill((now.getMonth() + 1))}/${now.getFullYear()}`;
+};
+
+export const handle = () => {};
+export const dateTime = () => {
+  const zeroFill = (n) => (`0${n}`).slice(-2);
+  const now = new Date();
+  return `${date()} | ${zeroFill((now.getHours()))}:${zeroFill(now.getMinutes())}`;
+};
+
+export const strMaximumLetters = (str, limit, endString = '...') => {
+  if (!str) {
+    return '';
+  }
+  if (str.length > limit) {
+    return str.substr(0, limit) + endString;
+  }
+  return str;
+};

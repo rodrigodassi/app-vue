@@ -1,0 +1,7 @@
+{
+  "name": "intecred-babel",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Babel preset",
+  "main": "index.js"
+}

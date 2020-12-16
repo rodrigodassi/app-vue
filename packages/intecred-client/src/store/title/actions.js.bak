@@ -1,0 +1,53 @@
+import api from '../../services/api';
+
+const getTitle = async ({ commit }, id) => {
+  await api.get(`/titulo/${id}`)
+    .then((response) => {
+      commit('UPDATE_TITLE', response.data);
+    });
+
+//  await api.get(`/titulos/${id}`)
+//    .then((response) => {
+//      commit('UPDATE_TITLE', response.data);
+//    })
+//    .catch((error) => {
+//      console.log(error);
+//      commit('SET_ID', id);
+//    });
+};
+
+const submit = async ({ commit }, { title, step, nextStep }) => {
+  const zeroFill = (n) => (`0${n}`).slice(-2);
+  const now = new Date();
+  const date = `${zeroFill(now.getUTCDate())}/${zeroFill((now.getMonth() + 1))}/${now.getFullYear()}`;
+  title.created = date;
+  if (nextStep && (nextStep > 0 && nextStep < 4)) {
+    title.currentStep = nextStep;
+  }
+  const { id } = title;
+  console.log('id->>', id);
+  console.log('title->>', title);
+  const updateTitle = () => api.patch('/titulo/titulofull', title)
+    .then((response) => {
+      commit('UPDATE_TITLE', response.data);
+    });
+  if (!step || step !== 2) {
+    await Promise.all([updateTitle()]);
+    return;
+  }
+  const form = new FormData();
+  title.files.forEach((file, index) => {
+    const json = JSON.stringify(file);
+    const blob = new Blob([json], {
+      type: 'application/json',
+    });
+    form.append(`file[titulo][${title.tituloId}][${index}]`, blob);
+  });
+  const updateFiles = () => api.post('images', form);
+  await Promise.all([updateTitle(), updateFiles()]);
+};
+
+export {
+  getTitle,
+  submit,
+};

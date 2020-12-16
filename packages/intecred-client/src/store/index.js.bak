@@ -1,0 +1,77 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+import title from './title';
+import guarantee from './guarantee';
+// import auth from './auth';
+import state from './state';
+import * as getters from './getters';
+import * as mutations from './mutations';
+import * as actions from './actions';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  modules: {
+    title,
+    guarantee,
+  },
+  getters,
+  mutations,
+  actions,
+  state,
+});
+
+// eslint-disable-next-line import/prefer-default-export
+// export const store = new Vuex.Store({
+//   modules: {
+//     title,
+//   },
+// });
+
+// const store = new Vuex.Store({
+//   state: {
+//     title: {
+//       cpr: 'asdfas',
+//       type: 'client',
+//       product: '',
+//       harvest: '',
+//       quantity: '',
+//       expiration: '',
+//       issuers: [],
+//     },
+//   },
+//   actions: {
+//     getTitle: ({ commit }) => {
+//       api.get('/titles/')
+//         .then((response) => {
+//           console.log(response.data);
+//           commit('UPDATE_FORM', response.data);
+//         })
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     },
+//     updateForm: ({ commit }, data) => {
+//       api.post('/titles/1', data)
+//         .then((response) => {
+//           console.log(response.data);
+//           commit('UPDATE_FORM', response.data);
+//         })
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     },
+//   },
+//   mutations: {
+//     // eslint-disable-next-line no-return-assign,no-undef
+//     UPDATE_FORM: (payload) => state.title = payload,
+//     // eslint-disable-next-line no-return-assign,no-undef
+//     UPDATE_PARTIALS_FORM: (state, value) => {
+//       // eslint-disable-next-line no-param-reassign
+//       state.title.cpr = value;
+//     },
+//   },
+// });
+//
+// // eslint-disable-next-line import/prefer-default-export
+// export { store };

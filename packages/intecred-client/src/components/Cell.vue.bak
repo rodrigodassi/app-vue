@@ -1,0 +1,44 @@
+<script>
+export default {
+  props: {
+    row: {
+      type: Object,
+      required: true,
+    },
+
+    prop: {
+      type: String,
+      requireD: true,
+    },
+  },
+
+  computed: {
+    text() {
+      const {
+        prop,
+        row,
+
+        row: {
+          cpf = '',
+          cnpj = '',
+          tipo = '',
+        },
+      } = this;
+
+      if (prop === 'documento') {
+        return tipo === 'Física' || tipo === 'fisica' ? cpf : cnpj;
+      }
+
+      return prop.split('.').reduce((data, value) => data && data[value], row);
+    },
+  },
+};
+</script>
+
+<template>
+  <span
+    class="cell"
+    :title="text"
+    v-text="text"
+  />
+</template>
