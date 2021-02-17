@@ -1,67 +1,56 @@
 <template>
-  <div
-    class="draft-analyse"
-  >
-    <nav class="draft-analyse__top-bar">
-      <RouterLink
-        class="draft-analyse__logo"
-        to="/"
-      >
+  <div class='draft-analyse'>
+    <nav class='draft-analyse__top-bar'>
+      <RouterLink class='draft-analyse__logo' to='/'>
         <Logo />
       </RouterLink>
     </nav>
 
-    <span
-      v-if="empty"
-      class="container__empty"
-    >
+    <span v-if='empty' class='container__empty'>
       Minuta inexistente
     </span>
-    <template
-      v-else
-    >
-      <IntHeader v-if="nome !== undefined && clientDocument !== undefined"
+    <template v-else>
+      <IntHeader
+        v-if='nome !== undefined && clientDocument !== undefined'
         statusless
-        :closeable="false"
-        url-name-redirect="Titles"
-        :client="nome"
-        :clientDocument="clientDocument"
+        :closeable='false'
+        url-name-redirect='Titles'
+        :client='nome'
+        :clientDocument='clientDocument'
       />
-      <div class="container">
-        <div class="container__title-page">
+      <div class='container'>
+        <div class='container__title-page'>
           <h2>Minuta</h2>
         </div>
-        <DraftStatusCheck
-          :status-list="drafts"
+        <DraftStatusCheck :status-list='drafts' />
+        <ViewPdf
+          v-if='selectedDraft'
+          v-model='selectedDraft.file'
+          :src='getPatchPdf'
         />
-        <ViewPdf v-if="selectedDraft" v-model="selectedDraft.file" :src="getPatchPdf"/>
       </div>
 
-      <div class="footer">
-        <div class="footer__btn-actions">
-          <div class="footer__btn-actions__group">
+      <div class='footer'>
+        <div class='footer__btn-actions'>
+          <div class='footer__btn-actions__group'>
             <!-- <IconPrint
-              @click.prevent="handlePrint()"
+              @click.prevent='handlePrint()'
             /> -->
             <a
               download
-              :href="getPatchPdf"
-              class="footer__btn-actions__group-download"
+              :href='getPatchPdf'
+              class='footer__btn-actions__group-download'
             >
-              <IconDownload/>
+              <IconDownload />
             </a>
-          <!-- <IconSendEmail/> -->
+            <!-- <IconSendEmail/> -->
           </div>
           <div>
-            <el-button
-              @click="prepareRejectDraft"
-              type="danger"
-            >Rejeitar
+            <el-button @click='prepareRejectDraft' type='danger'
+              >Rejeitar
             </el-button>
-            <el-button
-              @click="prepareApproveDraft"
-              type="success"
-            >Aprovar
+            <el-button @click='prepareApproveDraft' type='success'
+              >Aprovar
             </el-button>
           </div>
         </div>
@@ -69,73 +58,69 @@
     </template>
 
     <IntModal
-      :show="modalApproveShow"
-      :close-function="closeApproveModal"
-      :draft-analyse="true">
+      :show='modalApproveShow'
+      :close-function='closeApproveModal'
+      :draft-analyse='true'
+    >
       <template v-slot:head>
-        <div class="modal__custom-head">
-          <IconSuccess/>
-          <h2 class="modal__custom-head__success">Aprovar minuta</h2>
+        <div class='modal__custom-head'>
+          <IconSuccess />
+          <h2 class='modal__custom-head__success'>Aprovar minuta</h2>
         </div>
       </template>
       <template v-slot:body>
-        <div class="modal__custom-body">
-          <p class="modal__custom-body__p2">Observações</p>
+        <div class='modal__custom-body'>
+          <p class='modal__custom-body__p2'>Observações</p>
           <el-input
-            type="textarea"
-            :rows="4"
-            placeholder="Observações"
-            v-model="obsApprove">
+            type='textarea'
+            :rows='4'
+            placeholder='Observações'
+            v-model='obsApprove'
+          >
           </el-input>
         </div>
       </template>
       <template v-slot:footer>
-        <div class="modal__custom-footer">
-          <el-button
-            @click="closeApproveModal"
-            type="default"
-          >Cancelar
+        <div class='modal__custom-footer'>
+          <el-button @click='closeApproveModal' type='default'
+            >Cancelar
           </el-button>
-          <el-button
-            @click="dispatchDraft('approve')"
-            type="success"
-          >Aprovar
+          <el-button @click="dispatchDraft('approve')" type="success"
+            >Aprovar
           </el-button>
         </div>
       </template>
     </IntModal>
     <IntModal
-      :show="modalRejectShow"
-      :close-function="closeRejectModal"
-      :draft-analyse="true">
+      :show='modalRejectShow'
+      :close-function='closeRejectModal'
+      :draft-analyse='true'
+    >
       <template v-slot:head>
-        <div class="modal__custom-head">
-          <IconDanger/>
-          <h2 class="modal__custom-head__danger">Rejeitar minuta</h2>
+        <div class='modal__custom-head'>
+          <IconDanger />
+          <h2 class='modal__custom-head__danger'>Rejeitar minuta</h2>
         </div>
       </template>
       <template v-slot:body>
-        <div class="modal__custom-body">
-          <p class="modal__custom-body__p2">Observações</p>
+        <div class='modal__custom-body'>
+          <p class='modal__custom-body__p2'>Observações</p>
           <el-input
-            type="textarea"
-            :rows="4"
-            placeholder="Observações"
-            v-model="obsReject">
+            type='textarea'
+            :rows='4'
+            placeholder='Observações'
+            v-model='obsReject'
+          >
           </el-input>
         </div>
       </template>
       <template v-slot:footer>
-        <div class="modal__custom-footer">
-          <el-button
-            @click="closeRejectModal"
-            type="default"
-          >Cancelar
+        <div class='modal__custom-footer'>
+          <el-button @click='closeRejectModal' type='default'
+            >Cancelar
           </el-button>
-          <el-button
-            @click="dispatchDraft('reject')"
-            type="danger"
-          >Rejeitar
+          <el-button @click="dispatchDraft('reject')" type="danger"
+            >Rejeitar
           </el-button>
         </div>
       </template>
@@ -195,10 +180,7 @@ export default {
   }),
   methods: {
     async getDrafts() {
-      const {
-        minuta = null,
-        token = null,
-      } = this.$route.query || {};
+      const { minuta = null, token = null } = this.$route.query || {};
 
       if (!minuta && !token) {
         this.empty = true;
@@ -211,7 +193,8 @@ export default {
        * Request de busca de minuta com o token para autorização
        */
       let tituloId = 0;
-      await api.get(`/minuta/verifica-minuta?minutaId=${minuta}&token=${token}`)
+      await api
+        .get(`/minuta/verifica-minuta?minutaId=${minuta}&token=${token}`)
         .then(({ data }) => {
           if (!data) {
             this.empty = true;
@@ -233,9 +216,10 @@ export default {
           this.empty = true;
         });
       if (!this.empty) {
-        api.get(`titulo/informacoes-header?tituloId=${tituloId}`)
+        api
+          .get(`titulo/informacoes-header?tituloId=${tituloId}`)
           .then(({ data }) => {
-            console.log('Data Info ->', data);
+            console.log('Info -->', data);
             this.nome = data.nome;
             this.cprType = data.tipo;
             this.clientDocument = data.cpf;
@@ -258,10 +242,7 @@ export default {
     },
 
     async dispatchDraft(action) {
-      const {
-        minuta = null,
-        token = null,
-      } = this.$route.query || {};
+      const { minuta = null, token = null } = this.$route.query || {};
 
       if (!minuta && !token) {
         this.empty = true;
@@ -280,7 +261,11 @@ export default {
        * @todo
        * Request de aprovação ou rejeição de minuta
        */
-      await api.post(`minuta/aprovacao?minutaId=${minuta}&token=${token}`, this.selectedDraft.status)
+      await api
+        .post(
+          `minuta/aprovacao?minutaId=${minuta}&token=${token}`,
+          this.selectedDraft.status,
+        )
         .then(() => {
           this.getDrafts();
         });
@@ -294,44 +279,46 @@ export default {
       const d = new Printd();
 
       if (this.getPatchPdf) {
-        console.log('print', this.getPatchPdf);
+        console.log('print->', this.getPatchPdf);
         d.printURL(this.getPatchPdf);
       }
     },
   },
   computed: {
     getPatchPdf() {
-      return this.selectedDraft && this.selectedDraft.file ? this.selectedDraft.file : '';
+      return this.selectedDraft && this.selectedDraft.file
+        ? this.selectedDraft.file
+        : '';
     },
   },
 };
 </script>
 
-<style scoped lang="scss">
-  .draft-analyse {
-    width: 100%;
-    max-width: 1080px;
-    margin: 100px auto 100px auto;
+<style scoped lang='scss'>
+.draft-analyse {
+  width: 100%;
+  max-width: 1080px;
+  margin: 100px auto 100px auto;
 
-    &__top-bar {
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      z-index: 999;
-      position: fixed;
-      padding: 14px 32px;
-      align-items: center;
-      box-sizing: border-box;
-      justify-content: space-between;
-      background-color: $--color-primary-dark-1;
-    }
-
-    &__logo svg {
-      height: 40px;
-      display: flex;
-    }
+  &__top-bar {
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    z-index: 999;
+    position: fixed;
+    padding: 14px 32px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+    background-color: $--color-primary-dark-1;
   }
+
+  &__logo svg {
+    height: 40px;
+    display: flex;
+  }
+}
 
 .container {
   display: flex;
@@ -431,7 +418,7 @@ export default {
     }
 
     &__success {
-      color: #028D64;
+      color: #028d64;
     }
   }
 

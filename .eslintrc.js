@@ -21,6 +21,7 @@ module.exports = {
     'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
     'no-alert': 'off',
 	'no-param-reassign': 0,
-	'eslint linebreak-style': 0
+	'eslint linebreak-style': 0,
+	"linebreak-style": [0,"error", "windows"],
   },
 };
