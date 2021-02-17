@@ -108,7 +108,8 @@
     </div>
     <div class="container__form-data__size-bottom">
       <IntInput
-      v-model="areaPlantio"
+        type="numeric"
+        v-model="areaPlantio"
         label="Área de plantio (hectares)"
         placeholder="Defina a área de plantio (em hectares)"
       />
@@ -251,6 +252,7 @@ export default {
     ...mapState('guarantee', ['guarantee']),
     tipo: {
       get() {
+        console.log('Penhor ->', this.guarantee.penhor.tipo);
         return this.guarantee.penhor.tipo || 'pledge';
       },
       set(value) {
@@ -463,19 +465,27 @@ export default {
     pledgeProduct() {
       return [
         {
-          value: 'Algodao',
-          label: 'Algodão',
+          value: 'algodao',
+          label: 'Algodão em pluma',
         },
         {
-          value: 'CarneBovina',
-          label: 'Carne Bovina',
+          value: 'boigordo',
+          label: 'Boi Gordo',
         },
         {
-          value: 'Milho',
-          label: 'Milho',
+          value: 'cafegraos',
+          label: 'Café cru em grãos',
         },
         {
-          value: 'Soja',
+          value: 'gergelim',
+          label: 'Gergelim',
+        },
+        {
+          value: 'milhotipo1',
+          label: 'Milho Tipo 1, em grãos',
+        },
+        {
+          value: 'soja',
           label: 'Soja',
         },
       ];

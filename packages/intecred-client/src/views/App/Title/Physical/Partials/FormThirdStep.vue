@@ -11,8 +11,8 @@
       <IntInput
         v-model="cepEntrega"
         label="CEP:"
-        placeholder="endereço de entrega"
-        v-mask="'#####-###'"
+        placeholder="CEP de entrega"
+        v-mask="'########'"
         v-on:input="load_cep"
       />
     </div>
@@ -93,6 +93,7 @@
           v-show="tipoPessoaDepositario === 'pf'"
           v-model="depositarioCpf"
           label="CPF"
+          v-mask="'###.###.###-##'"
           placeholder="000.000.000-00"
         />
       </div>
@@ -162,6 +163,7 @@
           v-model="depositarioCep"
           label="CEP"
           placeholder="Defina o CEP"
+          v-mask="'########'"
           v-on:input="load_cep_dep"
         />
       </div>
@@ -606,12 +608,12 @@ export default {
     },
     depositarioRazaoSocial: {
       get() {
-        return this.title.depositario.razao_social;
+        return this.title.depositario.razaoSocial;
       },
       set(value) {
         this.UPDATE_PARTIALS_SUB_KEY({
           key: 'depositario',
-          subKey: 'razao_social',
+          subKey: 'razaoSocial',
           value,
         });
       },

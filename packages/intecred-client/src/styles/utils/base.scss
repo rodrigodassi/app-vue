@@ -86,3 +86,25 @@ html,
 body {
   scroll-behavior: smooth;
 }
+
+/**
+ * Remove scroll default.
+ */
+body {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $--color-gray-5;
+  }
+}
+
+//@media (max-width: 600px) {
+//  html,
+//  body {
+//    scroll-behavior: smooth;
+//    overflow-x: hidden;
+//  }
+//}

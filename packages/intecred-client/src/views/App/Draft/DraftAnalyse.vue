@@ -17,14 +17,15 @@
     >
       Minuta inexistente
     </span>
-
     <template
       v-else
     >
-      <IntHeader
+      <IntHeader v-if="nome !== undefined && clientDocument !== undefined"
         statusless
         :closeable="false"
         url-name-redirect="Titles"
+        :client="nome"
+        :clientDocument="clientDocument"
       />
       <div class="container">
         <div class="container__title-page">
@@ -39,9 +40,9 @@
       <div class="footer">
         <div class="footer__btn-actions">
           <div class="footer__btn-actions__group">
-            <IconPrint
+            <!-- <IconPrint
               @click.prevent="handlePrint()"
-            />
+            /> -->
             <a
               download
               :href="getPatchPdf"
@@ -150,7 +151,7 @@ import IntHeader from '../../../layouts/IntHeader.vue';
 import IntModal from '../../../components/Modal.vue';
 import DraftStatusCheck from './DraftStatusCheck.vue';
 import ViewPdf from '../../../components/ViewPdf.vue';
-import IconPrint from '../../../assets/svgs/icon-print.svg';
+// import IconPrint from '../../../assets/svgs/icon-print.svg';
 import IconSuccess from '../../../assets/svgs/icon-draft-approved.svg';
 import IconDanger from '../../../assets/svgs/icon-draft-reject.svg';
 import IconDownload from '../../../assets/svgs/icon-download.svg';
@@ -167,7 +168,7 @@ export default {
     ViewPdf,
     DraftStatusCheck,
     IntHeader,
-    IconPrint,
+    // IconPrint,
     IconDownload,
     IntModal,
     IconSuccess,
@@ -186,8 +187,11 @@ export default {
     obsReject: '',
     loggedUser: {
       id: 1,
-      name: 'Yuri Prado Martins',
+      name: 'Escritório J.Ercílio',
     },
+    nome: '',
+    cprType: '',
+    clientDocument: '',
   }),
   methods: {
     async getDrafts() {
@@ -206,16 +210,17 @@ export default {
        * @todo
        * Request de busca de minuta com o token para autorização
        */
+      let tituloId = 0;
       await api.get(`/minuta/verifica-minuta?minutaId=${minuta}&token=${token}`)
         .then(({ data }) => {
           if (!data) {
+            this.empty = true;
             this.drafts = [];
-
             this.selectedDraft = '';
-
             return;
           }
-
+          tituloId = data.tituloId;
+          console.log('Data tituloId ->', tituloId);
           this.drafts = data.status;
 
           this.selectedDraft = data;
@@ -227,6 +232,15 @@ export default {
            */
           this.empty = true;
         });
+      if (!this.empty) {
+        api.get(`titulo/informacoes-header?tituloId=${tituloId}`)
+          .then(({ data }) => {
+            console.log('Data Info ->', data);
+            this.nome = data.nome;
+            this.cprType = data.tipo;
+            this.clientDocument = data.cpf;
+          });
+      }
     },
     prepareApproveDraft(index) {
       this.modalApproveShow = true;
@@ -266,7 +280,7 @@ export default {
        * @todo
        * Request de aprovação ou rejeição de minuta
        */
-      await api.patch(`minuta/aprovacao?minutaId=${minuta}&token=${token}`, this.selectedDraft)
+      await api.post(`minuta/aprovacao?minutaId=${minuta}&token=${token}`, this.selectedDraft.status)
         .then(() => {
           this.getDrafts();
         });
@@ -280,6 +294,7 @@ export default {
       const d = new Printd();
 
       if (this.getPatchPdf) {
+        console.log('print', this.getPatchPdf);
         d.printURL(this.getPatchPdf);
       }
     },

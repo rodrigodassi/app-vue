@@ -151,7 +151,7 @@
           label="Cep"
           placeholder="Cep"
           maxlength="9"
-          v-mask="'#####-###'"
+          v-mask="'########'"
         />
       </div>
        <div class="form-data__item--size-bottom">
@@ -333,7 +333,7 @@
           v-if="emitentes[index].estadoCivil === 'married'"
           label="CEP do Cônjuge"
           placeholder="CEP"
-          v-mask="'#####-###'"
+          v-mask="'########'"
           maxlength="9"
         />
       </div>
@@ -347,7 +347,7 @@
           v-if="emitentes[index].estadoCivil === 'married'"
           label="CEP"
           placeholder="CEP"
-          v-mask="'#####-###'"
+          v-mask="'########'"
           maxlength="9"
         />
       </div> -->

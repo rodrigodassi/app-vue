@@ -6,11 +6,24 @@
       <IntTabs
         :items="tabs"
         v-model="active"
+        @input="handleTab"
+        class="titles__tabs"
+      />
+
+      <DropTabs
+        :items="tabs"
+        v-model="active"
+        class="titles__drop-tabs"
       />
 
       <div class="titles__head">
-        <button class="icon-button is-filled">
-          <IconSearch/>
+        <button
+          v-if="currentTab === 'tables'"
+          class="icon-button is-filled"
+          :class="{ 'titles__button': showFilter }"
+          @click.prevent="showFilter = ! showFilter"
+        >
+          <IconFilter/>
         </button>
 
         <el-button
@@ -20,6 +33,134 @@
           Novo título
         </el-button>
       </div>
+    </div>
+
+    <div
+      class="titles__filter"
+      v-if="currentTab === 'tables' && showFilter"
+    >
+      <IntInput
+        isSelect
+        clearable
+        filterable
+        placeholder="Nome"
+        v-model="form.name"
+        label="Busca por nome"
+        class="titles__filter-name"
+      >
+        <el-option
+          v-for="(value, index) in nomes"
+          :key="index"
+          :label="value"
+          :value="value"
+        >
+          <span class="el-select__option-child">{{ value }}</span>
+          <span class="el-select__option-child"/>
+        </el-option>
+      </IntInput>
+
+      <IntInput
+        v-model="form.document"
+        label="Busca CPF / CNPJ"
+        placeholder="CPF / CNPJ"
+        class="titles__filter-cpf"
+      />
+
+      <IntInput
+        isSelect
+        clearable
+        filterable
+        v-model="form.type"
+        label="Tipo de título"
+        placeholder="Típo de título"
+        class="titles__filter-title"
+      >
+        <el-option
+          v-for="(value, index) in titlesType"
+          :key="index"
+          :label="value"
+          :value="value"
+        >
+          <span class="el-select__option-child">{{ value }}</span>
+          <span class="el-select__option-child"/>
+        </el-option>
+      </IntInput>
+
+      <IntInput
+        isSelect
+        label="UF"
+        clearable
+        filterable
+        v-model="form.uf"
+        placeholder="Estado"
+        class="titles__filter-city"
+        @input="ObterMunicipios(form.uf)"
+      >
+        <el-option
+            v-for="(item, index) in ufOptions"
+            :key="index"
+            :label="item.uf"
+            :value="item.estadoId"
+          >
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+          </el-option>
+      </IntInput>
+
+      <IntInput
+        isSelect
+        clearable
+        filterable
+        label="Cidade"
+        v-model="form.city"
+        placeholder="Cidade"
+        class="titles__filter-uf"
+      >
+        <el-option
+          v-for="(item, index) in cityOptions"
+          :key="index"
+          :label="item.nome"
+          :value="item.municipioId"
+        >
+          <span class="el-select__option-child">{{ item.nome }}</span>
+          <span class="el-select__option-child"/>
+        </el-option>
+      </IntInput>
+
+      <!-- <IntInput
+        isSelect
+        clearable
+        filterable
+        label="Moeda"
+        v-model="form.money"
+        placeholder="Real (BRL)"
+        class="titles__filter-moeda"
+      >
+        <el-option
+          v-for="({ label, value }, index) in money"
+          :key="index"
+          :label="value"
+          :value="value"
+        >
+          <span class="el-select__option-child">{{ value }}</span>
+          <span class="el-select__option-child">{{ label }}</span>
+        </el-option>
+      </IntInput> -->
+
+      <div
+        class="titles__filter-close"
+      >
+        <IconClose
+          @click.prevent="showFilter = false"
+        />
+      </div>
+
+      <button
+        @click.prevent="handleSave"
+        class="titles__filter-save"
+      >
+        Buscar títulos
+      </button>
     </div>
 
     <div
@@ -38,10 +179,11 @@
           >
             <IntCard
               :redirect-link="() => editTitle(item)"
-              :class="{ 'titles__body--cursor-pointer': item.status === 1 }"
+              :class="{ 'titles__body--cursor-pointer': item.status < 3 }"
               v-bind="item"
               :key="item.id"
               v-for="item in items[value].slice(-6)"
+              class="titles__card"
             />
           </Accordion>
         </template>
@@ -165,6 +307,7 @@
             placeholder="Selecione o cliente"
             v-model="client"
             isSelect
+            filterable
           >
             <RouterLink
               to="/clientes/novo#identificacao"
@@ -177,7 +320,7 @@
               v-for="(item, index) in clients"
               :key="index"
               :label="item.nome"
-              :value="item.clienteId"
+              :value="item.id"
             >
               <span class="el-select__option-child">{{ item.nome }}</span>
               <span class="el-select__option-child">{{ item.documento }}</span>
@@ -193,11 +336,25 @@
               <el-radio label="Upload">Upload de CPR já assinada</el-radio>
             </el-radio-group>
           </div>
+          <div v-show="cpr === 'Upload' && tipo !== 'Duplicata'" class="titles__modal__upload">
+            <Upload
+              onTitles
+              @input="updateFile"
+              v-model="file"
+              title="CPR já assinada"
+              description="Upload de uma CPR que foi criada fora da Intecred e já está assinada.">
+            </Upload>
+          </div>
         </div>
       </template>
 
-      <template #footer>
-        <el-button type="primary" class="titles__modal-footer" @click.prevent="storeNewTitle">
+       <template #footer>
+        <el-button
+          :disabled="hasAnyPendency"
+          type="primary"
+          class="titles__modal-footer"
+          @click.prevent="storeNewTitle"
+        >
           Avançar
         </el-button>
       </template>
@@ -213,12 +370,16 @@ import IntCell from '../../../components/Cell.vue';
 import IntTabs from '../../../components/Tabs.vue';
 import IntCard from '../../../components/Card.vue';
 import IntInput from '../../../components/Input.vue';
+import DropTabs from '../../../components/DropTabs.vue';
 import IntSidebar from '../../../components/Sidebar.vue';
 import IconPlus from '../../../assets/svgs/icon-plus.svg';
 import Accordion from '../../../components/Accordion.vue';
-import IconSearch from '../../../assets/svgs/icon-search.svg';
+import IconClose from '../../../assets/svgs/icon-close.svg';
+import IconFilter from '../../../assets/svgs/icon-filter.svg';
 import IconArrow from '../../../assets/svgs/icon-arrow-right.svg';
 import ContentWrapper from '../../../components/ContentWrapper.vue';
+import Upload from '../../../components/Upload.vue';
+import { dateTime } from '../../../helpers';
 
 export default {
   components: {
@@ -226,28 +387,42 @@ export default {
     IntCell,
     IntCard,
     IntTabs,
+    DropTabs,
     IconPlus,
     IntInput,
     IconArrow,
     Accordion,
-    IconSearch,
+    IconClose,
+    IconFilter,
     IntSidebar,
     ContentWrapper,
+    Upload,
   },
-
   data: () => ({
+    ufOptions: [],
+    cityOptions: [],
     modal: false,
+    showFilter: false,
     tipo: 'Fisica',
     tipoCpr: 'Intecred',
     active: 'cards',
     client: '',
     clients: [],
     titles: [],
+    file: [],
     page: {
       paid: 1,
       making: 1,
       current: 1,
       all: 1,
+    },
+    form: {
+      uf: '',
+      type: '',
+      name: '',
+      city: '',
+      money: '',
+      document: '',
     },
   }),
 
@@ -273,6 +448,19 @@ export default {
 
   computed: {
     ...mapGetters('title', ['titlePhysicalBase', 'titleFinancialBase', 'titleDuplicateBase']),
+    uploadHasPendency() {
+      if (this.tipoCpr === 'Upload') {
+        return !this.file.length || !this.client;
+      }
+      return false;
+    },
+    newStoreHasPendency() {
+      console.log('aparece-> ', this.client);
+      return !this.client;
+    },
+    hasAnyPendency() {
+      return this.uploadHasPendency || this.newStoreHasPendency;
+    },
     items() {
       return this.titles.reduce((grouped, item) => {
         const types = ['making', 'current', 'paid'];
@@ -338,6 +526,12 @@ export default {
       if (this.active === 'all') {
         return [
           {
+            width: 119,
+            prop: 'id',
+            sortable: true,
+            label: 'Código',
+          },
+          {
             width: 204,
             prop: 'nome',
             sortable: true,
@@ -367,12 +561,12 @@ export default {
             sortable: true,
             label: 'Criação',
           },
-          {
-            width: 120,
-            prop: 'valor',
-            label: 'Valor',
-            sortable: true,
-          },
+          // {
+          //   width: 120,
+          //   prop: 'valor',
+          //   label: 'Valor',
+          //   sortable: true,
+          // },
           {
             width: 116,
             prop: 'tipo',
@@ -389,6 +583,12 @@ export default {
       }
 
       return [
+        {
+          width: 119,
+          prop: 'id',
+          sortable: true,
+          label: 'Código',
+        },
         {
           width: 224,
           prop: 'nome',
@@ -464,9 +664,110 @@ export default {
         },
       ];
     },
+
+    money() {
+      return [
+        {
+          value: 'Real',
+          label: 'BRL',
+        },
+        {
+          label: 'USD',
+          value: 'Dolar',
+        },
+      ];
+    },
+
+    nomes() {
+      return new Set(this.titles.map(({ nome }) => nome));
+    },
+
+    titlesType() {
+      return [
+        'Fisica',
+        'Financeira',
+        'Duplicata',
+      ];
+    },
   },
 
   methods: {
+    async handleSave() {
+      const {
+        uf = '',
+        name = '',
+        city = '',
+        type = '',
+        money = '',
+        document = '',
+      } = this.form;
+
+      // const validDocument = document.length === 14 || document.length === 18;
+
+      // const keyDocument = document.length === 14 ? 'cpf' : 'cnpj';
+
+      await axios.get(`${this.$url}/titulo/filtro?uf=${uf}&nome=${name}&tipo=${type}&moeda=${money.toLowerCase()}&municipio=${city}&document=${document}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        }).then(({ data }) => {
+        this.titles = data;
+      });
+    },
+
+    async handleTab(payload) {
+      if (payload === 'cards') {
+        this.form = {
+          uf: '',
+          type: '',
+          name: '',
+          city: '',
+          money: '',
+          document: '',
+        };
+
+        this.showFilter = false;
+        console.log('Handle Tab ->');
+        // await api.get('/titulos')
+        //   .then(({ data }) => {
+        //     this.titles = data;
+        //   });
+        await axios.get(`${this.$url}/cliente/ObterTodosClientes`,
+          {
+            headers:
+        {
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          empresaId: localStorage.getItem('empresa_Id').toString(),
+        },
+          }).then((res) => {
+          this.clients = res.data;
+        });
+
+        // await axios.get('/titulo/dashboard')
+        await axios.get(`${this.$url}/titulo/dashboard`,
+          {
+            headers:
+        {
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          empresaId: localStorage.getItem('empresa_Id').toString(),
+        },
+          }).then((res) => {
+          this.titles = res.data;
+        });
+      }
+    },
+
+    handleClick(title) {
+      this.editTitle(title);
+    },
+
+    updateFile(value) {
+      this.file = value;
+    },
+
     editTitle(title) {
       const {
         id,
@@ -480,7 +781,45 @@ export default {
        * Verificação do status do título para edição
        * (Pode ser livremente alterado)
        */
-      if (!status || status !== 1) {
+      if (!status || status > 2) {
+        return;
+      }
+
+      if (status === 2) {
+        api.get('quitacoes', {
+          params: {
+            titulo: title.id,
+          },
+        }).then(({ data }) => {
+          const [discharge] = data;
+          if (!discharge) {
+            const base = {
+              titulo: title.id,
+              dataVencimento: '',
+              dataLiquidacao: '',
+              liquidacaoEmDia: '',
+              client: title.client,
+              file: [],
+              obs: '',
+            };
+            api.post('quitacoes', base).then((res) => this.$router.push({
+              name: 'DischargeData',
+              params: {
+                titulo: id,
+                quitacao: res.data.id,
+              },
+            }));
+            return;
+          }
+
+          this.$router.push({
+            name: discharge.step || 'DischargeData',
+            params: {
+              titulo: id,
+              quitacao: discharge.id,
+            },
+          });
+        });
         return;
       }
 
@@ -493,6 +832,9 @@ export default {
       });
     },
     getComponentTitle(type) {
+      if (this.tipoCpr === 'Upload') {
+        return 'CompleteCPR';
+      }
       if (type === 'Física') {
         return 'CreatePhysicalTitle';
       }
@@ -534,6 +876,9 @@ export default {
       this.handlePage(newPage);
     },
     async storeNewTitle() {
+      // if (this.uploadHasPendency) {
+      //   return;
+      // }
       // let data;
       // if (this.tipo === 'Fisica') {
       //   data = { ...this.titlePhysicalBase };
@@ -545,17 +890,17 @@ export default {
 
       // const {
       //   id,
+      //   type,
       //   contact: {
       //     emails,
       //   },
       //   user: {
       //     name,
-      //     type,
       //     document,
       //   },
       // } = this.clients.find((client) => client.id === this.client);
 
-      // const documentType = type === 'CPF' || type === 'cpf' ? 'cpf' : 'rg';
+      // const documentType = type === 'CPF' || type === 'cpf' ? 'cpf' : 'cnpj';
 
       // data.client = id;
 
@@ -569,10 +914,23 @@ export default {
 
       // data[documentType] = document;
 
+      // if (this.cpr === 'Upload') {
+      //   await this.dispatchFile();
+      //   /**
+      //    * Adicionar a minuta no titulo que está sendo criado no backend.
+      //    */
+      //   const [
+      //     minuta,
+      //   ] = this.file;
+
+      //   data.minuta = minuta;
+      //   data.physicalSignatureFile = this.file;
+      // }
       // Todo: Usando esses dados abaixo, testar com o 'data' de cima
       const titulo = {
         tipo: this.tipo,
         finalizado: false,
+        status: 1,
         clienteId: this.client,
         tipoCpr: this.tipoCpr,
       };
@@ -586,17 +944,52 @@ export default {
           },
         })
         .then((res) => {
+          const params = { titulo: parseInt(res.data.id, 10) };
+          if (this.tipoCpr !== 'Upload') {
+            params.step = 1;
+          }
           this.feedback = false;
-          console.log('resss', res);
           this.$router.push({
             name: this.getComponentTitle(res.data.tipo),
             params: {
-              titulo: res.data.id,
-              step: 1,
+              ...params,
             },
           });
         });
     },
+    async ObterMunicipios(ufEstadoId) {
+      await api.get(`/formacaoLavoura/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
+          this.cityOptions = res.data;
+        });
+    },
+  },
+  async dispatchFile() {
+    const [data] = this.file;
+    if (!data) {
+      throw new Error('file is required');
+    }
+    data.file = 'http://localhost:8080/static/adobe.pdf';
+    data.date = dateTime();
+    const form = new FormData();
+    const json = JSON.stringify(data);
+    const blob = new Blob([json], {
+      type: 'application/json',
+    });
+    form.append('file[cpr-complete]', blob);
+    await api.post('/images/', form, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   },
 
   async mounted() {
@@ -621,6 +1014,18 @@ export default {
         },
       }).then((res) => {
       this.titles = res.data;
+    });
+
+    // Obter Estados
+    await api.get('/formacaoLavoura/ObterEstados',
+      {
+        headers:
+        {
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          empresaId: localStorage.getItem('empresa_Id').toString(),
+        },
+      }).then((res) => {
+      this.ufOptions = res.data;
     });
   },
 
@@ -648,6 +1053,82 @@ export default {
 </script>
 <style lang="scss" scoped>
 .titles {
+  &__filter {
+    width: 100%;
+    padding: 24px;
+    row-gap: 20px;
+    display: grid;
+    margin-top: 24px;
+    border-radius: 4px;
+    grid-column-gap: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "name name cpf cpf close"
+      "title city uf moeda save"
+    ;
+
+    &-name {
+      grid-area: name;
+    }
+
+    &-cpf {
+      grid-area: cpf;
+    }
+
+    &-close {
+      display: flex;
+      grid-area: close;
+      justify-content: flex-end;
+
+      :nth-child(n) {
+        cursor: pointer;
+      }
+    }
+
+    &-title {
+      grid-area: title;
+    }
+
+    &-uf {
+      grid-area: uf;
+    }
+
+    &-moeda {
+      grid-area: moeda;
+    }
+
+    &-save {
+      height: 48px;
+      display: flex;
+      grid-area: save;
+      color: #ffffff;
+      margin-top: auto;
+      font-weight: bold;
+      line-height: 20px;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: center;
+      font-family: $font_primary;
+      background-color: $--color-gray-7;
+    }
+  }
+
+  &__button {
+    background-color: $--color-gray-7 !important;
+
+    svg {
+      & * {
+        fill: #ffffff !important;
+      }
+    }
+  }
+
+  &__drop-tabs {
+    display: none;
+  }
+
   &__header {
     display: flex;
   }
@@ -740,4 +1221,64 @@ export default {
     }
   }
 }
+
+  @media screen and (min-width: 375px) and (max-width: 710px) {
+    .titles {
+      padding: 0px 20px;
+      box-sizing: border-box;
+
+      &__tabs {
+        display: none;
+      }
+
+      &__drop-tabs {
+        display: block;
+      }
+
+      &__card {
+        margin-left: -16px;
+      }
+
+      &__header {
+        align-items: center;
+      }
+    }
+  }
+
+  @media screen and (min-width: 710px) and (max-width: 768px) {
+    .titles {
+      padding: 0px 20px;
+      box-sizing: border-box;
+
+      &__drop-tabs {
+        display: block;
+      }
+
+      &__tabs {
+        display: none;
+      }
+
+      &__header {
+        align-items: flex-start;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 860px) {
+    .titles {
+      padding: 0px 20px;
+      box-sizing: border-box;
+
+      &__header {
+        flex-flow: column-reverse nowrap;
+      }
+    }
+  }
+
+  @media screen and (min-width: 860px) and (max-width: 1120px) {
+    .titles {
+      padding: 0px 20px;
+      box-sizing: border-box;
+    }
+  }
 </style>

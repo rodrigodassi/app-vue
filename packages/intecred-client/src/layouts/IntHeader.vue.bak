@@ -1,15 +1,13 @@
 <template>
   <div class="int-header">
-    <h3 class="int-header__client">
-      Darlene Robertson
-    </h3>
-    <p class="int-header__cpr p2">
-      CPF Física:
-    </p>
+     <!-- <h3 class="int-header__client" v-text="name"/> -->
+  <template v-if="!statusless">
+    <p class="int-header__cpr p2" v-text="cprType" />
     <div class="int-header__status-cpr">
-      <p class="p2 int-header__status-cpr__status-cpr--p2-bold">Em criação</p>
+      <p class="p2 int-header__status-cpr__status-cpr--p2-bold" v-text="statusText"/>
     </div>
-    <span class="int-header__exit int-header__exit--last-item">
+  </template>
+    <span v-if="closeable"  class="int-header__exit int-header__exit--last-item">
       <span class="int-header__exit__text">Sair e continuar depois
       </span>
       <span>
@@ -33,18 +31,103 @@ export default {
       type: String,
       required: false,
     },
+
+    closeable: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+
+    statusless: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    cprType: {
+      type: String,
+      default: 'CPR Física',
+    },
+    status: {
+      type: Number,
+      default: 1,
+    },
+    client: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    currentStep: {
+      type: Number,
+      required: false,
+      default: null,
+    },
+
+    onDischarge: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    save: {
+      type: Function,
+      required: false,
+      default: null,
+    },
   },
   components: {
     IconClose,
   },
+  data: () => ({
+    loggedUserName: 'Usuário não informado',
+  }),
   computed: {
-    ...mapGetters('title', ['step', 'title']),
+    ...mapGetters('title', ['step', 'title', 'financialTitle', 'duplicateTitle']),
+    statusText() {
+      console.log('Statuss ->', this.status);
+      if (this.status === 1) {
+        return 'Em criação';
+      }
+      return 'Aberta';
+    },
+    // name() {
+    //   console.log('Clientttt:', this.client);
+    //   return this.client || 'Cliente não informado';
+    // },
   },
   methods: {
     ...mapActions('title', ['submit']),
     ...mapMutations('title', ['UPDATE_STEP_FORM']),
     forceSaveForm() {
-      this.submit({ title: this.title, key: this.$route.params.id || null });
+      if (this.onDischarge) {
+        this.$router.push({ name: this.urlNameRedirect });
+
+        if (this.save) {
+          this.save();
+        }
+
+        return;
+      }
+      let title;
+      switch (this.cprType) {
+        case 'CPR Física':
+          title = this.title;
+          break;
+        case 'CPR Fisica':
+          title = this.title;
+          break;
+        case 'CPR Financeira':
+          title = this.financialTitle;
+          break;
+        case 'Duplicata':
+          title = this.duplicateTitle;
+          break;
+        default: throw new Error('Invalid CPR type');
+      }
+      this.submit({
+        title,
+        key: this.$route.params.id || null,
+      });
       this.$router.push({ name: this.urlNameRedirect });
     },
   },

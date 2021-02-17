@@ -517,7 +517,7 @@ export default {
         });
       },
     },
-    depositarioCpf: {
+    depositarioCpf: {     
       get() {
         return this.title.depositario.cpf;
       },
@@ -528,7 +528,7 @@ export default {
           value,
         });
       },
-    },
+    },    
     depositarioCep: {
       get() {
         return this.title.depositario.cep;
@@ -591,12 +591,12 @@ export default {
     },
     depositarioRazaoSocial: {
       get() {
-        return this.title.depositario.razao_social;
+        return this.title.depositario.razaoSocial;
       },
       set(value) {
         this.UPDATE_PARTIALS_SUB_KEY({
           key: 'depositario',
-          subKey: 'razao_social',
+          subKey: 'razaoSocial',
           value,
         });
       },

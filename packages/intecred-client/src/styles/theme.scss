@@ -8,6 +8,7 @@ $--color-primary-light-1: rgba(#855996, 0.4);
 $--color-secondary: #cd75ef;
 $--color-secondary-dark-1: #290038;
 $--color-secondary-light-1: rgba($--color-primary-dark-1, 0.05);
+$--support-orange-dark: #D16400;
 
 $--color-gray-1: #ffffff;
 $--color-gray-2: #f7f9fc;
@@ -23,6 +24,8 @@ $--color-success: #02bf88 !default;
 $--color-warning: #ea7000 !default;
 $--color-danger: #fd4c4c !default;
 $--color-info: #6fd4ff !default;
+
+$--color-support-orange: #F09847;
 
 $--color-success-light: rgba(#1cdd97, 0.08) !default;
 $--color-success-light-2: rgba(#1cdd97, 0.2) !default;

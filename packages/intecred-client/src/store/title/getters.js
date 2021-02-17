@@ -58,7 +58,7 @@ const titleBase = () => ({
     cpf: '',
     obs: '',
     cnpj: '',
-    razao_social: '',
+    razaoSocial: '',
     tipoAssinatura: 'eletronic',
   },
   currentStep: 1,
@@ -79,13 +79,13 @@ const pfRequiredFields = () => [
 ];
 
 const pjRequiredFields = () => [
-  'cnpj',
-  'razaoSocial',
-  'email',
-  'cep',
-  'endereco',
-  'uf',
-  'municipio',
+  // 'cnpj',
+  // 'razaoSocial',
+  // 'email',
+  // 'cep',
+  // 'endereco',
+  // 'uf',
+  // 'municipio',
 ];
 export {
   // eslint-disable-next-line import/prefer-default-export

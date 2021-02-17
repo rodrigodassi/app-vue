@@ -262,6 +262,10 @@ export default {
         obs: action === 'approve' ? this.obsApprove : this.obsReject,
       });
 
+      this.modalRejectShow = false;
+
+      this.modalApproveShow = false;
+
       /**
        * @todo
        * Request de aprovação ou rejeição de minuta
@@ -271,9 +275,9 @@ export default {
           this.getDrafts();
         });
 
-      this.modalRejectShow = false;
+      // this.modalRejectShow = false;
 
-      this.modalApproveShow = false;
+      // this.modalApproveShow = false;
     },
 
     handlePrint() {

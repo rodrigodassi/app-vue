@@ -108,7 +108,7 @@ export default {
         },
         {
           path: 'procuradores',
-          label: 'Procuradores',
+          label: 'Representante',
         },
       ];
     },

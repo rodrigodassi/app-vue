@@ -40,12 +40,16 @@ export default {
     //   .catch(() => {
     //     this.errors.submit = 'Desculpe, os dados estão incorretos.';
     //   });
-    let _formExernal = {
+    console.log('External 1');
+    const formExernal = {
       email: this.$route.params.email,
-      pass: this.$route.params.pass
-    }
+      pass: this.$route.params.pass,
+    };
+    console.log('External 2');
+    console.log('Email ->', formExernal.email);
+    console.log('Pass ->', formExernal.pass);
     // const { formExternal } = this;
-    this.$store.dispatch('autenticacaoExterna', _formExernal)
+    this.$store.dispatch('autenticacaoExterna', formExernal)
       .then(() => {
         this.$router.push('/dashboard');
       })

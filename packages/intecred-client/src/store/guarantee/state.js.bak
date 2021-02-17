@@ -106,7 +106,7 @@ export default {
       obs: '',
     },
     avalista: {
-      tipo: '',
+      tipo: 'pf',
       tipoAssinatura: '',
       pessoaFisica: {
         cpf: '',

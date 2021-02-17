@@ -115,9 +115,9 @@ export default {
           path: 'documentos',
           label: 'Documentos pessoais',
         },
-        {
+        {        
           path: 'procuradores',
-          label: 'Procuradores',
+          label: 'Representante',
         },
       ];
     },
@@ -175,6 +175,13 @@ export default {
         console.log(error.statusText);
       });
     },
+
+    validaCampos() {
+      if (this.form.nome === '' || this.form.nome === null) {
+        this.errors.push('Preencher o campo "Nome"');
+      }
+    },
+    
 
     load_cep_rep() {
       // const url_cep;
@@ -379,7 +386,7 @@ export default {
               label="Nome do cliente"
               v-model="form.nome"
               placeholder="Nome completo"
-              maxlength="100"
+              maxlength="100"              
             />
           </div>
 
@@ -509,7 +516,7 @@ export default {
               v-model="form.conjuge.cep"
               placeholder="CEP"
               maxlength="9"
-              v-mask="'#####-###'"
+              v-mask="'########'"
               v-on:input="load_cep_conjuge"
             />
           </div>
@@ -670,7 +677,7 @@ export default {
               label="CEP"
               v-model="form.cep"
               placeholder="00000-000"
-              v-mask="'#####-###'"
+              v-mask="'########'"
               v-on:input="load_cep"
             />
           </div>
@@ -817,7 +824,7 @@ export default {
               label="CEP"
               v-model="form.representante.cep"
               placeholder="CEP da residencia"
-              v-mask="'#####.###'"
+              v-mask="'########'"
               v-on:input="load_cep_rep"
             />
           </div>
@@ -1008,6 +1015,7 @@ export default {
           <el-button
             type="primary"
             native-type="submit"
+            v-on:click="validaCampos"
           >
             Concluir
           </el-button>

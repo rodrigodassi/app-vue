@@ -5,7 +5,7 @@
       <div class="container__title-page">
         <h2>Garantias</h2>
       </div>
-      <Alert :guarantee="true">
+      <Alert :show-alert="showAlert">
         Nessa tela, você deve cadastrar as garantias reais e pessoais vinculadas a essa CPR.
         Podem ser cadastradas uma ou mais garantias.
       </Alert>
@@ -34,19 +34,19 @@
           <div class="container__list-guarantees__item__info">
             <div class="container__list-guarantees__item__info--group">
               <span>Produto:&nbsp;</span>
-              <span v-if="item && item.penhor">{{ item.penhor.produto }}</span>
+              <span>{{ item.penhor.produto }}</span>
             </div>
             <div class="container__list-guarantees__item__info--group">
               <span>Grau:&nbsp;</span>
-              <span v-if="item && item.penhor">{{ item.penhor.grauPenhor }}</span>
+              <span>{{ item.penhor.grauPenhor }}</span>
             </div>
             <div class="container__list-guarantees__item__info--group">
               <span>Quantidade:&nbsp;</span>
-              <span v-if="item && item.penhor">{{ item.penhor.quantidade }}kg</span>
+              <span>{{ item.penhor.quantidade }}kg</span>
             </div>
             <div class="container__list-guarantees__item__info--group">
               <span>Tipo:&nbsp;</span>
-              <span v-if="item && item.penhor">{{ item.penhor.tipo }}</span>
+              <span>{{ item.penhor.tipo }}</span>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@
       </IntSideBar>
       <ActionsFooter
         :step="4"
-        :back="() => this.forceSaveForm('decrement')"
+        :back="() => this.forceSaveFormBack('decrement')"
         :next="() => this.forceSaveForm('increment')"
       />
     </div>
@@ -136,6 +136,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import {
   mapState, mapMutations, mapActions, mapGetters,
 } from 'vuex';
@@ -144,16 +145,17 @@ import IconEllipse from '../../../assets/svgs/icon-ellipse.svg';
 import IconPlus from '../../../assets/svgs/icon-plus.svg';
 import IconPencil from '../../../assets/svgs/icon-pencil.svg';
 import IconDelete from '../../../assets/svgs/icon-delete.svg';
-import ActionsFooter from '../Title/Partials/ActionsFooter.vue';
+import ActionsFooter from '../Title/Physical/Partials/ActionsFooter.vue';
 import IntHeader from '../../../layouts/IntHeader.vue';
 import IntSideBar from '../../../components/Sidebar.vue';
 import Pledge from './Partials/Pledge.vue';
 import Mortgage from './Partials/Mortgage.vue';
 import Guarantor from './Partials/Guarantor.vue';
 import IntModal from '../../../components/Modal.vue';
+import { api } from '../../../services';
 
 export default {
-  name: 'CreateTitle',
+  name: 'CreatePhysicalTitle',
   mounted() {
     this.getGuarantees(this.getTitle);
   },
@@ -163,7 +165,8 @@ export default {
     showModalRemoveGuarantee: false,
     tempGuaranteeIndex: '',
     tempGuaranteeToDestroy: '',
-    tempTipo: '',
+    showAlert: true,
+    titulo: '',
   }),
   components: {
     Guarantor,
@@ -213,6 +216,7 @@ export default {
       'UPDATE_PARTIALS_GUARANTEE_TYPE',
       'UPDATE_PARTIALS_GUARANTEE_PARTIALS',
       'UPDATE_CURRENT_EDITABLE_GUARANTEE',
+      'NEW_GUARANTEE',
     ]),
     getComponent(type) {
       switch (type) {
@@ -232,7 +236,8 @@ export default {
     prepareAddGuarantee() {
       this.futureActionFromSave = 'store';
       this.guaranteeBase.titulo = this.getTitle;
-      this.UPDATE_CURRENT_EDITABLE_GUARANTEE(this.guaranteeBase);
+      // this.UPDATE_CURRENT_EDITABLE_GUARANTEE(this.guaranteeBase);
+      this.NEW_GUARANTEE(this.guaranteeBase.titulo);
       this.show();
     },
     prepareModalEdit(id) {
@@ -241,32 +246,28 @@ export default {
       this.show();
     },
     async dispatchGuarantee() {
+      const newGuarantee = { ...this.guarantee };
+      newGuarantee.tipo = this.type;
+      if (newGuarantee.tipo === 'avalista') {
+        newGuarantee.avalista.tipo = newGuarantee.avalista.tipo || 'pf';
+      }
       if (this.futureActionFromSave === 'store') {
-        const newGuarantee = { ...this.guarantee };
-        if (newGuarantee.tipo === 'avalista') {
-          newGuarantee.avalista.tipo = newGuarantee.avalista.tipo || 'pf';
-        }
-        await this.storeGuarantee(this.guarantee);
+        console.log('New Guarantee', newGuarantee);
+        await this.storeGuarantee(newGuarantee);
       } else {
-        await this.updateGuarantee(this.guarantee);
+        await this.updateGuarantee(newGuarantee);
       }
       this.futureActionFromSave = '';
-      this.getGuarantees(this.getTitle);
+      await this.getGuarantees(this.getTitle);
       this.show();
     },
     async prepareRemoveGuarantee(id, index) {
       this.tempGuaranteeIndex = index;
       this.showModalRemoveGuarantee = true;
-      // this.tempGuaranteeToDestroy = this.guarantee_list.find((el) => el.id === id);
       this.tempGuaranteeToDestroy = this.guarantee_list.filter((el) => el.id === id);
     },
     async removeGuarantee() {
-      console.log('ddestr', this.tempGuaranteeToDestroy[0].tipo);
-      const data = {
-        id: this.tempGuaranteeToDestroy[0].id,
-        tipo: this.tempGuaranteeToDestroy[0].tipo,
-      };
-      await this.destroyGuarantee(data);
+      await this.destroyGuarantee(this.tempGuaranteeToDestroy.id);
       this.showModalRemoveGuarantee = false;
       this.tempGuaranteeIndex = null;
     },
@@ -276,24 +277,93 @@ export default {
     closeModal() {
       this.showModalRemoveGuarantee = false;
     },
-    forceSaveForm(action) {
-      if (action === 'decrement') {
-        this.$router.push({
-          name: 'CreateTitle',
-          params: {
-            titulo: this.getTitle,
-            step: 3,
+    async forceSaveFormBack(action) {
+      await axios.get(`${this.$url}/titulo/recarrega-titulo?id=${this.getTitle}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
           },
+        })
+        .then(({ data }) => {
+          this.titulo = data;
         });
-      } else if (action === 'increment') {
+      const handledStep = this.getFutureStep(this.titulo, action);
+      axios.post(`${this.$url}/dadosCpr/tituloCompleto-2?id=${this.getTitle}&currentStep=${handledStep}`, this.titulo,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then(({ data }) => {
+          console.log('volta', data);
+          this.redirect(action, data);
+        });
+    },
+    async forceSaveForm(action) {
+      await axios.get(`${this.$url}/titulo/recarrega-titulo?id=${this.getTitle}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then(({ data }) => {
+          this.titulo = data;
+        });
+      const handledStep = this.getFutureStep(this.titulo, action);
+      api.patch(`titulo?tituloId=${this.getTitle}`, { currentStep: handledStep },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then(({ data }) => this.redirect(action, data));
+    },
+    show() {
+      this.modal = !this.modal;
+    },
+    getFutureStep({ tipo }, action) {
+      if (tipo === 'Fisica' || tipo === 'Duplicata') {
+        return action === 'decrement' ? 3 : 5;
+      }
+      return action === 'decrement' ? 2 : 4;
+    },
+    redirect(action, title) {
+      if (action === 'decrement') {
+        const { currentStep } = title;
+        switch (title.tipo) {
+          case 'Fisica':
+            this.$router.push({
+              name: 'CreatePhysicalTitle',
+              params: {
+                titulo: title.id,
+                step: currentStep,
+              },
+            });
+            break;
+          case 'Financeira':
+            this.$router.push({
+              name: 'CreateFinancialTitle',
+              params: {
+                titulo: title.id,
+                step: currentStep,
+              },
+            });
+            break;
+          case 'Duplicata':
+            break;
+          default:
+            throw new Error('invalid CPR type');
+        }
+      } else {
         this.$router.push({
           name: 'Document',
           params: { titulo: this.$route.params.titulo },
         });
       }
-    },
-    show() {
-      this.modal = !this.modal;
     },
   },
 };

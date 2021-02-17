@@ -27,6 +27,10 @@ $--color-info: #6fd4ff !default;
 $--color-success-light: rgba(#1cdd97, 0.08) !default;
 $--color-success-light-2: rgba(#1cdd97, 0.2) !default;
 
+$--color-support-blue-dark: #1E9CD2;
+
+$--color-support-blue-20: rgba(#6fd4ff, 0.2);
+
 /*
  * Theme shadow
  */
@@ -57,6 +61,10 @@ $--input-placeholder-color: $--color-gray-6;
 $--input-border-color-hover: $--color-gray-6;
 
 $--input-focus-border: $--color-secondary;
+
+$--input-disabled-fill: transparent;
+$--input-disabled-border: transparent;
+$--input-disabled-color: $--color-secondary-dark-1;
 
 /*
  * Theme radio
@@ -121,12 +129,24 @@ $--table-header-background-color: transparent;
 $--table-row-hover-background-color: $--color-gray-3;
 
 /*
+ * Theme pagination
+ */
+$--pagination-font-color: $--color-gray-6;
+$--pagination-button-color: $--color-gray-6;
+
+/*
  * Theme datepicker
  */
- $--datepicker-font-color: $--color-gray-7;
- $--datepicker-border-color: $--color-gray-5;
- $--datepicker-off-font-color: $--color-gray-5;
- $--datepicker-header-font-color: $--color-gray-6; 
+$--datepicker-font-color: $--color-gray-7;
+$--datepicker-border-color: $--color-gray-5;
+$--datepicker-off-font-color: $--color-gray-5;
+$--datepicker-header-font-color: $--color-gray-6; 
+
+/*
+ * Theme pagination
+ */
+ $--pagination-background-color: transparent;
+ $--pagination-button-disabled-background-color: transparent;
 
 /*
  * Theme typograph

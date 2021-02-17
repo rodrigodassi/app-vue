@@ -6,7 +6,7 @@ export default {
       tipo: 'penhor',
       penhor: {
         tipo: 'penhor',
-        tipo_penhor: '',
+        tipoPenhor: '',
         produto: '',
         grauPenhor: '',
         quantidade: '',
@@ -25,7 +25,7 @@ export default {
       },
       hipoteca: {
         tipo: 'mortgage',
-        tipo_hipoteca: '',
+        tipoHipoteca: '',
         descricaoImovel: '',
         grauHipoteca: '',
         numeroMatricula: '',
@@ -77,7 +77,7 @@ export default {
     tipo: 'penhor',
     penhor: {
       tipo: 'penhor',
-      tipo_penhor: '',
+      tipoPenhor: '',
       produto: '',
       grauPenhor: '',
       quantidade: '',

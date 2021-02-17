@@ -1,6 +1,12 @@
 <template>
   <div>
-    <IntHeader url-name-redirect="Titles"/>
+    <IntHeader
+      url-name-redirect="Titles"
+      :client="titulo.nome"
+      :clientDocument="titulo.cpf"
+      :cprType="cprType"
+      :currentStep="titulo.currentStep"
+    />
     <div class="container">
       <div class="container__title-page">
         <h2>Documentos</h2>
@@ -139,13 +145,16 @@ export default {
       //   })
       //   .then(async (response) => {
       //   // console.log('files', payload.files);
+      // 050221
+      // const formData = new FormData();
 
-      //     const formData = new FormData();
-
-      //     for (let i = 0; i < formDocumento.documentos.length; i += 1) {
-      //       const file = formDocumento.documentos[i].raw;
-      //       formData.append('documentos', file);
-      //     }
+      // for (let i = 0; i < formDocumento.matriculasimoveis.length; i += 1) {
+      //   const file = formDocumento.matriculasimoveis[i].raw;
+      //   formData.append('matriculasimoveis', file.file.raw);
+      // }
+      // formDocumento.matriculasimoveis.forEach((file) => {
+      //   formData.append('matriculasimoveis', file.file.raw);
+      // });
       //     await axios.post(`${this.$url}/documento/upload?tituloId=
       // ${this.title.toString()}`, form, {
       //       headers: {
@@ -227,24 +236,45 @@ export default {
         params: { titulo: this.title },
       });
     },
+    // composeForm() {
+    //   const form = new FormData();
+    //   console.log('Documentos -> ', this.documentos);
+    //   if (this.documentos !== null) {
+    //     this.titulo.documentos = this.documentos;
+    //     this.documentos.forEach((document) => {
+    //       document.file.forEach((file) => {
+    //         const json = JSON.stringify(file);
+    //         const blob = new Blob([json], {
+    //           type: 'application/json',
+    //         });
+    //         // form.append(`file[${document.alias}][${index}]`, blob);
+    //         form.append(`${document.alias}`, blob, file.name);
+    //       });
+    //     });
+    //   }
+    //   return form;
+    // },
     composeForm() {
       const form = new FormData();
       console.log('Documentos -> ', this.documentos);
-      if (this.documentos !== null) {
-        this.titulo.documentos = this.documentos;
-        this.documentos.forEach((document) => {
-          document.file.forEach((file) => {
-            const json = JSON.stringify(file);
-            const blob = new Blob([json], {
-              type: 'application/json',
-            });
-            // form.append(`file[${document.alias}][${index}]`, blob);
-            form.append(`${document.alias}`, blob, file.name);
-          });
-        });
-      }
+      this.titulo.documentos = this.documentos;
+      this.documentos.forEach((document) => {
+        for (let i = 0; i < document.file.length; i += 1) {
+          console.log('Document', document);
+          if (document.id === '' && document.file.length > 0) {
+            // for (let j = 0; j < document.file[i].file; j += 1 )
+            const file = document.file[i].file.raw;
+            form.append(document.alias, file);
+          }
+          if (document.id !== '') {
+            const file = document.file[i];
+            form.append(document.alias, file);
+          }
+        }
+      });
       return form;
     },
+
     async updateCurrentStep(action) {
       const handledStep = this.getFutureStep(this.titulo, action);
       // await api.patch(`titulo/${this.titulo.id}`, { currentStep: handledStep })

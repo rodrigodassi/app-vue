@@ -4,6 +4,8 @@
       url-name-redirect="Titles"
       cpr-type="CPR Fisica"
       :status="title.status"
+      :client="title.nome"
+      :clientDocument="title.cpf"
     />
     <div class="container">
       <!-- Step 1 dados da CPR -->
@@ -81,6 +83,16 @@ export default {
     await this.getTitle(parseInt(this.$route.params.titulo, 10))
       .then(() => {
         const step = parseInt(this.$route.params.step, 10);
+        if (this.$route.params.forceStep === true) {
+          this.$router.push({
+            name: 'CreatePhysicalTitle',
+            params: {
+              titulo: this.title.id,
+              step: 3,
+            },
+          });
+          return;
+        }
         if (this.title.currentStep && this.title.currentStep > 3) {
           if (step) {
             this.$router.push({
@@ -101,6 +113,31 @@ export default {
         }
       });
   },
+  // async mounted() {
+  //   console.log('Passou aqui ->');
+  //   await this.getTitle(parseInt(this.$route.params.titulo, 10))
+  //     .then(() => {
+  //       const step = parseInt(this.$route.params.step, 10);
+  //       if (this.title.currentStep && this.title.currentStep > 3) {
+  //         if (step) {
+  //           this.$router.push({
+  //             name: this.getRedirectComponent,
+  //             params: {
+  //               titulo: this.title.id,
+  //               step: this.title.currentStep,
+  //             },
+  //           });
+  //         } else {
+  //           this.$router.push({
+  //             name: this.getRedirectComponent,
+  //             params: {
+  //               titulo: this.title.id,
+  //             },
+  //           });
+  //         }
+  //       }
+  //     });
+  // },
   data: () => ({
     key: 0,
     user: 1,
@@ -129,6 +166,11 @@ export default {
           return 'Draft';
         default: throw new Error('invalid CPR type');
       }
+    },
+    text() {
+      return parseInt(this.$route.params.step, 10) === 1
+        ? 'novo emitente'
+        : 'fiel depositário';
     },
     showAlertStep1: {
       get() {
@@ -238,8 +280,66 @@ export default {
           });
       }
 
+      if (this.title.emitentes.length !== 0) {
+        const requiredFields = ['expiracao', 'nome'];
+        Object.entries(this.title.emitentes[0])
+          .forEach(([key, value]) => {
+            if (!requiredFields.includes(key)) {
+              return;
+            }
+            if (value === '') {
+              hasPendency = true;
+            }
+          });
+      }
+
       return hasPendency;
     },
+    // forceSaveForm() {
+    //   this.submit({
+    //     title: this.title,
+    //     step: this.step,
+    //     nextStep: this.step += 1,
+    //   });
+    //   let step = parseInt(this.step, 10);
+    //   if (this.step === 3) {
+    //     this.feedback = false;
+    //     if (this.hasPendingDepositaryInput()) {
+    //       this.alertDepositaryData = true;
+    //     } else {
+    //       this.$router.push({
+    //         name: 'Guarantee',
+    //         params: { titulo: this.title.id },
+    //       });
+    //     }
+    //   } else {
+    //     this.$router.push({
+    //       name: 'CreatePhysicalTitle',
+    //       params: { step: step += 1 },
+    //     });
+    //   }
+    // },
+    // hasPendingDepositaryInput() {
+    //   let hasPendency = false;
+
+    //   if (this.title.depositarioEmitente === false) {
+    //     const requiredFields = this.title.tipoPessoaDepositario === 'pf'
+    //     || this.title.tipoPessoaDepositario === ''
+    //       ? this.pfRequiredFields
+    //       : this.pjRequiredFields;
+    //     Object.entries(this.title.depositario)
+    //       .forEach(([key, value]) => {
+    //         if (!requiredFields.includes(key)) {
+    //           return;
+    //         }
+    //         if (value === '') {
+    //           hasPendency = true;
+    //         }
+    //       });
+    //   }
+
+    //   return hasPendency;
+    // },
     closeAlertModal() {
       this.alertDepositaryData = false;
     },

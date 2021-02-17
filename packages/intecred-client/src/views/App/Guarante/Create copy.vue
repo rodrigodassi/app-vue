@@ -244,6 +244,7 @@ export default {
       this.show();
     },
     async dispatchGuarantee() {
+      console.log('dispatchGarantia', this.futureActionFromSave);
       const newGuarantee = { ...this.guarantee };
       newGuarantee.tipo = this.type;
       if (newGuarantee.tipo === 'avalista') {

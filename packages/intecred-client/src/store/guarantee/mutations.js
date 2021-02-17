@@ -32,6 +32,73 @@ const UPDATE_PARTIALS_GUARANTEE_PARTIALS = (state, partial) => {
 const UPDATE_CURRENT_EDITABLE_GUARANTEE = (state, editableGuarantee) => {
   state.guarantee = editableGuarantee;
 };
+const NEW_GUARANTEE = (state, tituloId) => {
+  // state.guarantee = null;
+  state.guarantee.titulo = tituloId;
+  state.guarantee.tipo = 'penhor';
+  // -------- PENHOR
+  state.guarantee.penhor.areaPlantio = '';
+  state.guarantee.penhor.areaPropriaOuTerceiros = 'propria';
+  state.guarantee.penhor.cidade = '';
+  state.guarantee.penhor.cidadeComarcaRegistro = '';
+  state.guarantee.penhor.grauPenhor = '';
+  state.guarantee.penhor.mesmoLocalLavoura = true;
+  state.guarantee.penhor.nomeFazenda = '';
+  state.guarantee.penhor.numeroMatricula = '';
+  state.guarantee.penhor.obs = '';
+  state.guarantee.penhor.produto = '';
+  state.guarantee.penhor.quantidade = '';
+  state.guarantee.penhor.safra = '';
+  state.guarantee.penhor.tipo = '';
+  state.guarantee.penhor.tipoPenhor = '';
+  state.guarantee.penhor.uf = '';
+  state.guarantee.penhor.ufComarcaRegistro = '';
+  state.guarantee.penhor.file = '';
+  // Todo: desabilitar quando implementar Avalista e Hipoteca
+  // -------- AVALISTA
+  // state.guarantee.avalista.tipo = 'pf';
+  // state.guarantee.avalista.tipoAssinatura = '';
+
+  // state.guarantee.avalista.pessoaFisica.cep = '';
+  // state.guarantee.avalista.pessoaFisica.cidade = '';
+  // state.guarantee.avalista.pessoaFisica.cpf = '';
+  // state.guarantee.avalista.pessoaFisica.email = '';
+  // state.guarantee.avalista.pessoaFisica.endereco = '';
+  // state.guarantee.avalista.pessoaFisica.estadoCivil = '';
+  // state.guarantee.avalista.pessoaFisica.nacionalidade = '';
+  // state.guarantee.avalista.pessoaFisica.obs = '';
+  // state.guarantee.avalista.pessoaFisica.ocupacao = '';
+  // state.guarantee.avalista.pessoaFisica.razaoSocial = '';
+  // state.guarantee.avalista.pessoaFisica.rg = '';
+  // state.guarantee.avalista.pessoaFisica.uf = '';
+  // state.guarantee.avalista.pessoaFisica.file = '';
+  // state.guarantee.avalista.pessoaFisica.conjuge.cpf = '';
+  // state.guarantee.avalista.pessoaFisica.conjuge.email = '';
+  // state.guarantee.avalista.pessoaFisica.conjuge.nome = '';
+  // state.guarantee.avalista.pessoaFisica.conjuge.rg = '';
+
+  // state.guarantee.avalista.pessoaJuridica.cep = '';
+  // state.guarantee.avalista.pessoaJuridica.cidade = '';
+  // state.guarantee.avalista.pessoaJuridica.cnpj = '';
+  // state.guarantee.avalista.pessoaJuridica.email = '';
+  // state.guarantee.avalista.pessoaJuridica.endereco = '';
+  // state.guarantee.avalista.pessoaJuridica.obs = '';
+  // state.guarantee.avalista.pessoaJuridica.razaoSocial = '';
+  // state.guarantee.avalista.pessoaJuridica.uf = '';
+  // state.guarantee.avalista.pessoaJuridica.file = '';
+
+  // state.guarantee.avalista.tipo_avalista = '';
+  // // -------- Hipoteca
+  // state.guarantee.hipoteca.cidadeComarcaRegistro = '';
+  // state.guarantee.hipoteca.descricaoImovel = '';
+  // state.guarantee.hipoteca.grauHipoteca = '';
+  // state.guarantee.hipoteca.numeroMatricula = '';
+  // state.guarantee.hipoteca.obs = '';
+  // state.guarantee.hipoteca.tipo = 'hipoteca';
+  // state.guarantee.hipoteca.tipo_hipoteca = '';
+  // state.guarantee.hipoteca.ufComarcaRegistro = '';
+  // state.guarantee.hipoteca.file = '';
+};
 const SET_GUARANTEE = (state, payload) => {
   state.guarantee_list = payload;
 };
@@ -68,6 +135,7 @@ export {
   UPDATE_PARTIALS_GUARANTEE_PF_CONJUGE_GUARANTOR,
   SET_GUARANTEE,
   UPDATE_CURRENT_EDITABLE_GUARANTEE,
+  NEW_GUARANTEE,
   REMOVE_GUARANTEE,
   UPDATE_FILES_GUARANTOR_PF,
   UPDATE_FILES_GUARANTOR_PJ,

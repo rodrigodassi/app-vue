@@ -1,6 +1,7 @@
 <template>
   <div>
-    <IntHeader url-name-redirect="Titles"/>
+    <IntHeader url-name-redirect="Titles" :client="nome"
+      :clientDocument="clientDocument" :cprType="handlecpr"/>
     <div class="container">
       <div class="container__title-page">
         <h2>Garantias</h2>
@@ -61,37 +62,44 @@
       </div>
       <IntSideBar
         title="Nova garantia"
-        :show="modal"
+        :show="true"
+        v-if="modal"
         :onshow="show"
         isGuarantee
+        :key="key"
       >
         <template #body>
           <div class="titles__modal">
             <div class="titles__modal__type">
-              <div class="titles__modal__guarantee-type">Qual o tipo de <br>garantia?</div>
-              <el-radio-group v-model="type">
-                <span></span>
-                <el-radio-button
+              <div class="titles__modal__type__guarantee">Qual o tipo de <br>garantia?</div>
+              <el-radio-group :key="`${key}1`" v-model="type">
+                <component
+                  :key="`${key}2`"
+                  :is="radioButton"
                   :class="{ 'titles__modal__type__item--is-active': type === 'penhor'}"
                   label="penhor">Penhor
-                </el-radio-button>
-                <el-radio-button
+                </component>
+                <component
+                  :key="`${key}3`"
+                  :is="radioButton"
                   :class="{ 'titles__modal__type__item--is-active': type === 'hipoteca'}"
                   label="hipoteca">Hipoteca
-                </el-radio-button>
-                <el-radio-button
+                </component>
+                <component
+                  :key="`${key}4`"
+                  :is="radioButton"
                   :class="{ 'titles__modal__type__item--is-active': type === 'avalista'}"
                   label="avalista">Avalista
-                </el-radio-button>
+                </component>
               </el-radio-group>
             </div>
-            <component :is="getComponent(type)"></component>
+            <component :key="`${key}5`" :is="getComponent(type)"></component>
           </div>
         </template>
 
         <template #footer>
           <el-button @click="dispatchGuarantee" type="primary" class="titles__modal-footer">
-            Adicionar garantia
+            {{ buttonText }}
           </el-button>
         </template>
       </IntSideBar>
@@ -152,11 +160,19 @@ import Pledge from './Partials/Pledge.vue';
 import Mortgage from './Partials/Mortgage.vue';
 import Guarantor from './Partials/Guarantor.vue';
 import IntModal from '../../../components/Modal.vue';
+import Card from './Partials/Card.vue';
 import { api } from '../../../services';
 
 export default {
   name: 'CreatePhysicalTitle',
   mounted() {
+    api.get(`titulo/informacoes-header?tituloId=${this.getTitle}`)
+      .then(({ data }) => {
+        this.nome = data.nome;
+        this.cprType = data.tipo;
+        this.clientDocument = data.cpf;
+      });
+
     this.getGuarantees(this.getTitle);
   },
   data: () => ({
@@ -167,8 +183,14 @@ export default {
     tempGuaranteeToDestroy: '',
     showAlert: true,
     titulo: '',
+    nome: '',
+    cprType: '',
+    clientDocument: '',
+    key: 0,
+    buttonText: 'Adicionar garantia',
   }),
   components: {
+    Card,
     Guarantor,
     Mortgage,
     Pledge,
@@ -185,12 +207,21 @@ export default {
   computed: {
     ...mapState('guarantee', ['guarantee', 'guarantee_list']),
     ...mapGetters('guarantee', ['guaranteeBase']),
+    radioButton() {
+      return window.innerWidth > 600 ? 'el-radio-button' : 'el-radio';
+    },
     modalInfo() {
       const { tempGuaranteeIndex } = this;
-      return `Garantia ${tempGuaranteeIndex}?`;
+      return `Garantia ${tempGuaranteeIndex + 1}?`;
     },
     step() {
       return parseInt(this.$route.params.step, 10) || 1;
+    },
+    handlecpr() {
+      if (this.cprType === 'Duplicata') {
+        return 'Duplicata';
+      }
+      return `CPR ${this.cprType}`;
     },
     getTitle() {
       return parseInt(this.$route.params.titulo, 10);
@@ -211,11 +242,13 @@ export default {
       'storeGuarantee',
       'updateGuarantee',
       'destroyGuarantee',
+      'getGuaranteEach',
     ]),
     ...mapMutations('guarantee', [
       'UPDATE_PARTIALS_GUARANTEE_TYPE',
       'UPDATE_PARTIALS_GUARANTEE_PARTIALS',
       'UPDATE_CURRENT_EDITABLE_GUARANTEE',
+      'NEW_GUARANTEE',
     ]),
     getComponent(type) {
       switch (type) {
@@ -233,35 +266,122 @@ export default {
       this.UPDATE_PARTIALS_GUARANTEE_TYPE(type);
     },
     prepareAddGuarantee() {
+      // const base = {
+      //   titulo: this.getTitle,
+      //   tipo: 'penhor',
+      //   penhor: {
+      //     tipo: 'penhor',
+      //     tipoPenhor: '',
+      //     produto: '',
+      //     grauPenhor: '',
+      //     quantidade: '',
+      //     safra: '',
+      //     mesmoLocalLavoura: true,
+      //     nomeFazenda: '',
+      //     areaPlantio: '',
+      //     uf: '',
+      //     municipio: '',
+      //     numeroMatricula: '',
+      //     ufComarcaRegistro: '',
+      //     cidadeComarcaRegistro: '',
+      //     areaPropriaOuTerceiros: 'propria',
+      //     file: [],
+      //     obs: '',
+      //   },
+      //   hipoteca: {
+      //     tipo: 'hipoteca',
+      //     tipoHipoteca: '',
+      //     descricaoImovel: '',
+      //     grauHipoteca: '',
+      //     numeroMatricula: '',
+      //     ufComarcaRegistro: '',
+      //     cidadeComarcaRegistro: '',
+      //     file: [],
+      //     obs: '',
+      //   },
+      //   avalista: {
+      //     tipo: 'pf',
+      //     tipoAssinatura: '',
+      //     pessoaFisica: {
+      //       cpf: '',
+      //       nome: '',
+      //       rg: '',
+      //       email: '',
+      //       ocupacao: '',
+      //       nacionalidade: '',
+      //       cep: '',
+      //       endereco: '',
+      //       uf: '',
+      //       municipio: '',
+      //       estadoCivil: '',
+      //       file: [],
+      //       obs: '',
+      //       conjuge: {
+      //         nome: '',
+      //         cpf: '',
+      //         email: '',
+      //         rg: '',
+      //       },
+      //     },
+      //     pessoaJuridica: {
+      //       cnpj: '',
+      //       razaoSocial: '',
+      //       email: '',
+      //       cep: '',
+      //       endereco: '',
+      //       uf: '',
+      //       municipio: '',
+      //       file: [],
+      //       obs: '',
+      //     },
+      //   },
+      // };
+
       this.futureActionFromSave = 'store';
       this.guaranteeBase.titulo = this.getTitle;
-      this.UPDATE_CURRENT_EDITABLE_GUARANTEE(this.guaranteeBase);
-      this.show();
+      console.log('new-garantia', this.guaranteeBase.titulo);
+      this.NEW_GUARANTEE(this.guaranteeBase.titulo);
+      // this.show();
+      this.buttonText = 'Adicionar garantia';
+
+      this.$nextTick(() => {
+        this.show();
+        this.key += 1;
+      });
     },
     prepareModalEdit(id) {
+      this.buttonText = 'Editar garantia';
       this.futureActionFromSave = 'update';
-      this.getGuarantee(id);
+      const dataQ = {
+        tipo: this.type.toString(),
+        id: Number(id),
+      };
+      this.getGuaranteEach(dataQ);
+      // this.UPDATE_CURRENT_EDITABLE_GUARANTEE(this.guaranteeBase);
       this.show();
     },
     async dispatchGuarantee() {
       const newGuarantee = { ...this.guarantee };
-      newGuarantee.tipo = this.type;
+      newGuarantee.titulo = parseInt(this.$route.params.titulo, 10);
       if (newGuarantee.tipo === 'avalista') {
         newGuarantee.avalista.tipo = newGuarantee.avalista.tipo || 'pf';
       }
       if (this.futureActionFromSave === 'store') {
+        console.log('add-garantia', this.guarantee);
         await this.storeGuarantee(newGuarantee);
       } else {
+        console.log('entrou', newGuarantee);
         await this.updateGuarantee(newGuarantee);
       }
       this.futureActionFromSave = '';
+      console.log('chamou de novo');
       await this.getGuarantees(this.getTitle);
       this.show();
     },
     async prepareRemoveGuarantee(id, index) {
       this.tempGuaranteeIndex = index;
       this.showModalRemoveGuarantee = true;
-      this.tempGuaranteeToDestroy = this.guarantee_list.filter((el) => el.id === id);
+      this.tempGuaranteeToDestroy = this.guarantee_list.find((el) => el.id === id);
     },
     async removeGuarantee() {
       await this.destroyGuarantee(this.tempGuaranteeToDestroy.id);

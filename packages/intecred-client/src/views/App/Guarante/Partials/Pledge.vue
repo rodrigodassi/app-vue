@@ -9,7 +9,7 @@
     </div>
     <div class="container__form-data__size-top container__form-data__size-bottom">
       <IntInput
-        v-model="tipo_penhor"
+        v-model="tipoPenhor"
         label="Tipo do penhor"
         placeholder="Defina o tipo do penhor"
         isSelect
@@ -261,13 +261,13 @@ export default {
         });
       },
     },
-    tipo_penhor: {
+    tipoPenhor: {
       get() {
-        return this.guarantee.penhor.tipo_penhor;
+        return this.guarantee.penhor.tipoPenhor;
       },
       set(value) {
         this.UPDATE_PARTIALS_GUARANTEE_PLEDGE({
-          key: 'tipo_penhor',
+          key: 'tipoPenhor',
           value,
         });
       },

@@ -64,13 +64,22 @@ const submit = async ({ commit }, { title, step, nextStep }) => {
       // }
 
       const formData = new FormData();
+      console.log('Titleeee -->', title);
+      // title.files.forEach((file) => {
+      //   const json = JSON.stringify(file);
+      //   const blob = new Blob([json], {
+      //     type: 'application/json',
+      //   });
+      //   // form.append(`file[titulo][${title.id}][${index}]`, blob);
+      //   formData.append('importararquivos', blob, file.name);
+      // });
       title.files.forEach((file) => {
-        const json = JSON.stringify(file);
-        const blob = new Blob([json], {
-          type: 'application/json',
-        });
-        // form.append(`file[titulo][${title.id}][${index}]`, blob);
-        formData.append('importararquivos', blob, file.name);
+        console.log('File -->', file);
+        if (file.id === '' || file.id === undefined) {
+          formData.append('importararquivos', file.file.raw);
+        } else {
+          formData.append('importararquivos', file);
+        }
       });
       console.log('-----> ', formData);
       console.log('formacaoLavouraId -> ', response.data.formacaoLavoura.formacaoLavouraId);

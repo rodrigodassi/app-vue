@@ -1,6 +1,12 @@
 <template>
   <div>
-    <IntHeader url-name-redirect="Titles"/>
+    <IntHeader
+      url-name-redirect="Titles"
+      cpr-type="CPR Fisica"
+      :status="title.status"
+      :client="title.nome"
+      :clientDocument="title.cpf"
+    />
     <div class="container">
       <div class="container__title-page">
         <h2>Minuta</h2>
@@ -81,10 +87,20 @@
           Voltar
         </el-button>
 
-        <IconDownload
-          v-if="lastStatusDraft !== 'Enviada'"
+        <a
+          download
+          :href="loadedDraft ? loadedDraft.file : selectedPdf"
+          target="_blank"
+          class="footer__btn-actions__group-download"
+        >
+          <IconDownload
+            v-if="lastStatusDraft"
+          />
+        </a>
+        <!-- <IconDownload
+          v-if="lastStatusDraft"
           @click="prepareDownloadDraft"
-        />
+        /> -->
 
         <el-button
           v-if="lastStatusDraft === 'Rejeitada' || !loadedDraft"
@@ -170,6 +186,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { Loading } from 'element-ui';
 import api from '../../../services/api';
 import { date } from '../../../helpers';
@@ -186,8 +203,14 @@ export default {
   name: 'Draft',
   async mounted() {
     const titleId = parseInt(this.$route.params.titulo, 10);
-    const title = () => api.get(`/titulo/all-titulo?tituloId=${titleId}`)
-    // const title = () => api.get('/titulo', this.title)
+    const title = () => axios.get(`${this.$url}/titulo/all-titulo?tituloId=${titleId}`,
+      {
+        headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+      })
       .then(({ data }) => {
         if (data.minuta !== null) {
           this.selectedDraft = data.minuta.id;
@@ -195,7 +218,14 @@ export default {
         }
         this.title = data;
       });
-    const models = () => api.get('/minuta/all-draft-models')
+    const models = () => axios.get(`${this.$url}/minuta/all-draft-models`,
+      {
+        headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+      })
       .then(({ data }) => {
         this.draftModels = data;
       });
@@ -254,7 +284,14 @@ export default {
       console.log(this.showPopUpSend);
     },
     async getClients() {
-      await api.get('/usuario/aprovador')
+      await axios.get(`${this.$url}/usuario/aprovador`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then((res) => {
           this.clients = res.data;
           this.showPopUpSend = true;
@@ -294,7 +331,13 @@ export default {
       });
 
       console.log('aprovado', this.title);
-      api.post(`/minuta/enviar-aprovacao?tituloId=${this.title.id}`, this.title)
+      axios.post(`${this.$url}/minuta/enviar-aprovacao?tituloId=${this.title.id.toString()}`, this.title,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then(({ data }) => {
           this.showPopUpSend = false;
           this.storedDraft = true;
@@ -306,8 +349,14 @@ export default {
         });
     },
     async showUpdatedDraft() {
-      alert('1');
-      await api.get(`/minuta/updated-draft?tituloId=${this.title.id}`)
+      await axios.get(`${this.$url}/minuta/updated-draft?tituloId=${this.title.id}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then(({ data }) => {
           console.log('volta', data);
           this.selectedDraft = data.minuta.id;
@@ -329,7 +378,6 @@ export default {
   watch: {
     async selectedDraft(newValue) {
       if (this.title.minuta && (newValue === this.title.minuta.id)) {
-        alert('2');
         console.log('titulo', this.title.id);
         await api.get(`/titulo/${this.title.id}`)
           .then(({ data }) => {
@@ -345,7 +393,13 @@ export default {
       if (newValue) {
         this.isSelectedMode = true;
         console.log('min', newValue);
-        api.get(`/minuta/draft-models?modeloId=${newValue}`)
+        axios.get(`${this.$url}/minuta/draft-models?modeloId=${newValue}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+              empresaId: localStorage.getItem('empresa_Id').toString(),
+            },
+          })
           .then(({ data }) => {
             console.log('file', data);
             this.selectedDraft = newValue;

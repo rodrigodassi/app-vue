@@ -55,7 +55,7 @@ export default {
       autoplay
     >
       <source
-        src="../assets/images/video-camp.mp4"
+        src="https://intecredmediacontent.blob.core.windows.net/arquivos/video-camp.mp4"
         type="video/mp4"
       />
     </video>

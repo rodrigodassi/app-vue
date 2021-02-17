@@ -59,7 +59,7 @@ export default {
       cpf: '',
       obs: '',
       cnpj: '',
-      razao_social: '',
+      razaoSocial: '',
       tipoAssinatura: 'eletronic',
     },
     currentStep: 1,

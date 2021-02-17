@@ -42,9 +42,10 @@
           </CardPart>
         </div>
       </div>
+      <div>
       <InfoHeaderCard
         :grey-bg="true">
-        <span class="container__cards__title">Depositário</span>
+        <span class="container__cards__title">Fiel Depositário</span>
       </InfoHeaderCard>
       <CardPart
         class="container__cards__card"
@@ -54,6 +55,19 @@
         :name="partes.depositario.nome"
         :email="partes.depositario.email">
       </CardPart>
+      </div>
+      <div>
+      <InfoHeaderCard
+        :grey-bg="true">
+        <span class="container__cards__title">Emitente</span>
+      </InfoHeaderCard>
+      <CardPart
+        class="container__cards__card"
+        part="cliente"
+        :name="partes.cliente.nome"
+        :email="partes.cliente.cpf">
+      </CardPart>
+      </div>
       <div v-for="(guarantor, index) in partes.avalistas"
            class="container__cards"
            :key="`g-${index}`"
@@ -88,8 +102,7 @@
         </div>
       </div>
       <ActionsFooter
-        :step="4"
-        :back="() => this.forceSaveForm('decrement')"
+        :back="() => this.forceSaveFormBack('decrement')"
         :next="() => this.forceSaveForm('increment')"
       />
     </div>
@@ -97,11 +110,12 @@
 </template>
 
 <script>
+import axios from 'axios';
 import IntHeader from '../../../layouts/IntHeader.vue';
 import api from '../../../services/api';
 import InfoHeaderCard from '../../../components/InfoHeaderCard.vue';
 import CardPart from '../../../components/CardPart.vue';
-import ActionsFooter from '../Title/Partials/ActionsFooter.vue';
+import ActionsFooter from '../Title/Physical/Partials/ActionsFooter.vue';
 
 export default {
   name: 'Part',
@@ -117,6 +131,10 @@ export default {
         email: '',
         tipoAssinatura: '',
       },
+      cliente: {
+        nome: '',
+        cpf: '',
+      },
     },
     titulo: '',
     titleIsStored: false,
@@ -129,25 +147,43 @@ export default {
   },
   methods: {
     async getParts() {
-      await api.get(`titulo/obterPartes?tituloId=${this.title}`)
-        .then((res) => {
-          console.log('partes', res);
-          const { data } = res;
-          this.titulo = data;
-          if (data.depositarioEmitente !== 'false') {
+      await axios.get(`${this.$url}/titulo/obterPartes?tituloId=${this.title}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        }).then((res) => {
+        console.log('partes', res);
+        const { data } = res;
+        this.titulo = data;
+        console.log('Data -->', data);
+        if (data.depositarioEmitente !== false || data.tipo === 'Financeira') {
+          if (this.partes.depositario !== '' || this.partes.depositario !== null) {
             this.partes.depositario = {
               nome: data.nome,
               email: data.email || 'email não cadastrado',
+              razaoSocial: data.razaoSocial,
               tipoAssinatura: this.partes.depositario.tipoAssinatura,
             };
-          } else {
-            this.partes.depositario = data.depositario;
           }
-          this.partes.emitentes = data.emitentes;
-        })
+        } else {
+          this.partes.depositario = data.depositario;
+        }
+        this.partes.emitentes = data.emitentes;
+        console.log('Partes 2021 -> ', this.partes);
+        if (this.partes.cliente !== '') {
+          this.partes.cliente = {
+            nome: data.cliente.nome,
+            cpf: data.cliente.cpf,
+          };
+        }
+      })
         .then(() => {
-          api.get('garantias/', { params: { titulo: this.titulo.id } })
+          api.get('garantia/obterGarantiaAvalista', { params: { titulo: this.titulo.id } })
             .then(({ data }) => {
+              console.log('avalis', data);
               if (!data.length) {
                 return;
               }
@@ -196,12 +232,70 @@ export default {
       }
       this.partes[part][index.slice(2, index.length)].conjuge.tipoAssinatura = value;
     },
+    async forceSaveFormBack(action) {
+      if (this.partes.emitentes.length > 0) {
+        this.titulo.emitentes = this.partes.emitentes;
+      }
+      if (this.partes.cliente.nome !== '') {
+        this.titulo.cliente = this.partes.cliente;
+      }
+      // this.titulo.emitentes = this.partes.emitentes;
+      if (this.partes.depositario.nome !== '') {
+        this.titulo.depositario = this.partes.depositario;
+      }
+      // this.titulo.depositario = this.partes.depositario;
+      if (this.partes.avalistas.length > 0) {
+        this.titulo.avalistas = this.partes.avalistas;
+      }
+      console.log('Aciton -> ', this.titulo.currentStep);
+      if (this.titulo.currentStep !== '') {
+        this.titulo.currentStep = action === 'increment' ? 7 : 5;
+      }
+      if (this.titulo.tipo === 'Financeira') {
+        this.titulo.currentStep = action === 'increment' ? 6 : 4;
+      }
+      console.log('Titulo State Parte -> ', this.titulo);
+      // await api.post(`dadosCpr/back?id=${this.title}&currentStep=${this.titulo.currentStep}`,
+      // this.titulo)
+      // .then(() => this.redirect(action));
+      this.redirect(action);
+    },
     async forceSaveForm(action) {
-      this.titulo.emitentes = this.partes.emitentes;
-      this.titulo.depositario = this.partes.depositario;
-      this.titulo.avalistas = this.partes.avalistas;
-      await api.post(`titulo/tipoAssinatura?tituloId=${this.title}`, this.titulo)
-        .then(() => this.redirect(action));
+      console.log('Emitentes ->', this.partes.emitentes);
+      if (this.partes.emitentes.length > 0) {
+        this.titulo.emitentes = this.partes.emitentes;
+      }
+      // this.titulo.emitentes = this.partes.emitentes;
+      console.log('Depositario2 ->', this.partes.depositario);
+      if (this.partes.depositario.nome !== null || this.partes.depositario.nome !== '') {
+        console.log('Partes -> ', this.partes);
+        console.log('depositarioEmitente -> ', this.depositarioEmitente);
+        console.log('Fiel Depositario -> ', this.partes.depositario);
+        this.titulo.depositario = this.partes.depositario;
+      }
+      if (this.partes.cliente.nome !== '') {
+        this.titulo.cliente = this.partes.cliente;
+      }
+      // this.titulo.depositario = this.partes.depositario;
+      console.log('Avalista2 ->', this.partes.avalistas);
+      if (this.partes.avalistas.length > 0) {
+        this.titulo.avalistas = this.partes.avalistas;
+      }
+      console.log('Step: ->', this.titulo.currentStep);
+      // if (this.titulo.currentStep !== '' || this.titulo.currentStep !== undefined) {
+      //   this.titulo.currentStep = action === 'increment' ? 7 : 5;
+      // }
+      if (this.titulo.tipo === 'Financeira') {
+        this.titulo.currentStep = action === 'increment' ? 6 : 4;
+      }
+      await axios.post(`${this.$url}/titulo/tipoAssinatura?tituloId=${this.title}`, this.titulo,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        }).then(() => this.redirect(action));
     },
     redirect(action) {
       if (action === 'decrement') {

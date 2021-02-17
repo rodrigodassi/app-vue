@@ -172,8 +172,8 @@ export default {
       let hasPendency = false;
 
       if (this.title.depositarioEmitente === false) {
-        const requiredFields = this.title.depositario.tipoPessoaDepositario === 'pf'
-      || this.title.depositario.tipoPessoaDepositario === ''
+        const requiredFields = this.title.tipoPessoaDepositario === 'pf'
+      || this.title.tipoPessoaDepositario === ''
           ? this.pfRequiredFields
           : this.pjRequiredFields;
         Object.entries(this.title.depositario)

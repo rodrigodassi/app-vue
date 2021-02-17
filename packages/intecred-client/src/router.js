@@ -9,7 +9,8 @@ import Team from './views/App/Team/Team.vue';
 import Titles from './views/App/Title/Titles.vue';
 import CreatePhysicalTitle from './views/App/Title/Physical/Create.vue';
 import CreateGuarantee from './views/App/Guarante/Create.vue';
-import TeamCreate from './views/App/Team/Create.vue';
+import TeamEdit from './views/App/Team/EditClient.vue';
+import NewClient from './views/App/Team/NewClient.vue';
 import Dashboard from './views/App/Dashboard.vue';
 import AuthSignIn from './views/Auth/SignIn.vue';
 import AuthSignInExternal from './views/Auth/SignInExternal.vue';
@@ -76,16 +77,17 @@ const team = {
       },
     },
     {
-      path: 'novo',
-      component: TeamCreate,
+      path: '/clientes/editar/:id?',
+      component: TeamEdit,
+      name: 'TeamEdit',
       meta: {
         requiresAuth: true,
       },
     },
     {
-      path: '/clientes/criar/:id?',
-      component: TeamCreate,
-      name: 'CreateTeam',
+      path: '/clientes/novo',
+      component: NewClient,
+      name: 'NewCreate',
       meta: {
         requiresAuth: true,
       },
@@ -185,7 +187,7 @@ const drafts = {
   path: '/drafts/analyse',
   component: DraftAnalyse,
   meta: {
-    requiresAuth: true,
+    requiresVisitor: true,
   },
 };
 

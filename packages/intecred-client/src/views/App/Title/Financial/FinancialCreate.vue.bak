@@ -1,0 +1,170 @@
+<template>
+  <div>
+    <IntHeader
+      cpr-type="CPR Financeira"
+      url-name-redirect="Titles"
+      :status="financialTitle.status"
+      :client = "title.nome"
+    />
+    <div class="container">
+      <!-- Step 1 dados da CPR -->
+      <div v-show="showAlertStep1">
+        <h2 class="container__title-alert">Dados da CPR</h2>
+        <Alert>
+          Aqui nessa tela você deve inserir os dados básicos para iniciar a criação da CPR
+        </Alert>
+      </div>
+      <!-- Local de formação da lavoura -->
+      <div v-show="showAlertStep2">
+        <h2 class="container__title-alert">Local de formação da lavoura</h2>
+        <Alert>
+          Aqui você precisa preencher os dados do produto da CPR e da propriedade de cultivo.
+        </Alert>
+      </div>
+      <div class="container__form-data">
+        <form>
+          <component :is="currentComponentStep"/>
+          <ActionsFooter
+            :step="step"
+            :back="() => this.back()"
+            :next="() => this.forceSaveForm()"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapState } from 'vuex';
+import IntHeader from '../../../../layouts/IntHeader.vue';
+import Alert from '../../../../components/Alert.vue';
+import ActionsFooter from '../Physical/Partials/ActionsFooter.vue';
+import FinancialFirstStep from './Partials/FinancialFirstStep.vue';
+import FinancialSecondStep from './Partials/FinancialSecondStep.vue';
+
+export default {
+  async mounted() {
+    const titleId = parseInt(this.$route.params.titulo, 10);
+    await this.getTitleFinancial(titleId)
+      .then(() => {
+        if (this.financialTitle.currentStep
+          && this.financialTitle.currentStep
+          !== parseInt(this.$route.params.step, 10)) {
+          this.redirectStepTitle(this.financialTitle.currentStep);
+        }
+      });
+  },
+  name: 'Create',
+  methods: {
+    ...mapActions('title', ['submit', 'getTitleFinancial', 'submitFinancial']),
+    redirectStepTitle(step) {
+      switch (step) {
+        case 1:
+        case 2:
+          this.$router.push({
+            name: 'CreateFinancialTitle',
+            params: {
+              titulo: this.financialTitle.id,
+              step,
+            },
+          });
+          break;
+        case 3:
+          this.$router.push({
+            name: 'Guarantee',
+            params: { titulo: this.financialTitle.id },
+          });
+          break;
+        default:
+          throw new Error('invalid data');
+      }
+    },
+    closeAlert(id) {
+      this[id] = false;
+    },
+    back() {
+      this.submitFinancial({
+        title: {
+          id: this.financialTitle.id,
+        },
+        step: 0,
+        nextStep: this.step -= 1,
+      });
+      if (this.step > 1) {
+        this.$router.push({
+          name: 'CreateFinancialTitle',
+          params: { step: this.step -= 1 },
+        });
+      } else {
+        this.$router.push({
+          name: 'Titles',
+        });
+      }
+    },
+    forceSaveForm() {
+      this.submitFinancial({
+        title: this.financialTitle,
+        step: this.step,
+        nextStep: this.step += 1,
+      });
+      if (this.step === 2) {
+        this.$router.push({
+          name: 'Guarantee',
+          params: { titulo: this.financialTitle.id },
+        });
+      } else {
+        this.$router.push({
+          name: 'CreateFinancialTitle',
+          params: { step: this.step += 1 },
+        });
+      }
+    },
+  },
+  components: {
+    ActionsFooter,
+    Alert,
+    IntHeader,
+    FinancialFirstStep,
+    FinancialSecondStep,
+  },
+  computed: {
+    ...mapState('title', ['financialTitle']),
+    showAlertStep1: {
+      get() {
+        return this.step === 1;
+      },
+      set(value) {
+        return value;
+      },
+    },
+
+    showAlertStep2: {
+      get() {
+        return this.step === 2;
+      },
+      set(value) {
+        return value;
+      },
+    },
+    step: {
+      get() {
+        return parseInt(this.$route.params.step, 10) || 1;
+      },
+      set(value) {
+        return value;
+      },
+    },
+    currentComponentStep() {
+      switch (this.step) {
+        case 1:
+        default:
+          return 'FinancialFirstStep';
+        case 2:
+          return 'FinancialSecondStep';
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped/>

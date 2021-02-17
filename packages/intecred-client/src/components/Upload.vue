@@ -1,7 +1,9 @@
 <script>
 import IconPlus from '../assets/svgs/icon-plus.svg';
 import IconTrash from '../assets/svgs/icon-delete.svg';
+import IconDownload from '../assets/svgs/download.svg';
 import { date } from '../helpers';
+import { api } from '../services';
 
 export default {
   inheritAttrs: false,
@@ -33,10 +35,16 @@ export default {
       type: Function,
       required: false,
     },
+    onTitles: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   components: {
     IconPlus,
     IconTrash,
+    IconDownload,
   },
 
   inject: {
@@ -55,7 +63,7 @@ export default {
   mounted() {
     if (this.onCreateTeam) {
       this.images = [...this.images, ...this.value];
-    }
+    } else this.images = this.value;
   },
   computed: {
     classes() {
@@ -82,16 +90,29 @@ export default {
     add(file) {
       this.actionType = 'add';
       if (this.images && this.images.length && this.isMultiple) {
+        /**
+         * @todo
+         * Estamos adicionando a propriedade "download" para demonstração
+         * O link real deverá vir do backend, a propriedade "download" devera conter a URL correta.
+         */
         this.images.push({
-          url: file.url,
+          id: file.id,
           date: date(),
+          url: file.url,
+          blob: file.blob,
           name: file.name,
+          file,
+          download: file.download,
         });
       } else {
         this.images = [{
+          id: file.id,
           url: file.url,
+          blob: file.blob,
           date: date(),
           name: file.name,
+          file,
+          download: file.download,
         }];
       }
       // update index parent
@@ -101,56 +122,37 @@ export default {
       if (this.isMultiple) {
         this.$emit('input', this.images);
       } else {
-        this.$emit('input', [{ ...file }]);
+        this.$emit('input', this.images);
       }
       this.actionType = null;
     },
 
-    remove(index) {
+    remove(index, id, blob) {
+      api.post(`/titulo/deleteArquivo?id=${String(id)}&blob=${String(blob)}`);
+
       if (this.$attrs.disabled) {
         return;
       }
 
-      if (!this.isMultiple) {
-        this.images = [];
-      } else {
-        this.images = this.images.filter((item, i) => i !== index);
-      }
-
       if (this.onCreateTeam) {
-        this.$emit('input', this.images);
-
-        return;
-      }
-
-      this.actionType = 'remove';
-
-      if (this.$vnode.key !== undefined) {
-        this.$emit('update-temp-index', this.$vnode.key);
-        this.$emit('delete', this.images, this.$vnode.key);
-        return;
-      }
-      if (!this.isMultiple) {
         this.$emit('input', [...this.images.filter((item, i) => i !== index)]);
-      } else {
-        this.$emit('input', []);
+
+        return;
       }
-      this.actionType = null;
+
+      this.$emit('input', [...this.images.filter((item, i) => i !== index)]);
     },
   },
   watch: {
-    value(newVal, oldVal) {
-      if (oldVal.length || this.actionType === 'remove') {
-        return;
-      }
-      this.images = newVal;
+    value(value) {
+      this.images = value;
     },
   },
 };
 </script>
 
 <template>
-  <div class="upload">
+  <div class="upload" :class="{ 'on-titles': onTitles }">
     <div class="upload__title">
       <h4 v-text="title"/>
 
@@ -172,13 +174,30 @@ export default {
             :title="item.name"
             class="p3"
           >
-            {{ item.name }}
+            {{ item.name.length > 21 ? `${item.name.substring(0, 21)}...` : item.name }}
             <p v-show="item.date" v-text="`Enviado: ${item.date}`"/>
           </span>
 
-          <IconTrash
-            @click.prevent="customRemoveFile ? customRemoveFile() : remove(index)"
-          />
+          <div
+            class="upload__wrapper"
+          >
+            <a
+              download
+              :href="item.download"
+              class="upload__icon-download"
+            >
+              <IconDownload/>
+            </a>
+
+            <div
+              class="upload__icon-trash"
+            >
+              <IconTrash
+                @click.prevent="customRemoveFile ? customRemoveFile()
+                : remove(index, item.id, item.blob)"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -199,7 +218,6 @@ export default {
           Enviar arquivos
         </span>
       </el-upload>
-
     </div>
   </div>
 </template>
@@ -213,6 +231,16 @@ export default {
   border-radius: 4px;
   justify-content: space-between;
   background-color: $--color-gray-1;
+
+  &.on-titles {
+    margin-top: 12px;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+
+    .upload__image {
+      width: 100%;
+    }
+  }
 
   &__title {
     width: 100%;
@@ -228,8 +256,18 @@ export default {
     }
   }
 
+  &__icon-trash {
+    flex-shrink: 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &__image {
-    width: 302px;
+    width: 520px;
+    max-width: 520px;
     position: relative;
     min-height: 104px;
     border-radius: 4px;
@@ -287,8 +325,14 @@ export default {
         }
 
         svg {
+          width: 16px;
+          height: 16px;
           cursor: pointer;
           margin-left: 8px;
+
+          * {
+            fill: $--color-gray-6;
+          }
 
           path {
             transition: all 0.3s ease-in-out;
@@ -359,6 +403,14 @@ export default {
 
     &-list__item {
       display: none !important;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .upload {
+    display: block;
+    &__image {
+      width: 100%;
     }
   }
 }

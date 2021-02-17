@@ -81,10 +81,10 @@
           Voltar
         </el-button>
 
-        <IconDownload
+        <!-- <IconDownload
           v-if="lastStatusDraft !== 'Enviada'"
           @click="prepareDownloadDraft"
-        />
+        /> -->
 
         <el-button
           v-if="lastStatusDraft === 'Rejeitada' || !loadedDraft"
@@ -170,6 +170,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { Loading } from 'element-ui';
 import api from '../../../services/api';
 import { date } from '../../../helpers';
@@ -177,7 +178,7 @@ import IntInput from '../../../components/Input.vue';
 import IntHeader from '../../../layouts/IntHeader.vue';
 import IconFile from '../../../assets/svgs/icon-file.svg';
 import IconClose from '../../../assets/svgs/icon-close.svg';
-import IconDownload from '../../../assets/svgs/icon-download.svg';
+// import IconDownload from '../../../assets/svgs/icon-download.svg';
 import ViewPdf from '../../../components/ViewPdf.vue';
 import IntModal from '../../../components/Modal.vue';
 import DraftStatusCheck from './DraftStatusCheck.vue';
@@ -186,8 +187,14 @@ export default {
   name: 'Draft',
   async mounted() {
     const titleId = parseInt(this.$route.params.titulo, 10);
-    const title = () => api.get(`/titulo/all-titulo?tituloId=${titleId}`)
-    // const title = () => api.get('/titulo', this.title)
+    const title = () => axios.get(`${this.$url}/titulo/all-titulo?tituloId=${titleId}`,
+      {
+        headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+      })
       .then(({ data }) => {
         if (data.minuta !== null) {
           this.selectedDraft = data.minuta.id;
@@ -195,7 +202,14 @@ export default {
         }
         this.title = data;
       });
-    const models = () => api.get('/minuta/all-draft-models')
+    const models = () => axios.get(`${this.$url}/minuta/all-draft-models`,
+      {
+        headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+      })
       .then(({ data }) => {
         this.draftModels = data;
       });
@@ -207,7 +221,7 @@ export default {
     IconFile,
     IconClose,
     ViewPdf,
-    IconDownload,
+    // IconDownload,
     IntModal,
     IntInput,
   },
@@ -254,7 +268,14 @@ export default {
       console.log(this.showPopUpSend);
     },
     async getClients() {
-      await api.get('/usuario/aprovador')
+      await axios.get(`${this.$url}/usuario/aprovador`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then((res) => {
           this.clients = res.data;
           this.showPopUpSend = true;
@@ -293,12 +314,14 @@ export default {
         dateTime: date(),
       });
 
-      if (!this.title.minuta) {
-        console.log('draft chegou', this.title);
-        this.title.minuta = draft;
-      }
       console.log('aprovado', this.title);
-      api.post(`/minuta/enviar-aprovacao?tituloId=${this.title.tituloId}`, this.title)
+      axios.post(`${this.$url}/minuta/enviar-aprovacao?tituloId=${this.title.id.toString()}`, this.title,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then(({ data }) => {
           this.showPopUpSend = false;
           this.storedDraft = true;
@@ -310,8 +333,14 @@ export default {
         });
     },
     async showUpdatedDraft() {
-      alert('1');
-      await api.get(`/titulo/updated-draft?tituloId=${this.title.tituloId}`)
+      await axios.get(`${this.$url}/minuta/updated-draft?tituloId=${this.title.id}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then(({ data }) => {
           console.log('volta', data);
           this.selectedDraft = data.minuta.id;
@@ -333,9 +362,8 @@ export default {
   watch: {
     async selectedDraft(newValue) {
       if (this.title.minuta && (newValue === this.title.minuta.id)) {
-        alert('2');
-        console.log('titulo', this.title.tituloId);
-        await api.get(`/titulo/${this.title.tituloId}`)
+        console.log('titulo', this.title.id);
+        await api.get(`/titulo/${this.title.id}`)
           .then(({ data }) => {
             this.selectedDraft = data.minuta.id;
             this.loadedDraft = data.minuta;
@@ -346,20 +374,25 @@ export default {
       // this.title.minuta.status = [];
       this.isSelectedMode = true;
 
-      if (this.title.minuta) {
-        this.title.minuta.status = [];
+      if (newValue) {
+        this.isSelectedMode = true;
+        console.log('min', newValue);
+        axios.get(`${this.$url}/minuta/draft-models?modeloId=${newValue}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+              empresaId: localStorage.getItem('empresa_Id').toString(),
+            },
+          })
+          .then(({ data }) => {
+            console.log('file', data);
+            this.selectedDraft = newValue;
+            this.selectedPdf = data.file;
+          })
+          .catch(() => {
+            this.loadedDraft = '';
+          });
       }
-
-      this.isSelectedMode = true;
-      console.log('min', newValue);
-      api.get(`/minuta/draft-models?modeloId=${newValue}`)
-        .then(({ data }) => {
-          this.selectedDraft = newValue;
-          this.loadedDraft = data;
-        })
-        .catch(() => {
-          this.loadedDraft = '';
-        });
     },
   },
 };

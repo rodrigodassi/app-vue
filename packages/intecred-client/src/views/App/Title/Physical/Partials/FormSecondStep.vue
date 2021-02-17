@@ -10,7 +10,7 @@
       <span class="form-data--two-items__item">
         <IntInput
           v-model="produtividade"
-          label="Produtividade"
+          label="Produtividade (kg/ha)"
           placeholder="Defina a produtividade (kg/ha)"
         />
       </span>

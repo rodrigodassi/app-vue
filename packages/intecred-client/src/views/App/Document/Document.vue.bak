@@ -11,12 +11,12 @@
       </Alert>
       <div class="container__list-documents">
         <Upload
-          v-for="(item, index) in documents"
+          v-for="(item, index) in documentos"
           class="container__list-documents__item"
           :key="index"
           @update-temp-index="updateTempIndex"
           :is-multiple="true"
-          v-model="documents[index].file"
+          v-model="documentos[index].file"
           :title="item.name"
           :description="item.description">
         </Upload>
@@ -30,12 +30,12 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 import IntHeader from '../../../layouts/IntHeader.vue';
 import Alert from '../../../components/Alert.vue';
 import Upload from '../../../components/Upload.vue';
 import ActionsFooter from '../Title/Physical/Partials/ActionsFooter.vue';
-import api from '../../../services/api';
+// import api from '../../../services/api';
 
 export default {
   name: 'Document',
@@ -46,59 +46,68 @@ export default {
     tempIndex: null,
     showAlert: true,
     titulo: '',
-    documents: [
+    documentos: [
       {
+        id: '',
         name: 'Matrícula do imóvel',
         description: 'Matrícula do imóvel de formação da lavoura.',
-        alias: 'registry_number',
+        alias: 'MatriculasImoveis',
         file: [],
       },
       {
+        id: '',
         name: '(Cadastro Ambiental Rural) CAR',
         description: 'Referente ao imóvel rural.',
-        alias: 'rural_register',
+        alias: 'Cars',
         file: [],
       },
       {
+        id: '',
         name: 'Documentos pessoais',
         description: 'RG, CPF, CNH.',
-        alias: 'personal_documents',
+        alias: 'DocumentosPessoais',
         file: [],
       },
       {
+        id: '',
         name: 'Contrato de arrendamento',
         description: 'Para áreas arrendadas.',
-        alias: 'personal_documents',
+        alias: 'ContratosArrendamentos',
         file: [],
       },
       {
+        id: '',
         name: 'Carta de anuência',
         description: 'Anexar carta de anuência, quando houver.',
-        alias: 'lease',
+        alias: 'CartasAnuencias',
         file: [],
       },
       {
+        id: '',
         name: 'Certidão de penhor (livro 3)',
         description: 'Certidão obtida.',
-        alias: 'pledge_certificate',
+        alias: 'CertidoesPenhor',
         file: [],
       },
       {
+        id: '',
         name: 'Certidão de registro de alienação fiduciária',
         description: 'Anexar, quando houver.',
-        alias: 'alienation_registration',
+        alias: 'CertidoesFiduciaria',
         file: [],
       },
       {
+        id: '',
         name: 'Certidão de embargo do IBAMA',
         description: 'Anexar, quando houver.',
-        alias: 'embargo_certificate',
+        alias: 'CertidoesIbama',
         file: [],
       },
       {
+        id: '',
         name: 'Outros',
         description: 'Anexar outros documentos.',
-        alias: 'lease',
+        alias: 'OutrosDocumentos',
         file: [],
       },
     ],
@@ -108,6 +117,7 @@ export default {
       this.tempIndex = index;
     },
     async dispatchDocumentByAlias(form) {
+      // 16.11.20
       // const updateTitle = () => api.patch(`/titulos/${this.title}`, this.titulo);
       // const updateImages = () => api.post('/images/', form, {
       //   headers: {
@@ -115,6 +125,42 @@ export default {
       //     'Content-Type': 'multipart/form-data',
       //   },
       // });
+      // const formDocumento = {
+      //   documentoId: form.id,
+      //   titulo: form.titulo,
+      // };
+      // await axios.post('/documento', formDocumento,
+      //   {
+      //     headers:
+      // {
+      //   Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+      //   empresaId: localStorage.getItem('empresa_Id').toString(),
+      // },
+      //   })
+      //   .then(async (response) => {
+      //   // console.log('files', payload.files);
+      // 050221
+      // const formData = new FormData();
+
+      // for (let i = 0; i < formDocumento.matriculasimoveis.length; i += 1) {
+      //   const file = formDocumento.matriculasimoveis[i].raw;
+      //   formData.append('matriculasimoveis', file.file.raw);
+      // }
+      // formDocumento.matriculasimoveis.forEach((file) => {
+      //   formData.append('matriculasimoveis', file.file.raw);
+      // });
+      //     await axios.post(`${this.$url}/documento/upload?tituloId=
+      // ${this.title.toString()}`, form, {
+      //       headers: {
+      //         Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+      //         'Content-Type': 'multipart/form-data',
+      //       },
+      //     })
+      //       .then(() => {
+      //       });
+      //     commit('UPDATE_TITLE', response.data);
+      //   });
+      // - Até aqui
       await axios.post(`${this.$url}/documento/upload?tituloId=${this.title.toString()}`, form, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
@@ -129,7 +175,8 @@ export default {
     },
     async getDocuments() {
       const title = parseInt(this.$route.params.titulo, 10);
-      await axios.get(`${this.$url}/titulo`, title,
+      console.log('title ->', title);
+      await axios.get(`${this.$url}/documento/getDocumentos?id=${title.toString()}`,
         {
           headers:
             {
@@ -137,14 +184,21 @@ export default {
               empresaId: localStorage.getItem('empresa_Id').toString(),
             },
         }).then(async ({ data }) => {
+        console.log('Data ->', data);
         this.titulo = data;
         if (!data.documentos) {
-          this.documents.forEach((el) => el.titulo = title);
+          this.documentos.forEach(
+            (el) => {
+              el.titulo = title;
+            },
+          );
           return;
         }
+        console.log('Docs2 ->', data.documentos);
+        // alert('passou aqui votla doc');
         data.documentos.forEach(
           (el) => {
-            const loadedDoc = this.documents.find((document) => document.alias === el.alias);
+            const loadedDoc = this.documentos.find((document) => document.alias === el.alias);
             loadedDoc.id = el.id;
             loadedDoc.file = el.file;
             loadedDoc.titulo = title;
@@ -154,6 +208,16 @@ export default {
         .catch((error) => console.log(error));
     },
     async returnToGuarantee() {
+      await axios.get(`${this.$url}/titulo/recarrega-titulo?id=${this.title}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then(({ data }) => {
+          this.titulo = data;
+        });
       await this.updateCurrentStep('decrement');
       await this.$router.push({
         name: 'Guarantee',
@@ -166,23 +230,55 @@ export default {
         params: { titulo: this.title },
       });
     },
+    // composeForm() {
+    //   const form = new FormData();
+    //   console.log('Documentos -> ', this.documentos);
+    //   if (this.documentos !== null) {
+    //     this.titulo.documentos = this.documentos;
+    //     this.documentos.forEach((document) => {
+    //       document.file.forEach((file) => {
+    //         const json = JSON.stringify(file);
+    //         const blob = new Blob([json], {
+    //           type: 'application/json',
+    //         });
+    //         // form.append(`file[${document.alias}][${index}]`, blob);
+    //         form.append(`${document.alias}`, blob, file.name);
+    //       });
+    //     });
+    //   }
+    //   return form;
+    // },
     composeForm() {
-      this.titulo.documentos = this.documents;
       const form = new FormData();
-      this.documents.forEach((document) => {
-        document.file.forEach((file, index) => {
-          const json = JSON.stringify(file);
-          const blob = new Blob([json], {
-            type: 'application/json',
-          });
-          form.append(`file[${document.alias}][${index}]`, blob);
-        });
+      console.log('Documentos -> ', this.documentos);
+      this.titulo.documentos = this.documentos;
+      this.documentos.forEach((document) => {
+        for (let i = 0; i < document.file.length; i += 1) {
+          console.log('Document', document);
+          if (document.id === '' && document.file.length > 0) {
+            // for (let j = 0; j < document.file[i].file; j += 1 )
+            const file = document.file[i].file.raw;
+            form.append(document.alias, file);
+          }
+          if (document.id !== '') {
+            const file = document.file[i];
+            form.append(document.alias, file);
+          }
+        }
       });
       return form;
     },
+
     async updateCurrentStep(action) {
       const handledStep = this.getFutureStep(this.titulo, action);
-      await api.patch(`titulos/${this.titulo.id}`, { currentStep: handledStep })
+      // await api.patch(`titulo/${this.titulo.id}`, { currentStep: handledStep })
+      axios.post(`${this.$url}/dadosCpr/tituloCompleto-2?id=${this.titulo.id}&currentStep=${handledStep}`, this.titulo,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then(() => {
         });
     },

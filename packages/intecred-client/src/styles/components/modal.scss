@@ -9,9 +9,10 @@
       align-items: center;
       justify-content: center;
 
-      span {
+      & > span {
         margin-right: 10px;
         display: flex;
+        position: relative;
         align-items: center;
         justify-content: center;
 
@@ -21,8 +22,10 @@
         }
 
         svg:nth-child(2) {
+          top: calc(50% - 3px);
           position: absolute;
           fill: $--color-danger;
+          transform: translateY(-50%);
         }
       }
     }
