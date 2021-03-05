@@ -130,6 +130,7 @@
 
 <script>
 import { Printd } from 'printd';
+import { Loading } from 'element-ui';
 import api from '../../../services/api';
 import Logo from '../../../assets/svgs/logo.svg';
 import IntHeader from '../../../layouts/IntHeader.vue';
@@ -180,6 +181,7 @@ export default {
   }),
   methods: {
     async getDrafts() {
+      const loadingInstance = Loading.service({ fullscreen: true });
       const { minuta = null, token = null } = this.$route.query || {};
 
       if (!minuta && !token) {
@@ -225,6 +227,7 @@ export default {
             this.clientDocument = data.cpf;
           });
       }
+      setTimeout(() => loadingInstance.close(), 500);
     },
     prepareApproveDraft(index) {
       this.modalApproveShow = true;
@@ -273,13 +276,15 @@ export default {
       this.modalRejectShow = false;
 
       this.modalApproveShow = false;
+
+      this.obsApprove = '';
+      this.obsReject = '';
     },
 
     handlePrint() {
       const d = new Printd();
 
       if (this.getPatchPdf) {
-        console.log('print->', this.getPatchPdf);
         d.printURL(this.getPatchPdf);
       }
     },

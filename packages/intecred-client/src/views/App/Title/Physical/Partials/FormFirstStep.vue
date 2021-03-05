@@ -41,6 +41,7 @@
     <div class="form-data__item--size-bottom">
       <IntInput
         v-model="quantidade"
+        v-currency="pluginOptions"
         label="Quantidade (em kg)"
         placeholder="0,0 kg"
       />
@@ -565,6 +566,7 @@ export default {
   },
   data: () => ({
     user: 1,
+    pluginOptions: '',
     // products: [],
     // harvests: [],
     showModalRemoveIssuer: false,

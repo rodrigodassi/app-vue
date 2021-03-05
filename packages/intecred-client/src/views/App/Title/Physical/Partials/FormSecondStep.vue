@@ -10,6 +10,7 @@
       <span class="form-data--two-items__item">
         <IntInput
           v-model="produtividade"
+          v-currency="pluginOptions"
           label="Produtividade (kg/ha)"
           placeholder="Defina a produtividade (kg/ha)"
         />
@@ -17,6 +18,7 @@
       <span class="form-data--two-items__item">
         <IntInput
           v-model="areaProducao"
+          v-currency="pluginOptions"
           label="Área produtiva (ha)"
           placeholder="Área produtiva (ha)"
         />
@@ -122,6 +124,7 @@
     <div class="form-data__item--size-bottom">
       <IntInput
         v-model="areaReservaLegal"
+        v-currency="pluginOptions"
         label="Área de reserva legal (hectares)"
         placeholder="Qtd de hectares"
         type="number"
@@ -129,10 +132,11 @@
     </div>
     <div class="form-data__item--size-bottom">
       <IntInput
-        type="numeric"
+        id="teste"
         v-model="areaReservaTotal"
         label="Área total (hectares)"
         placeholder="Qtd de hectares"
+        readonly
       />
     </div>
     <div class="form-data__item--size-bottom
@@ -274,6 +278,9 @@ export default {
   name: 'FormSecondStep',
   data: () => ({
     user: 1,
+    pluginOptions: '',
+    slice: '',
+    substr: '',
     ufOptions: [],
     cityOptions: [],
     ufRegistrationDistrictOptions: [],
@@ -480,7 +487,7 @@ export default {
         });
         return;
       }
-      const value = parseFloat(newValue) + parseFloat(this.areaReservaLegal);
+      const value = parseFloat(newValue) + parseFloat(this.areaReservaLegal).toLocaleString('pt-BR');
       this.UPDATE_PARTIALS_FORM({
         key: 'areaReservaTotal',
         value,
@@ -503,10 +510,16 @@ export default {
         });
         return;
       }
-      const value = parseFloat(newValue) + parseFloat(this.areaProducao);
+      const newValuesp = newValue.replace('.', '').replace(',', '');
+      const areaProducaosp = this.areaProducao.replace('.', '').replace(',', '');
+      const x = parseFloat(newValuesp) + parseFloat(areaProducaosp);
+      const xconcat = x.toString().slice(-2);
+      const yconcat = x.toString().slice(0, -2);
+      const xformated = `${yconcat}.${xconcat}`;
+      const yformated = parseFloat(xformated).toLocaleString('pt-BR');
       this.UPDATE_PARTIALS_FORM({
         key: 'areaReservaTotal',
-        value,
+        value: yformated,
       });
     },
   },

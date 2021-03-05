@@ -51,7 +51,8 @@
       <div>
       <InfoHeaderCard
         :grey-bg="true">
-        <span class="container__cards__title">Fiel Depositário</span>
+        <span class="container__cards__title"
+        v-if="partes.depositario.nome !== null">Fiel Depositário</span>
       </InfoHeaderCard>
       <CardPart
         class="container__cards__card"

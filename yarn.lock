@@ -12059,6 +12059,11 @@ vue-cli-plugin-element-ui@~1.1.4:
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-element-ui/-/vue-cli-plugin-element-ui-1.1.4.tgz#8307640d85230ba61e15e926879f695ba8eeaedf"
   integrity sha512-Q1/JFvdnKPpogSFvT3GfcUxftLFFrTU6ILXIp1/0PO22TlmwxVVr+1zLOQ1FABO34cooWR1+yoQMasVBA4sPQg==
 
+vue-currency-input@^1.22.6:
+  version "1.22.6"
+  resolved "https://registry.yarnpkg.com/vue-currency-input/-/vue-currency-input-1.22.6.tgz#1fed0dabb8a46a5537daca9371942f3d4f3a08fc"
+  integrity sha512-BUq8aysiZ1pdRyyWyIgxYz4+PBQwgVeAqxNr8ZOGaudA8YqEv2S5Plze0LjI/pbinX4+ma1sIIzStXZPxMy0/Q==
+
 vue-eslint-parser@^7.5.0:
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.5.0.tgz#b68221c55fee061899afcfb4441ec74c1495285e"

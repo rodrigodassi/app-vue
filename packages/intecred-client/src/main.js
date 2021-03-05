@@ -2,6 +2,7 @@ import './styles/index.scss';
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import VueTheMask from 'vue-the-mask';
+import VueCurrencyInput from 'vue-currency-input';
 import axios from 'axios';
 import locale from 'element-ui/lib/locale/lang/pt-br';
 import App from './App.vue';
@@ -11,6 +12,17 @@ import router from './router';// import api from './services';
 
 Vue.use(ElementUI, { locale });
 Vue.use(VueTheMask);
+
+const pluginOptions = {
+  /* see config reference */
+  globalOptions: {
+    currency: null,
+    distractionFree: false,
+    valueAsInteger: true,
+    autoDecimalMode: true,
+  },
+};
+Vue.use(VueCurrencyInput, pluginOptions);
 
 Vue.config.productionTip = false;
 // Vue.prototype.$url = 'https://intecred.azurewebsites.net/api';

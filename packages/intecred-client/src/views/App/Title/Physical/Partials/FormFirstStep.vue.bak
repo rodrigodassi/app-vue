@@ -3,54 +3,54 @@
     <div class="form-data__item--size-bottom">
       <IntInput
         v-model="cpr"
-        type="numeric"
         label="Número da CPR"
         placeholder="Insira o número da CPR"
+        maxlength="15"
+      />
+    </div>
+    <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="produto"
+          label="Produto"
+          placeholder="Selecione o Produto"
+          isSelect
+        >
+          <el-option
+            v-for="item in produtos"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </IntInput>
+    </div>
+    <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="lavoura"
+          label="Safra"
+          placeholder="Selecione o Ano/Safra"
+          isSelect
+        >
+          <el-option
+            v-for="item in lavouras"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </IntInput>
+    </div>
+    <div class="form-data__item--size-bottom">
+      <IntInput
+        v-model="quantidade"
+        v-currency="pluginOptions"
+        label="Quantidade (em kg)"
+        placeholder="0,0 kg"
       />
     </div>
     <div class="form-data__item--size-bottom">
       <IntInput
-        v-model="produto"
-        label="Produto"
-        placeholder="Selecione o produto para CPR"
-        isSelect
-      >
-        <el-option
-          v-for="(item, index) in products"
-          :key="index"
-          :label="item.product.name"
-          :value="item.product.name"
-        >
-          <span class="el-select__option-child">{{ item.product.name }}</span>
-          <span class="el-select__option-child">{{ item.product.id }}</span>
-        </el-option>
-      </IntInput>
-    </div>
-    <div class="form-data__item--size-bottom">
-      <IntInput
-        v-model="lavoura"
-        label="Safra"
-        placeholder="2020 / 21"
-        isSelect
-      >
-        <el-option
-          v-for="(item, index) in harvests"
-          :key="index"
-          :label="item.harvest.name"
-          :value="item.harvest.name"
-        >
-          <span class="el-select__option-child">{{ item.harvest.name }}</span>
-          <span class="el-select__option-child">{{ item.harvest.id }}</span>
-        </el-option>
-      </IntInput>
-    </div>
-    <div class="form-data__item--size-bottom">
-      <IntInput
-        type="numeric"
-        :precision="2"
-        v-model="quantidade"
-        label="Quantidade (em kg)"
-        placeholder="0,0 kg"
+        v-model="quantidadeSacas"
+        label="Quantidade (em sacas)"
+        placeholder="0"
       />
     </div>
     <div class="form-data__item--size-bottom">
@@ -68,8 +68,8 @@
         </span>
         <div class="el-checkbox-group">
           <el-checkbox
-            :checked="proprietarioEmitente"
-            v-model="proprietarioEmitente">Próprio cliente
+            :checked="proprioEmitente"
+            v-model="proprioEmitente">Próprio cliente
           </el-checkbox>
           <el-checkbox
             v-model="hasIssuer"
@@ -94,9 +94,9 @@
       </div>
       <div class="form-data__item--size-bottom">
         <IntInput
-          v-model="emitentes[index].expiracao"
+          v-model="emitentes[index].cpf"
           label="CPF"
-          type="numeric"
+          v-mask="'###.###.###-##'"
           placeholder="000.000.000-00"
         />
       </div>
@@ -105,14 +105,22 @@
           v-model="emitentes[index].nome"
           label="Nome"
           placeholder="Defina o nome completo"
+          maxlength="100"
         />
       </div>
       <div class="form-data__item--size-bottom">
         <IntInput
           v-model="emitentes[index].rg"
           label="RG"
-          type="numeric"
           placeholder="000.000.000-00"
+        />
+      </div>
+      <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].inscricaoestadual"
+          label="Inscrição Estadual"
+          placeholder="Inscrição Estadual"
+          maxlength="15"
         />
       </div>
       <div class="form-data__item--size-bottom">
@@ -120,6 +128,79 @@
           v-model="emitentes[index].email"
           label="Email"
           placeholder="email@email.com"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].nacionalidade"
+          label="Nacionalidade"
+          placeholder="Nacionalidade"
+          maxlength="50"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].profissao"
+          label="Profissão"
+          placeholder="Profissão"
+          maxlength="50"
+        />
+      </div>
+      <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].cep"
+          label="Cep"
+          placeholder="Cep"
+          maxlength="9"
+          v-mask="'########'"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].rua"
+          label="Rua"
+          placeholder="Rua"
+          maxlength="100"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].numero"
+          label="Número"
+          placeholder="Número"
+          maxlength="5"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].complemento"
+          label="Complemento"
+          placeholder="Complemento"
+          maxlength="30"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].bairro"
+          label="Bairro"
+          placeholder="Bairro"
+          maxlength="50"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].cidade"
+          label="Cidade"
+          placeholder="Cidade"
+          maxlength="50"
+        />
+      </div>
+       <div class="form-data__item--size-bottom">
+        <IntInput
+          v-model="emitentes[index].uf"
+          label="UF"
+          placeholder="UF"
+          maxlength="2"
         />
       </div>
       <div class="form-data__item--size-bottom">
@@ -142,11 +223,10 @@
         v-if="emitentes[index].estadoCivil === 'married'"
       >
         <IntInput
-          type="numeric"
           v-model="emitentes[index].conjuge.rg"
           v-if="emitentes[index].estadoCivil === 'married'"
           label="RG do cônjuge"
-          placeholder="000.000.000-00"
+          placeholder="RG"
         />
       </div>
       <div
@@ -154,25 +234,26 @@
         v-if="emitentes[index].estadoCivil === 'married'"
       >
         <IntInput
-          type="numeric"
           v-model="emitentes[index].conjuge.cpf"
           v-if="emitentes[index].estadoCivil === 'married'"
           label="CPF do cônjuge"
+          v-mask="'###.###.###-##'"
           placeholder="000.000.000-00"
         />
       </div>
-      <div
+      <!-- <div
         class="form-data__item--size-bottom"
         v-if="emitentes[index].estadoCivil === 'married'"
       >
         <IntInput
           v-model="emitentes[index].conjuge.email"
           v-if="emitentes[index].estadoCivil === 'married'"
-          label="Email do cônjuge"
-          placeholder="Email do cônjuge"
+          label="Estado Civil do cônjuge"
+          placeholder="Estado Civil do cônjuge"
+          maxlength="60"
         />
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         class="form-data__item--size-bottom
          form-data__item--size-bottom--no-margin"
         v-if="emitentes[index].estadoCivil === 'married'"
@@ -182,8 +263,242 @@
           v-if="emitentes[index].estadoCivil === 'married'"
           label="Nome do cônjuge"
           placeholder="Defina o nome completo"
+          maxlength="100"
+        />
+      </div> -->
+       <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.nome"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Nome do cônjuge"
+          placeholder="Defina o nome completo"
         />
       </div>
+       <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.profissao"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Profissão do cônjuge"
+          placeholder="Profissão do cônjuge"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.profissao"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Profissão do cônjuge"
+          placeholder="Profissão do Cônjuge"
+          maxlength="60"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.nacionalidade"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Nacionalidade do cônjuge"
+          placeholder="Nacionalidade do cônjuge"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.nacionalidade"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Nacionalidade do cônjuge"
+          placeholder="Nacionalidade do Cônjuge"
+          maxlength="60"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.cep"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="CEP do Cônjuge"
+          placeholder="CEP"
+          v-mask="'########'"
+          maxlength="9"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.cep"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="CEP"
+          placeholder="CEP"
+          v-mask="'########'"
+          maxlength="9"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.rua"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Rua do Cônjuge"
+          placeholder="Rua"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.rua"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Rua"
+          placeholder="Rua"
+          maxlength="100"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.numero"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Número"
+          placeholder="Número"
+          maxlength="5"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.numero"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Numero"
+          placeholder="Numero"
+          maxlength="5"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.complemento"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Complemento"
+          placeholder="Complemento"
+          maxlength="25"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.complemento"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Complemento"
+          placeholder="Complemento"
+          maxlength="20"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.bairro"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Bairro"
+          placeholder="Bairro"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.bairro"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Bairro"
+          placeholder="Bairro"
+          maxlength="60"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.cidade"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Cidade"
+          placeholder="Cidade"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.cidade"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="Cidade"
+          placeholder="Cidade"
+          maxlength="60"
+        />
+      </div> -->
+      <div
+        class="form-data__item--size-bottom"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.uf"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="UF"
+          placeholder="UF"
+          maxlength="2"
+        />
+      </div>
+      <!-- <div
+        class="form-data__item--size-bottom
+         form-data__item--size-bottom--no-margin"
+        v-if="emitentes[index].estadoCivil === 'married'"
+      >
+        <IntInput
+          v-model="emitentes[index].conjuge.uf"
+          v-if="emitentes[index].estadoCivil === 'married'"
+          label="UF"
+          placeholder="UF"
+          maxlength="2"
+        />
+      </div> -->
     </div>
     <div>
       <button
@@ -229,9 +544,8 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapState, mapMutations } from 'vuex';
-import api from '../../../../../services/api';
-
 import IntModal from '../../../../../components/Modal.vue';
 import IconEllipse from '../../../../../assets/svgs/icon-ellipse.svg';
 import IntInput from '../../../../../components/Input.vue';
@@ -241,7 +555,7 @@ import IconPlus from '../../../../../assets/svgs/icon-plus.svg';
 export default {
   name: 'FormFirstStep',
   mounted() {
-    this.getStep1Options();
+    // this.getStep1Options();
   },
   components: {
     IntInput,
@@ -252,22 +566,55 @@ export default {
   },
   data: () => ({
     user: 1,
-    products: [],
-    harvests: [],
+    // products: [],
+    // harvests: [],
     showModalRemoveIssuer: false,
     tempIssuerIndex: null,
   }),
   methods: {
-    async getStep1Options() {
-      await api.get('/products')
-        .then((res) => {
-          this.products = res.data;
-        });
-      await api.get('/harvests')
-        .then((res) => {
-          this.harvests = res.data;
-        });
+    load_cep_conjuge_emitente() {
+      // const url_cep;
+      this.emitentes.conjuge.cep = this.emitentes.conjuge.cep.trim().replace(/[^0-9]/g, '');
+      // this.cep = 'https://viacep.com.br/ws/' + this.cep + '/json';
+      // clear all headers axios to viacep
+      // axios.defaults.headers.common = null;
+      axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${this.emitentes.conjuge.cep}/json`).then((response) => {
+        this.emitentes.conjuge.rua = response.data.logradouro;
+        this.emitentes.conjuge.bairro = response.data.bairro;
+        this.emitentes.conjuge.uf = response.data.uf;
+        this.emitentes.conjuge.cidade = response.data.localidade;
+      }).catch((error) => {
+        console.log(error.statusText);
+      });
     },
+
+    load_cep_emitente() {
+      // const url_cep;
+      this.emitentes.cep = this.emitentes.cep.trim().replace(/[^0-9]/g, '');
+      console.log(this.emitentes.cep);
+      // this.cep = 'https://viacep.com.br/ws/' + this.cep + '/json';
+      // clear all headers axios to viacep
+      // axios.defaults.headers.common = null;
+      axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${this.emitentes.cep}/json`).then((response) => {
+        this.emitentes.rua = response.data.logradouro;
+        this.emitentes.bairro = response.data.bairro;
+        this.emitentes.uf = response.data.uf;
+        this.emitentes.cidade = response.data.localidade;
+      }).catch((error) => {
+        console.log(error.statusText);
+      });
+    },
+
+    // async getStep1Options() {
+    //   await api.get('/products')
+    //     .then((res) => {
+    //       this.products = res.data;
+    //     });
+    //   await api.get('/harvests')
+    //     .then((res) => {
+    //       this.harvests = res.data;
+    //     });
+    // },
     ...mapMutations(
       'title', [
         'UPDATE_TITLE',
@@ -316,13 +663,13 @@ export default {
         });
       },
     },
-    proprietarioEmitente: {
+    proprioEmitente: {
       get() {
-        return this.title.proprietarioEmitente !== false;
+        return this.title.proprioEmitente !== false;
       },
       set(value) {
         this.UPDATE_PARTIALS_FORM({
-          key: 'proprietarioEmitente',
+          key: 'proprioEmitente',
           value,
         });
       },
@@ -360,6 +707,42 @@ export default {
         });
       },
     },
+    produtos: () => [
+      {
+        value: 'algodao',
+        label: 'Algodão em pluma',
+      },
+      {
+        value: 'boigordo',
+        label: 'Boi Gordo',
+      },
+      {
+        value: 'cafegraos',
+        label: 'Café cru em grãos',
+      },
+      {
+        value: 'gergelim',
+        label: 'Gergelim',
+      },
+      {
+        value: 'milhotipo1',
+        label: 'Milho Tipo 1, em grãos',
+      },
+      {
+        value: 'soja',
+        label: 'Soja',
+      },
+    ],
+    lavouras: () => [
+      {
+        value: '2020/21',
+        label: '2020/21',
+      },
+      {
+        value: '2021/22',
+        label: '2021/22',
+      },
+    ],
     quantidade: {
       get() {
         return this.title.quantidade;
@@ -367,6 +750,17 @@ export default {
       set(value) {
         this.UPDATE_PARTIALS_FORM({
           key: 'quantidade',
+          value,
+        });
+      },
+    },
+    quantidadeSacas: {
+      get() {
+        return this.title.quantidadeSacas;
+      },
+      set(value) {
+        this.UPDATE_PARTIALS_FORM({
+          key: 'quantidadeSacas',
           value,
         });
       },

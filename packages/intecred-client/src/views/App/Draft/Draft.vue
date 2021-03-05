@@ -46,7 +46,6 @@
                 :label="item.id">{{ item.name }}
               </el-radio>
             </div>
-            <div class="container__draft_options__group__divisor"></div>
             <div class="container__draft_options__group__item">
               <el-radio
                 v-for="item in this.optionsBlock2"
@@ -54,7 +53,6 @@
                 :label="item.id">{{ item.name }}
               </el-radio>
             </div>
-            <div class="container__draft_options__group__divisor"></div>
             <div class="container__draft_options__group__item">
               <el-radio
                 v-for="item in this.optionsBlock3"
@@ -345,7 +343,7 @@ export default {
           this.title = data;
           // loadingInstance.close();
           /* emulate the spinner */
-          setTimeout(() => loadingInstance.close(), 2000);
+          setTimeout(() => loadingInstance.close(), 500);
         });
     },
     async showUpdatedDraft() {
@@ -542,11 +540,6 @@ export default {
         display: flex;
         flex-direction: column;
         width: 160px;
-      }
-
-      &__divisor {
-        border: 1px solid $--color-gray-4;
-        margin: 0 24px;
       }
     }
   }

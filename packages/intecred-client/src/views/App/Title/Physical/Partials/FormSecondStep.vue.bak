@@ -2,25 +2,23 @@
   <div>
     <div class="form-data__item--size-bottom">
       <div class="form-data__size-bottom__banner">
-        <span>{{ produto }}</span>
+        <span>Soja</span>
       </div>
     </div>
     <div class="form-data__item--size-bottom
      form-data--two-items">
       <span class="form-data--two-items__item">
         <IntInput
-          type="numeric"
           v-model="produtividade"
-          label="Produtividade"
-          placeholder="Defina produtividade (kg/ha)"
+          label="Produtividade (kg/ha)"
+          placeholder="Defina a produtividade (kg/ha)"
         />
       </span>
       <span class="form-data--two-items__item">
         <IntInput
-          type="numeric"
           v-model="areaProducao"
-          label="Tamanho da área de produção"
-          placeholder="Defina o tamanho da área (ha)"
+          label="Área produtiva (ha)"
+          placeholder="Área produtiva (ha)"
         />
       </span>
     </div>
@@ -29,6 +27,7 @@
         v-model="nomeFazenda"
         label="Nome da fazenda"
         placeholder="Escolha o nome da fazenda"
+        maxlenght="100"
       />
     </div>
     <div class="form-data__item--size-bottom
@@ -40,15 +39,16 @@
           label="UF"
           placeholder="Selecione o estado"
           isSelect
+          @input="ObterMunicipios(uf)"
         >
           <el-option
             v-for="(item, index) in ufOptions"
             :key="index"
-            :label="item"
-            :value="item"
+            :label="item.uf"
+            :value="item.estadoId"
           >
-            <span class="el-select__option-child">{{ item }}</span>
-            <span class="el-select__option-child">{{ item }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
           </el-option>
         </IntInput>
       </span>
@@ -63,18 +63,17 @@
           <el-option
             v-for="(item, index) in cityOptions"
             :key="index"
-            :label="item"
-            :value="item"
+            :label="item.nome"
+            :value="item.municipioId"
           >
-            <span class="el-select__option-child">{{ item }}</span>
-            <span class="el-select__option-child">{{ item }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
           </el-option>
         </IntInput>
       </span>
     </div>
     <div class="form-data__item--size-bottom">
       <IntInput
-        type="numeric"
         v-model="numeroMatricula"
         label="Número da matrícula"
         placeholder="Insira o número da matrícula "
@@ -88,15 +87,16 @@
           label="UF da comarca de registro:"
           placeholder="Selecione o estado"
           isSelect
+          @input="ObterMunicipiosComarca(ufRegistro)"
         >
           <el-option
             v-for="(item, index) in ufRegistrationDistrictOptions"
             :key="index"
-            :label="item"
-            :value="item"
+            :label="item.uf"
+            :value="item.estadoId"
           >
-            <span class="el-select__option-child">{{ item }}</span>
-            <span class="el-select__option-child">{{ item }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
+            <span class="el-select__option-child">{{ item.uf }}</span>
           </el-option>
         </IntInput>
       </span>
@@ -110,11 +110,11 @@
           <el-option
             v-for="(item, index) in cityRegistrationDistrictOptions"
             :key="index"
-            :label="item"
-            :value="item"
+            :label="item.nome"
+            :value="item.municipioId"
           >
-            <span class="el-select__option-child">{{ item }}</span>
-            <span class="el-select__option-child">{{ item }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
+            <span class="el-select__option-child">{{ item.nome }}</span>
           </el-option>
         </IntInput>
       </span>
@@ -122,9 +122,9 @@
     <div class="form-data__item--size-bottom">
       <IntInput
         v-model="areaReservaLegal"
-        type="numeric"
         label="Área de reserva legal (hectares)"
         placeholder="Qtd de hectares"
+        type="number"
       />
     </div>
     <div class="form-data__item--size-bottom">
@@ -139,23 +139,25 @@
      form-data--two-items">
       <span class="form-data--two-items__item">
         <IntInput
-          type="numeric"
           v-model="latitude"
           label="Latitude"
+          v-mask="'#######'"
           placeholder="000000000"
         />
       </span>
       <span class="form-data--two-items__item">
         <IntInput
-          type="numeric"
           v-model="longitude"
           label="Longitude"
+          v-mask="'#######'"
           placeholder="000000000"
         />
       </span>
     </div>
     <div class="form-data__item--size-bottom">
       <Upload
+        :update-before="true"
+        :file-list="files"
         @input="UPDATE_FILES"
         :is-multiple="true"
         v-model="files"
@@ -191,7 +193,7 @@
         <IntInput
           v-model="proprietarios[index].cpf"
           label="CPF"
-          type="numeric"
+          v-mask="'###.###.###-##'"
           placeholder="000.000.000-00"
         />
       </div>
@@ -200,13 +202,13 @@
           v-model="proprietarios[index].nome"
           label="Nome"
           placeholder="Defina o nome completo"
+          maxlength="100"
         />
       </div>
       <div class="form-data__item--size-bottom">
         <IntInput
           v-model="proprietarios[index].rg"
           label="RG"
-          type="numeric"
           placeholder="000.000.000-00"
         />
       </div>
@@ -255,7 +257,7 @@
 </template>
 
 <script>
-
+// import axios from 'axios';
 import { mapMutations, mapState } from 'vuex';
 import IntInput from '../../../../../components/Input.vue';
 import Upload from '../../../../../components/Upload.vue';
@@ -281,17 +283,6 @@ export default {
   }),
   computed: {
     ...mapState('title', ['title']),
-    produto: {
-      get() {
-        return this.title.produto;
-      },
-      set(value) {
-        this.UPDATE_PARTIALS_FORM({
-          key: 'produto',
-          value,
-        });
-      },
-    },
     proprietarios: {
       get() {
         return this.title.proprietarios;
@@ -521,27 +512,53 @@ export default {
   },
   methods: {
     async getStep2Options() {
-      await api.get('/states')
+      await api.get('/formacaoLavoura/ObterEstados',
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then((res) => {
           this.ufOptions = res.data;
           this.ufRegistrationDistrictOptions = res.data;
         });
-      await api.get('/cities')
+    },
+    async ObterMunicipios(ufEstadoId) {
+      await api.get(`/formacaoLavoura/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
         .then((res) => {
           this.cityOptions = res.data;
+        });
+    },
+    async ObterMunicipiosComarca(ufEstadoComarcaId) {
+      await api.get(`/formacaoLavoura/ObterMunicipiosPorUF?ufEstadoId=${ufEstadoComarcaId}`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+            empresaId: localStorage.getItem('empresa_Id').toString(),
+          },
+        })
+        .then((res) => {
           this.cityRegistrationDistrictOptions = res.data;
         });
     },
-    ...mapMutations(
-      'title', [
-        'UPDATE_TITLE',
-        'UPDATE_PARTIALS_FORM',
-        'ADD_NEW_OWNER',
-        'REMOVE_OWNER',
-        'CLEAR_OWNERS',
-        'UPDATE_FILES',
-      ],
-    ),
+    ...mapMutations('title', [
+      'UPDATE_TITLE',
+      'UPDATE_PARTIALS_FORM',
+      'ADD_NEW_OWNER',
+      'REMOVE_OWNER',
+      'CLEAR_OWNERS',
+      'UPDATE_FILES',
+    ]),
     closeModal() {
       this.showBtnRemoveOwner = false;
     },
