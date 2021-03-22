@@ -564,6 +564,38 @@ export default {
     IntModal,
     IconEllipse,
   },
+  watch: {
+    quantidade(newValue) {
+      if (!this.quantidade) {
+        const value = 0.00;
+        this.UPDATE_PARTIALS_FORM({
+          key: 'quantidadeSacas',
+          value,
+        });
+        return;
+      }
+      const value = parseFloat(newValue) / 60;
+      console.log('Value 60 ->', value);
+      this.UPDATE_PARTIALS_FORM({
+        key: 'quantidadeSacas',
+        value,
+      });
+      const newValuesp = newValue.replace('.', '');
+      const valueF = newValuesp.replace('.', '');
+      console.log('newValuesp ->', newValuesp);
+      const x = parseFloat(valueF) / 60;
+      const x2 = x.toFixed(2);
+      console.log('X ->', x);
+      // const xconcat = x.toString().slice(-2);
+      // const yconcat = x.toString().slice(0, -2);
+      // const xformated = `${yconcat}.${xconcat}`;
+      // const yformated = parseFloat(xformated).toLocaleString('pt-BR');
+      this.UPDATE_PARTIALS_FORM({
+        key: 'quantidadeSacas',
+        value: x2,
+      });
+    },
+  },
   data: () => ({
     user: 1,
     pluginOptions: '',

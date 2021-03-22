@@ -510,6 +510,12 @@ export default {
         });
         return;
       }
+      // 10.03.2021
+      const value = parseFloat(newValue) + parseFloat(this.areaProducao).toLocaleString('pt-BR');
+      this.UPDATE_PARTIALS_FORM({
+        key: 'areaReservaTotal',
+        value,
+      });
       const newValuesp = newValue.replace('.', '').replace(',', '');
       const areaProducaosp = this.areaProducao.replace('.', '').replace(',', '');
       const x = parseFloat(newValuesp) + parseFloat(areaProducaosp);

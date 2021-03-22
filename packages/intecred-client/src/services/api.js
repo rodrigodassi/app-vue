@@ -2,15 +2,15 @@ import axios from 'axios';
 
 // ----------------------------- DESENVOLVIMENTO -----------------------------
 //
-// const url = 'http://localhost:60937/api'.toString();
-// const AllowOrigin = '';
-// const AllowMethods = '';
+const url = 'http://localhost:60937/api'.toString();
+const AllowOrigin = '';
+const AllowMethods = '';
 //
 // --------------------------------- HOMOLOGAÇÃO --------------------------------
 //
-const url = 'https://hml-intecred.azurewebsites.net/api'.toString();
-const AllowOrigin = 'https://hml-front-intecred.azurewebsites.net';
-const AllowMethods = 'GET,HEAD,OPTIONS,POST,PUT';
+// const url = 'https://hml-intecred.azurewebsites.net/api'.toString();
+// const AllowOrigin = 'https://hml-front-intecred.azurewebsites.net';
+// const AllowMethods = 'GET,HEAD,OPTIONS,POST,PUT';
 //
 // --------------------------------- PRODUCAO --------------------------------
 //

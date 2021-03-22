@@ -26,14 +26,11 @@ Vue.use(VueCurrencyInput, pluginOptions);
 
 Vue.config.productionTip = false;
 // Vue.prototype.$url = 'https://intecred.azurewebsites.net/api';
-// Vue.prototype.$url = 'http://localhost:60937/api';
+Vue.prototype.$url = 'http://localhost:60937/api';
 // Vue.prototype.$url = 'https://int-teste.azurewebsites.net/api';
 
-// Production:
-// Vue.prototype.$url = 'https://prod-intecred.azurewebsites.net/api';
-
 // Homolog:
-Vue.prototype.$url = 'https://hml-intecred.azurewebsites.net/api';
+// Vue.prototype.$url = 'https://hml-intecred.azurewebsites.net/api';
 
 // Production SSL:
 // Vue.prototype.$url = 'https://app1.intecred.com.br/api';
